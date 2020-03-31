@@ -8,7 +8,7 @@ include "navbar.php";
         <div class="page-title">
             <div class="title_left">
                 <h3>
-                    Plain Page <small>Page subtile </small>
+                   <?= $page; ?>
                 </h3>
             </div>
  
@@ -29,7 +29,7 @@ include "navbar.php";
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Page title <small>Page subtile </small></h2>
+                        <h2><?= $page ?></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li class="dropdown">
@@ -46,6 +46,7 @@ include "navbar.php";
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+                        
                         <!-- content starts here -->
                  <?php
                 if (!empty($src)) {

@@ -3,7 +3,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>MI Hasyim Asy'ari</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -15,7 +15,16 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <?php if ($this->fungsi->user_login()->level == 'admin'): ?>
+                  <h2>Adminstrator</h2>
+                <?php endif ?>
+                <?php if ($this->fungsi->user_login()->level == 'guru'): ?>
+                  <h2>Panitia</h2>
+                <?php endif ?>
+                <?php if ($this->fungsi->user_login()->level == 'siswa'): ?>
+                  <h2>Siswa</h2>
+                <?php endif ?>
+                
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -27,52 +36,57 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li>
+                  <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru' ): ?>
+                    <li>
                     <a href="<?= site_url('dashboard');?>"><i class="fa fa-home"></i> Home</a>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="<?= site_url('siswa/add'); ?>">Tambah Data Siswa</a></li>
                       <li><a href="<?= site_url('siswa'); ?>">Aktif</a></li>
                       <li><a href="<?= site_url('siswa/siswamutasi'); ?>">Mutasi</a></li>
                       <li><a href="<?= site_url('siswa/alumni') ;?>">Alumni</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Data Master <span class="fa fa-chevron-down"></span></a>
+                  <?php endif ?>
+                  
+                  <li><a><i class="fa fa-edit"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Master Kelas</a></li>
-                      <li><a href="media_gallery.html">Master Wali Kelas</a></li>
+                      <li><a href="<?= site_url('ppdb'); ?>">Dashboard PPDB</a></li>
+                      <li><a href="<?= site_url('ppdb/add'); ?>">Tambah Data PPDB</a></li>
+                      <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>
+                      <li><a href="<?= site_url('ppdb/list') ;?>">Data Calon Siswa</a></li>
+                      <?php endif; ?>
                     </ul>
                   </li>
+                  <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
+                    <li><a><i class="fa fa-desktop"></i> Data Master <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?= site_url('master'); ?>">Master Kelas</a></li>
+                      <li><a href="<?= site_url('master/guru'); ?>">Master Wali Kelas</a></li>
+                    </ul>
+                  </li>
+                  <?php endif ?>
                 </ul>
               </div>
+              <?php if($this->session->userdata('level')== 'admin'): ?>
               <div class="menu_section">
                 <h3>Fitur Admin</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i>User<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="e_commerce.html">Admin</a></li>
-                      <li><a href="projects.html">Guru</a></li>
-                      <li><a href="project_detail.html">Siswa</a></li>
-                    </ul>
+                  <li><a href="<?= site_url('user'); ?>"><i class="fa fa-bug"></i>User</a>
                   </li>
                 </ul>
               </div>
-
+              <?php endif; ?>
             </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <a data-toggle="tooltip" data-placement="top" title="Settings"  style="width: 50%">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= site_url('auth/logout'); ?>" style="width: 50%">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -90,16 +104,11 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url(); ?>assets/template/production/images/img.jpg" alt="">John Doe
+                    <img src="<?= base_url(); ?>assets/template/production/images/img.jpg" alt=""><?= $this->fungsi->user_login()->username; ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
-                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item"  href="<?= site_url('profile');?>"> Profile</a>
+                    <a class="dropdown-item"  href="<?= site_url('auth/logout'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
               </ul>

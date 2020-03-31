@@ -23,4 +23,12 @@ function activeSubMenu($subMenu){
     $methodName = $CI->router->fetch_method();;
     return $methodName == $subMenu ? 'active' : null;
 }
+function cekAdmin()
+{
+    $ci =& get_instance();
+    $ci->load->library('fungsi');
+    if ($ci->fungsi->user_login()->level != 'admin') {
+        redirect('dashboard','refresh');
+    }
+}
 ?>

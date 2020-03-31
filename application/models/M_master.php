@@ -5,12 +5,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class M_master extends CI_Model
 {
-	public function getKelas()
+	public function getKelas($id_kelas = null)
 	{
+		$this->db->join('guru', 'guru.id_guru = kelas.guru_id', 'left');
+		 if($id_kelas != null){
+            $this->db->where('id_kelas',$id_kelas);
+        }
 		return $this->db->get('kelas');
 	}
-	public function getStatus()
+	public function save($post)
 	{
-		return $this->db->get('status');;
+		$created_by = $this->session->userdata('id');
+		$created = date('Y-m-d H:i:s');
+		$params= array(
+			'nama_kelas' => $post['nama_kelas'],
+			'guru_id' => !empty($post['guru_id']) ? $post['guru_id'] : null,
+			'created_by' => $created_by,
+			'date_created' => $created
+		);
+		$this->db->insert('kelas', $params);
+	}
+	public function edit($post)
+	{
+		$modifBy = $this->session->userdata('id');
+        $modified = date('Y-m-d H:i:s');
+        $params = [
+        	'nama_kelas' => $post['nama_kelas'],
+        	'guru_id' => !empty($post['guru_id']) ? $post['guru_id'] : null
+        ];
+        $this->db->where('id_kelas', $post['id_kelas']);
+        $this->db->update('kelas', $params);
+	}
+	 public function del($id_kelas)
+    {
+        $this->db->where('id_kelas', $id_kelas);
+        $this->db->delete('kelas');
+    }
+    // end kelas
+   // start guru
+    public function getGuru($id_guru = null)
+	{
+		if ($id_guru != null) {
+			$this->db->where('id_guru', $id_guru);
+		}
+		return $this->db->get('guru');
+	}
+	public function addGuru($post)
+	{
+		$created_by = $this->session->userdata('id');
+		$created = date('Y-m-d H:i:s');
+		$params = [
+			'nip' => $post['nip'],
+			'nama_guru' => $post['nama_guru'],
+			'alamat_guru' => $post['alamat_guru'],
+			'gender' => $post['gender'],
+			'no_hp' => $post['no_hp'],
+			'created_by' => $created_by,
+			'date_created' => $created
+		];
+		$this->db->insert('guru', $params);
 	}
 }

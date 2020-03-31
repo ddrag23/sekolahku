@@ -10,6 +10,7 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 		cekNotLogin();
+		cekAdmin();
 	}
 	public function index()
 	{

@@ -10,6 +10,7 @@ class Siswa extends CI_Controller
 	{
 		parent::__construct();
 		cekNotLogin();
+        cekAdmin();
 		$this->load->model('m_siswa');
         $this->load->model('m_master');
 	}
@@ -41,24 +42,13 @@ class Siswa extends CI_Controller
 
 public function add()
     {
-    	$this->form_validation->set_rules('nis', 'nis', 'required|min_length[5]|is_unique[siswa.nis]');
-    	$this->form_validation->set_rules('nama', 'Nama', 'required');
-    	$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-    	$this->form_validation->set_rules('nomor', 'Nomor Telepon', 'required');
-    	$this->form_validation->set_rules('kelas', 'Kelas', 'required');
-    	$this->form_validation->set_rules('gender', 'Gender', 'required');
-    	// message validation
-        $this->form_validation->set_message('numeric', '%s harus menggunakan angka');
-    	$this->form_validation->set_message('required', '%s field tidak boleh kosong');
-    	$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
-    	$this->form_validation->set_message('is_unique', '{field} sudah terpakai');
-    	$this->form_validation->set_error_delimiters('<small class="text-danger">','</small>');
+        $this->validasi();
     	 if ($this->form_validation->run() == FALSE)
                 {
 			    	$this->load->view('template/main', [
 			    		'src' => 'module/siswa/addsiswa',
 			    		'page' => 'tambah siswa',
-			    		"join" => $this->m_master->getKelas()->result()
+			    		"kelas" => $this->m_master->getKelas()->result()
 			    	]);
                 }
                 else
@@ -67,28 +57,14 @@ public function add()
                 	$this->m_siswa->add($post);
                 	if ($this->db->affected_rows() > 0) {
                 		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+                        redirect('siswa','refresh');
                 	}
-                	$this->session->set_flashdata('gagal', 'data gagal ditambkan');
-                	redirect('siswa/add','refresh');
                 }
     	
     }
     public function edit($id_siswa)
     {
-    	$this->form_validation->set_rules('nama', 'Nama', 'required');
-    	$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-    	$this->form_validation->set_rules('nis', 'Nis', 'required|min_length[1]|numeric');
-    	$this->form_validation->set_rules('nomor', 'Nomor Telepon', 'required|numeric');
-        $this->form_validation->set_rules('kelas', 'Kelas', 'required');
-        $this->form_validation->set_rules('gender', 'Gender', 'required');
-        $this->form_validation->set_rules('status', 'Status', 'required');
-        // set message opsi validation
-    	$this->form_validation->set_message('required', '%s field tidak boleh kosong');
-        $this->form_validation->set_message('numeric', '%s harus menggunakan angka');
-    	$this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
-    	$this->form_validation->set_message('is_unique', '{field} sudah terpakai');
-    	$this->form_validation->set_error_delimiters('<small class="text-danger">','</small>');
-
+    	$this->validasi();
     	 if ($this->form_validation->run() == FALSE)
                 {
                     $query = $this->m_siswa->get($id_siswa);
@@ -96,7 +72,8 @@ public function add()
 							$this->load->view('template/main', [
                         	"src" => "module/siswa/editsiswa",
                         	"page" => "Edit Siswa",
-                        	"query" => $query->row()
+                        	"query" => $query->row(),
+                            "kelas" => $this->m_master->getKelas()->result()
                         ]);    
                     }else{
                         show_404();
@@ -117,11 +94,11 @@ public function add()
                 }
     }
 
-    public function delete($id)
+    public function delete($id_siswa)
     {
-        $this->m_siswa->del($id);
+        $this->m_siswa->del($id_siswa);
         $this->session->set_flashdata('hapus','Data berhasil dihapus');
-        redirect('user','refresh');
+        redirect('siswa','refresh');
     }
     // public function username_check()
     // {
@@ -134,4 +111,50 @@ public function add()
     //         return TRUE;
     //     }
     // }
+    public function validasi()
+    {
+         // form data diri
+        $this->form_validation->set_rules('nis', 'NIS', 'required|min_length[5]');
+        $this->form_validation->set_rules('nama_siswa', 'Nama', 'required');
+        $this->form_validation->set_rules('alamat_siswa', 'Alamat', 'required');
+        $this->form_validation->set_rules('gender_siswa', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('no_hp', 'Nomor Telepon', 'required');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
+        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
+        $this->form_validation->set_rules('status', 'Status Siswa', 'required');
+        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+        $this->form_validation->set_rules('umur', 'Umur', 'required');
+        $this->form_validation->set_rules('bb', 'Berat Badan', 'required');
+        $this->form_validation->set_rules('tb', 'Tinggi Badan', 'required');
+        $this->form_validation->set_rules('gol_darah', 'Golongan Darah', 'required');
+        $this->form_validation->set_rules('asal_sekolah', 'Asal Sekolah', 'required');
+        $this->form_validation->set_rules('keadaan_status', 'Keadaan Status', 'required');
+        // form ortu
+        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
+        $this->form_validation->set_rules('nama_ibu', 'Nama_ibu', 'required');
+        $this->form_validation->set_rules('pendidikan_ayah', 'Pendidikan Ayah', 'required');
+        $this->form_validation->set_rules('pendidikan_ibu', 'Pendidikan Ibu', 'required');
+        $this->form_validation->set_rules('job_ayah', 'Pekerjaan Ayah', 'required');
+        $this->form_validation->set_rules('job_ibu', 'Pekerjaan Ibu', 'required');
+        $this->form_validation->set_rules('gaji', 'Gaji', 'required');
+        $this->form_validation->set_rules('ktp_ayah', 'Ktp Ayah', 'required');
+        $this->form_validation->set_rules('ktp_ibu', 'Ktp Ibu', 'required');
+        // kehidupan
+        $this->form_validation->set_rules('cara_kesekolah', 'Cara Ke Sekolah', 'required');
+        $this->form_validation->set_rules('jarak_sekolah', 'Jarak Ke sekolah', 'required');
+        $this->form_validation->set_rules('tempat_mandi', 'Tempat Mandi', 'required');
+        $this->form_validation->set_rules('air_mandi', 'Pengadaan Air Mandi', 'required');
+        $this->form_validation->set_rules('air_minum', 'Pengadaan Air Minum', 'required');
+        $this->form_validation->set_rules('bangunan', 'Bangunan Rumah', 'required');
+        $this->form_validation->set_rules('lantai', 'Lantai Rumah', 'required');
+        $this->form_validation->set_rules('penerangan', 'Penerangan Rumah', 'required');
+        $this->form_validation->set_rules('waktu', 'Waktu Tempu Ke Sekolah', 'required');
+        $this->form_validation->set_rules('jumlah_saudara', 'Jumlah Saudara', 'required');
+        // message validation
+        $this->form_validation->set_message('numeric', '%s harus menggunakan angka');
+        $this->form_validation->set_message('required', '%s field tidak boleh kosong');
+        $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
+        $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_error_delimiters('<small class="text-danger required">','</small>');
+    }
 }

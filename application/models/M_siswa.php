@@ -8,8 +8,6 @@ class M_siswa extends CI_Model
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
-        $this->db->join('status', 'status.id_status = siswa.status_id', 'left');
-        $this->db->where('status_id', '1');
         if($id_siswa != null){
             $this->db->where('id_siswa',$id_siswa);
         }
@@ -19,24 +17,21 @@ class M_siswa extends CI_Model
     {
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
-        $this->db->join('status', 'status.id_status = siswa.status_id', 'left');
-        $this->db->where('status_id', '1');
+        $this->db->where('status', 'aktif');
         return $this->db->get('siswa');
     }
     public function getMutasi()
     {
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
-        $this->db->join('status', 'status.id_status = siswa.status_id', 'left');
-        $this->db->where('status_id', '2');
+        $this->db->where('status', 'mutasi');
         return $this->db->get('siswa');
     }
     public function getAlumni()
     {
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
-        $this->db->join('status', 'status.id_status = siswa.status_id', 'left');
-        $this->db->where('status_id', '3');
+        $this->db->where('status', 'alumni');
         return $this->db->get('siswa');
     }
   
@@ -45,12 +40,41 @@ class M_siswa extends CI_Model
         $created_by = $this->session->userdata('id');
         $created = date('Y-m-d H:i:s');
         $params = array(
-            'nama_siswa' => $post['nama'],
+            'users_id' => !empty($post['users_id']) ? $post['users_id'] : null,
             'nis' => $post['nis'],
-            'alamat_siswa' => $post['alamat'],
-            'no_hp' => $post['nomor'],
-            'kelas_id' => $post['kelas'],
-            'status_id' => 1,
+            'nama_siswa' => $post['nama_siswa'],
+            'alamat_siswa' => $post['alamat_siswa'],
+            'tempat_lahir' => $post['tempat_lahir'],
+            'tanggal_lahir' => $post['tanggal_lahir'],
+            'status' => $post['status'],
+            'umur' => $post['umur'],
+            'bb' => $post['bb'],
+            'tb' => $post['tb'],
+            'gol_darah' => $post['gol_darah'],
+            'gender_siswa' => $post['gender_siswa'],
+            'jumlah_saudara' => $post['jumlah_saudara'],
+            'asal_sekolah' => $post['asal_sekolah'],
+            'keadaan_status' => $post['keadaan_status'],
+            'nama_ayah' => $post['nama_ayah'],
+            'nama_ibu' => $post['nama_ibu'],
+            'ktp_ayah' => $post['ktp_ayah'],
+            'ktp_ibu' => $post['ktp_ibu'],
+            'pendidikan_ayah' => $post['pendidikan_ayah'],
+            'pendidikan_ibu' => $post['pendidikan_ibu'],
+            'job_ayah' => $post['job_ayah'],
+            'job_ibu' => $post['job_ibu'],
+            'gaji' => $post['gaji'],
+            'no_hp' => $post['no_hp'],
+            'waktu' => $post['waktu'],
+            'jarak_sekolah' => $post['jarak_sekolah'],
+            'tempat_mandi' => $post['tempat_mandi'],
+            'air_mandi' => $post['air_mandi'],
+            'air_minum' => $post['air_minum'],
+            'bangunan' => $post['bangunan'],
+            'lantai' => $post['lantai'],
+            'penerangan' => $post['penerangan'],
+            'nama_wali' => $post['nama_wali'],
+            'job_wali' => $post['job_wali'],
             'date_created' => $created,
             'created_by' => $created_by
         );
@@ -61,23 +85,52 @@ class M_siswa extends CI_Model
         $modifBy = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
-            'nama_siswa' => $post['nama'],
+            'users_id' => !empty($post['users_id']) ? $post['users_id'] : null,
             'nis' => $post['nis'],
-            'alamat_siswa' => $post['alamat'] != "" ? $post['alamat'] : null,
-            'no_hp' => $post['nomor'],
-            'status_id' => $post['status'],
-            'kelas_id' => $post['kelas'],
+            'nama_siswa' => $post['nama_siswa'],
+            'alamat_siswa' => $post['alamat_siswa'],
+            'tempat_lahir' => $post['tempat_lahir'],
+            'tanggal_lahir' => $post['tanggal_lahir'],
+            'status' => $post['status'],
+            'umur' => $post['umur'],
+            'bb' => $post['bb'],
+            'tb' => $post['tb'],
+            'gol_darah' => $post['gol_darah'],
+            'gender_siswa' => $post['gender_siswa'],
+            'jumlah_saudara' => $post['jumlah_saudara'],
+            'asal_sekolah' => $post['asal_sekolah'],
+            'keadaan_status' => $post['keadaan_status'],
+            'nama_ayah' => $post['nama_ayah'],
+            'nama_ibu' => $post['nama_ibu'],
+            'ktp_ayah' => $post['ktp_ayah'],
+            'ktp_ibu' => $post['ktp_ibu'],
+            'pendidikan_ayah' => $post['pendidikan_ayah'],
+            'pendidikan_ibu' => $post['pendidikan_ibu'],
+            'job_ayah' => $post['job_ayah'],
+            'job_ibu' => $post['job_ibu'],
+            'gaji' => $post['gaji'],
+            'no_hp' => $post['no_hp'],
+            'waktu' => $post['waktu'],
+            'jarak_sekolah' => $post['jarak_sekolah'],
+            'tempat_mandi' => $post['tempat_mandi'],
+            'air_mandi' => $post['air_mandi'],
+            'air_minum' => $post['air_minum'],
+            'bangunan' => $post['bangunan'],
+            'lantai' => $post['lantai'],
+            'penerangan' => $post['penerangan'],
+            'nama_wali' => $post['nama_wali'],
+            'job_wali' => $post['job_wali'],
             'modified_by' => $modifBy,
             'modified_created' => $modified 
         );
 
-        $this->db->where('id_siswa', $post['id']);
-        $this->db->update('siswa', $params);
+        $this->db->where('id_siswa', $post['id_siswa']);
+        $this->db->update('siswa', $post);
     }
-    public function del($id)
+    public function del($id_siswa)
     {
-        $this->db->where('id_siswa', $id);
-        $this->db->delete('users');
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->delete('siswa');
     }
    
 }

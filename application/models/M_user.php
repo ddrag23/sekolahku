@@ -23,6 +23,21 @@ class M_user extends CI_Model
         );
         $this->db->insert('users', $params);
     }
+    public function getSiswa()
+    {
+        $this->db->where('level', 'siswa');
+        $this->db->get('users');
+    }
+    public function getGuru()
+    {
+        $this->db->where('level', 'guru');
+        $this->db->get('users');
+    }
+    public function getAdmin()
+    {
+        $this->db->where('level', 'Admin');
+        $this->db->get('users');
+    }
 
     public function get($id = null){
         $this->db->from('users');
