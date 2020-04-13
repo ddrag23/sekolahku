@@ -93,12 +93,30 @@
             </div>
           </div>
           <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Agama
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
+            </div>
+          </div>
+          <div class="item form-group">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="ex-select2 form-control" name="kelas_id">
                 <option value="">--Pilih--</option>
                 <?php foreach ($kelas as $key):?>
                 <option value="<?= $key->id_kelas;?>" <?= set_value('kelas_id') == $key->id_kelas ? 'selected' : null; ?>><?= $key->nama_kelas; ?></option>
+                <?php endforeach;?>
+              </select>
+            </div>
+          </div>
+          <div class="item form-group">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Wali Kelas <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 ">
+              <select class="ex-select2 form-control" name="guru_id">
+                <option value="">--Pilih--</option>
+                <?php foreach ($guru as $key):?>
+                <option value="<?= $key->id_guru;?>" <?= set_value('guru_id') == $key->id_guru ? 'selected' : null; ?>><?= $key->nama_guru; ?></option>
                 <?php endforeach;?>
               </select>
             </div>
@@ -144,10 +162,21 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Asal Sekolah <span class="required">*</span>
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Asal Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control" value="<?= set_value('asal_sekolah'); ?>">
+              <select class="ex-select2 form-control" name="asal_sekolah">
+                <option value="">--Pilih--</option>
+                <option value="RA"<?= set_value('asal_sekolah') == 'RA' ? 'selected' : null; ?> >RA</option>
+                <option value="TK" <?= set_value('asal_sekolah') == 'TK' ? 'selected' : null; ?>>TK</option>
+              </select>
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Nama asal Sekolah <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= set_value('nama_sekolah_asal'); ?>">
             </div>
           </div>
            <div class="item form-group">
@@ -159,7 +188,7 @@
                 <option value="yatim" <?= set_value('keadaan_status') == 'yatim' ? 'selected' : null; ?>>Yatim</option>
                 <option value="piatu" <?= set_value('keadaan_status') == 'piatu' ? 'selected' : null; ?>>Piatu</option>
                 <option value="yatim piatu" <?= set_value('keadaan_status') == 'yatim piatu' ? 'selected' : null; ?>>Yatim Piatu</option>
-                <option value="tidak semua"  <?= set_value('keadaan_status') == 'tidak semua' ? 'selected' : null; ?>>Tidak Semua</option>
+                <option value="tidak yatim/piatu"  <?= set_value('keadaan_status') == 'tidak yatim/piatu' ? 'selected' : null; ?>>Tidak yatim/piatu</option>
               </select>
             </div>
           </div>
@@ -218,10 +247,10 @@
               <select class="form-control" name="pendidikan_ibu">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah" <?= set_value('pendidikan_ibu') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
-                <option value="putus sd" <?= set_value('pendidikan_ibu') == 'putus sd' ? 'selected' : null; ?>>Putus Sd</option>
-                <option value="sd sederajat" <?= set_value('pendidikan_ibu') == 'sd sederajat' ? 'selected' : null; ?>>Sd Sederajat</option>
-                <option value="smp sederajat"<?= set_value('pendidikan_ibu') == 'smp sederajat' ? 'selected' : null; ?>>Smp Sederajat</option>
-                <option value="sma sederajat"  <?= set_value('pendidikan_ibu') == 'sma sederajat' ? 'selected' : null; ?>>Sma sederajat</option>
+                <option value="putus SD" <?= set_value('pendidikan_ibu') == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat" <?= set_value('pendidikan_ibu') == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= set_value('pendidikan_ibu') == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"  <?= set_value('pendidikan_ibu') == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
                 <option value="D1"<?= set_value('pendidikan_ibu') == 'D1' ? 'selected' : null; ?>>D1</option>
                 <option value="D2"<?= set_value('pendidikan_ibu') == 'D2' ? 'selected' : null; ?>>D2</option>
                 <option value="D3"<?= set_value('pendidikan_ibu') == 'D3' ? 'selected' : null; ?>>D3</option>
@@ -235,14 +264,44 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align">Pekerjaan Ayah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" name="job_ayah" class="form-control" id="" value="<?= set_value('job_ayah'); ?>">
+              <select class="form-control" name="job_ayah">
+                <option value="">--Pilih--</option>
+                <option value="tidak bekerja" <?= set_value('job_ayah') == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
+                <option value="nelayan" <?= set_value('job_ayah') == 'nelayan' ? 'selected' : null; ?>>Nelayan</option>
+                <option value="petani" <?= set_value('job_ayah') == 'petani' ? 'selected' : null; ?>>Petani</option>
+                <option value="peternak" <?= set_value('job_ayah') == 'peternak' ? 'selected' : null; ?>>Peternak</option>
+                <option value="PNS" <?= set_value('job_ayah') == 'PNS' ? 'selected' : null; ?>>PNS</option>
+                <option value="karyawan swasta" <?= set_value('job_ayah') == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
+                <option value="pedagang kecil" <?= set_value('job_ayah') == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
+                <option value="pedangan besar" <?= set_value('job_ayah') == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="wiraswasta" <?= set_value('job_ayah') == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
+                <option value="wirausaha" <?= set_value('job_ayah') == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
+                <option value="buruh" <?= set_value('job_ayah') == 'buruh' ? 'selected' : null; ?>>Buruh</option>
+                <option value="pensiunan" <?= set_value('job_ayah') == 'pensiunan' ? 'selected' : null; ?>>Pensiunan</option>
+                <option value="lainnya" <?= set_value('job_ayah') == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+              </select>
             </div>
           </div>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_ibu">Pekerjaan Ibu <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="job_ibu" name="job_ibu" value="<?= set_value('job_ibu'); ?>" class="form-control ">
+              <select class="form-control" name="job_ibu">
+                <option value="">--Pilih--</option>
+                <option value="tidak bekerja" <?= set_value('job_ibu') == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
+                <option value="nelayan" <?= set_value('job_ibu') == 'nelayan' ? 'selected' : null; ?>>Nelayan</option>
+                <option value="petani" <?= set_value('job_ibu') == 'petani' ? 'selected' : null; ?>>Petani</option>
+                <option value="peternak" <?= set_value('job_ibu') == 'peternak' ? 'selected' : null; ?>>Peternak</option>
+                <option value="PNS" <?= set_value('job_ibu') == 'PNS' ? 'selected' : null; ?>>PNS</option>
+                <option value="karyawan swasta" <?= set_value('job_ibu') == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
+                <option value="pedagang kecil" <?= set_value('job_ibu') == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
+                <option value="pedangan besar" <?= set_value('job_ibu') == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="wiraswasta" <?= set_value('job_ibu') == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
+                <option value="wirausaha" <?= set_value('job_ibu') == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
+                <option value="buruh" <?= set_value('job_ibu') == 'buruh' ? 'selected' : null; ?>>Buruh</option>
+                <option value="pensiunan" <?= set_value('job_ibu') == 'pensiunan' ? 'selected' : null; ?>>Pensiunan</option>
+                <option value="lainnya" <?= set_value('job_ibu') == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+              </select>
             </div>
           </div>
            <div class="item form-group">
@@ -251,9 +310,9 @@
             <div class="col-md-6 col-sm-6 ">
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
-                <option value="kurang dari 1 juta" <?= set_value('gaji') == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 juta" <?= set_value('gaji') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 juta" <?= set_value('gaji') == 'lebih dari 2 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+                <option value="kurang dari 1 jt" <?= set_value('gaji') == 'kurang dari 1jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 sampai 2 jt" <?= set_value('gaji') == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="lebih dari 2 jt" <?= set_value('gaji') == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
               </select>
             </div>
           </div>
@@ -279,10 +338,10 @@
             <div class="col-md-6 col-sm-6 ">
                <select class="form-control" name="jarak_sekolah">
                 <option value="">--Pilih--</option>
-                <option value="<1km" <?= set_value('jarak_sekolah') == '<1km' ? 'selected' : null; ?>>Kurang dari 1 km</option>
+                <option value="0 sampai 1km" <?= set_value('jarak_sekolah') == '0 sampai 1km' ? 'selected' : null; ?>>0 sampai  1 km</option>
                 <option value="1km" <?= set_value('jarak_sekolah') == '1km' ? 'selected' : null; ?>>1 km</option>
                 <option value="2km" <?= set_value('jarak_sekolah') == '2km' ? 'selected' : null; ?>>2 km</option>
-                <option value=">2km" <?= set_value('jarak_sekolah') == '>2km' ? 'selected' : null; ?>>lebih dari 2 km</option>
+                <option value="lebih dari 3km" <?= set_value('jarak_sekolah') == 'lebih dari 3km' ? 'selected' : null; ?>>Lebih dari 3 km</option>
               </select>
             </div>
           </div>
@@ -292,13 +351,32 @@
             <div class="col-md-6 col-sm-6 ">
                <select class="form-control" name="cara_kesekolah">
                 <option value="">--Pilih--</option>
-                <option value="jalan" <?= set_value('cara_kesekolah') == 'jalan' ? 'selected' : null; ?>>Jalan</option>
-                <option value="naik sepeda" <?= set_value('cara_kesekolah') == 'naik sepeda' ? 'selected' : null; ?>>Naik sepeda</option>
-                <option value="antar jemput" <?= set_value('cara_kesekolah') == 'antar_jemput' ? 'selected' : null; ?>>Antar Jemput</option>
-                <option value=">taksi" <?= set_value('cara_kesekolah') == 'taksi' ? 'selected' : null; ?>>Taksi</option>
+                <option value="jalan kaki" <?= set_value('cara_kesekolah') == 'jalan kaki' ? 'selected' : null; ?>>Jalan Kaki</option>
+                <option value="sepeda" <?= set_value('cara_kesekolah') == 'sepeda' ? 'selected' : null; ?>>Naik sepeda</option>
+                <option value="kendaraan pribadi" <?= set_value('cara_kesekolah') == 'kendaraan pribadi' ? 'selected' : null; ?>>Kendaraan pribadi</option>
+                <option value="kendaraan umum" <?= set_value('cara_kesekolah') == 'kendaraan umum' ? 'selected' : null; ?>>Kendaraan umum</option>
+                <option value="jemputan" <?= set_value('cara_kesekolah') == 'jemputan' ? 'selected' : null; ?>>Jemputan</option>
+                <option value="delman" <?= set_value('cara_kesekolah') == 'delman' ? 'selected' : null; ?>>Delman</option>
+                <option value="kereta api" <?= set_value('cara_kesekolah') == 'kereta api' ? 'selected' : null; ?>>Kereta api</option>
+                <option value="ojek" <?= set_value('cara_kesekolah') == 'ojek' ? 'selected' : null; ?>>Ojek</option>
+                <option value="getek" <?= set_value('cara_kesekolah') == 'getek' ? 'selected' : null; ?>>Getek</option>
+                <option value="lainnya" <?= set_value('cara_kesekolah') == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
               </select>
           </div>
         </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Tinggal <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+               <select class="form-control" name="tempat_tinggal">
+                <option value="">--Pilih--</option>
+                <option value="orang tua" <?= set_value('tempat_tinggal') == 'orang tua' ? 'selected' : null; ?>>Orang Tua</option>
+                <option value="saudara"<?= set_value('tempat_tinggal') == 'saudara' ? 'selected' : null; ?>>Saudara</option>
+                <option value="kos"<?= set_value('tempat_tinggal') == 'kos' ? 'selected' : null; ?>>Kos/Kontrak</option>
+                <option value="panti asuhan"<?= set_value('tempat_tinggal') == 'panti asuhan' ? 'selected' : null; ?>>Panti asuhan</option>
+              </select>
+            </div>
+          </div>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Mandi <span class="required">*</span>
             </label>
@@ -334,6 +412,8 @@
                 <option value="sungai"<?= set_value('air_minum') == 'sungai' ? 'selected' : null; ?>>Sungai</option>
                 <option value="sumber"<?= set_value('air_minum') == 'sumber' ? 'selected' : null; ?>>Sumber</option>
                 <option value="tengki"<?= set_value('air_minum') == 'tengki' ? 'selected' : null; ?>>Tengki</option>
+                <option value="kemasan"<?= set_value('air_minum') == 'kemasan' ? 'selected' : null; ?>>Kemasan</option>
+                <option value="isi ulang"<?= set_value('air_minum') == 'isi ulang' ? 'selected' : null; ?>>Isi Ulang</option>
               </select>
             </div>
           </div>
@@ -373,18 +453,6 @@
               </select>
             </div>
           </div>
-           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="form-control" name="gaji">
-                <option value="">--Pilih--</option>
-                <option value="kurang dari 1 juta"<?= set_value('gaji') == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 juta" <?= set_value('gaji') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 juta" <?= set_value('gaji') == 'lebih dari 2 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
-              </select>
-            </div>
-          </div>
       </div>
       <div id="step-4">
         <div class="item form-group">
@@ -394,11 +462,45 @@
               <input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= set_value('nama_wali'); ?>">
             </div>
           </div>
+          <div class="item form-group">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Wali <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 ">
+              <select class="form-control" name="pendidikan_wali">
+                <option value="">--Pilih--</option>
+                <option value="tidak sekolah"<?= set_value('pendidikan_wali') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
+                <option value="putus SD"<?= set_value('pendidikan_wali') == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat"<?= set_value('pendidikan_wali') == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= set_value('pendidikan_wali') == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"<?= set_value('pendidikan_wali') == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
+                <option value="D1"<?= set_value('pendidikan_wali') == 'D1' ? 'selected' : null; ?>>D1</option>
+                <option value="D2"<?= set_value('pendidikan_wali') == 'D2' ? 'selected' : null; ?>>D2</option>
+                <option value="D3"<?= set_value('pendidikan_wali') == 'D3' ? 'selected' : null; ?>>D3</option>
+                <option value="D4/S1" <?= set_value('pendidikan_wali') == 'D4/S1' ? 'selected' : null; ?>>D4/S1</option>
+                <option value="S2"<?= set_value('pendidikan_wali') == 'S2' ? 'selected' : null; ?>>S2</option>
+                <option value="S3" <?= set_value('pendidikan_wali') == 'S3' ? 'selected' : null; ?>>S3</option>
+              </select>
+            </div>
+          </div>
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_wali">Pekerjaan Wali <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" class="form-control" id="job_wali" name="job_wali" value="<?= set_value('job_wali'); ?>">
+              <select class="form-control" name="job_wali">
+                <option value="">--Pilih--</option>
+                <option value="tidak bekerja" <?= set_value('job_wali') == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
+                <option value="nelayan" <?= set_value('job_wali') == 'nelayan' ? 'selected' : null; ?>>Nelayan</option>
+                <option value="petani" <?= set_value('job_wali') == 'petani' ? 'selected' : null; ?>>Petani</option>
+                <option value="peternak" <?= set_value('job_wali') == 'peternak' ? 'selected' : null; ?>>Peternak</option>
+                <option value="PNS" <?= set_value('job_wali') == 'PNS' ? 'selected' : null; ?>>PNS</option>
+                <option value="karyawan swasta" <?= set_value('job_wali') == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
+                <option value="pedagang kecil" <?= set_value('job_wali') == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
+                <option value="pedangan besar" <?= set_value('job_wali') == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="wiraswasta" <?= set_value('job_wali') == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
+                <option value="wirausaha" <?= set_value('job_wali') == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
+                <option value="buruh" <?= set_value('job_wali') == 'buruh' ? 'selected' : null; ?>>Buruh</option>
+                <option value="pensiunan" <?= set_value('job_wali') == 'pensiunan' ? 'selected' : null; ?>>Pensiunan</option>
+                <option value="lainnya" <?= set_value('job_wali') == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+              </select>
             </div>
           </div>
       </div>

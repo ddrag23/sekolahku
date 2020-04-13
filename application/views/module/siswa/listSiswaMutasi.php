@@ -16,11 +16,11 @@
           <tr>
            <td><?= ++$no;?></td>
             <td><?= $key->nis;?></td>
-            <td><?= $key->nama;?></td>
-            <td><?= $key->alamat;?></td>
-            <td><?= $key->gender;?></td>
+            <td><?= $key->nama_siswa;?></td>
+            <td><?= $key->alamat_siswa;?></td>
+            <td><?= $key->gender_siswa;?></td>
             <td><?= $key->nama_kelas;?></td>
-            <td><?= $key->nama_status;?></td>
+            <td><?= $key->status;?></td>
              <td wid_siswath="160px" class="text-center">
               <a href="<?=site_url('siswa/edit/'.$key->id_siswa); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
 

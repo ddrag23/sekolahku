@@ -14,11 +14,6 @@
   			        <!-- end pesan validasi -->
                 <input type="hidden" name="id" value="<?= $query->id; ?>">
                   <div class="form-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" value="<?= $this->input->post('nama') ?? $query->nama; ?>">
-                    <?= form_error('nama'); ?>
-                  </div>
-                  <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" name="username" placeholder="Username" value="<?= $this->input->post('username') ?? $query->username; ?>">
                     <?= form_error('username'); ?>
@@ -32,16 +27,6 @@
                     <label for="passconf">Konfirmasi password</label>
                     <input type="password" class="form-control" name="passconf" placeholder="Password" value="<?= $this->input->post('passconf'); ?>">
                     <?= form_error('passconf'); ?>
-                  </div>
-                  <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea name="alamat" class="form-control" cols="30" rows="5"><?= $this->input->post('username') ?? $query->alamat;  ?></textarea>
-                    <?= form_error('alamat'); ?>
-                  </div>
-                  <div class="form-group">
-                    <label for="nomor">Nomor Telepon</label>
-                    <input type="text" class="form-control" name="nomor" placeholder="Nomor Telepon" value="<?= $this->input->post('nomor') ?? $query->nmr_telp; ?>">
-                    <?= form_error('nomor'); ?>
                   </div>
                   <div class="form-group">
                   	<label for="level">Level User</label>

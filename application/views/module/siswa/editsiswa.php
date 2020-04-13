@@ -94,12 +94,30 @@
             </div>
           </div>
           <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Agama
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="agama" class="form-control" value="<?= $this->input->post('agama') ?? $query->agama ?>">
+            </div>
+          </div>
+          <div class="item form-group">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="ex-select2 form-control" name="kelas_id">
                 <!-- <option value="">--Pilih--</option> -->
                   <?php foreach ($kelas as $key):?>
-                <option value="<?= $key->id_kelas;?>" <?= $key->id_kelas == $query->id_kelas ? 'selected' : null; ?>><?= $key->nama_kelas; ?></option>
+                <option value="<?= $key->id_kelas;?>" <?= $key->id_kelas == $query->kelas_id ? 'selected' : null; ?>><?= $key->nama_kelas; ?></option>
+                <?php endforeach;?>
+              </select>
+            </div>
+          </div>
+          <div class="item form-group">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 ">
+              <select class="ex-select2 form-control" name="guru_id">
+                <!-- <option value="">--Pilih--</option> -->
+                  <?php foreach ($guru as $key):?>
+                <option value="<?= $key->id_guru;?>" <?= $key->id_guru == $query->guru_id ? 'selected' : null; ?>><?= $key->nama_guru; ?></option>
                 <?php endforeach;?>
               </select>
             </div>
@@ -147,10 +165,22 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Asal Sekolah <span class="required">*</span>
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Asal Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control" value="<?= $this->input->post('asal_sekolah') ?? $query->asal_sekolah; ?>">
+              <?php $asalSekolah = $this->input->post('asal_sekolah') ? $this->input->post('asal_sekolah') : $query->asal_sekolah; ?>
+              <select class="ex-select2 form-control" name="asal_sekolah">
+                <option value="">--Pilih--</option>
+                <option value="RA"<?= $asalSekolah == 'RA' ? 'selected' : null; ?> >RA</option>
+                <option value="TK" <?= $asalSekolah == 'TK' ? 'selected' : null; ?>>TK</option>
+              </select>
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Nama asal Sekolah <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= $this->input->post('nama_sekolah_asal') ?? $query->nama_sekolah_asal; ?>">
             </div>
           </div>
            <div class="item form-group">
@@ -163,7 +193,7 @@
                 <option value="yatim" <?= $keadaan == 'yatim' ? 'selected' : null; ?>>Yatim</option>
                 <option value="piatu" <?= $keadaan == 'piatu' ? 'selected' : null; ?>>Piatu</option>
                 <option value="yatim piatu" <?= $keadaan == 'yatim piatu' ? 'selected' : null; ?>>Yatim Piatu</option>
-                <option value="tidak semua"  <?= $keadaan == 'tidak semua' ? 'selected' : null; ?>>Tidak Semua</option>
+                <option value="tidak yatim/piatu"  <?= $keadaan == 'tidak yatim/piatu' ? 'selected' : null; ?>>Tidak Yatim/Piatu</option>
               </select>
             </div>
           </div>
@@ -204,10 +234,10 @@
               <select class="form-control" name="pendidikan_ayah">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah" <?= $pendidikan == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
-                <option value="putus sd" <?= $pendidikan == 'putus sd' ? 'selected' : null; ?>>Putus Sd</option>
-                <option value="sd sederajat" <?= $pendidikan == 'sd sederajat' ? 'selected' : null; ?>>Sd Sederajat</option>
-                <option value="smp sederajat"<?= $pendidikan == 'smp sederajat' ? 'selected' : null; ?>>Smp Sederajat</option>
-                <option value="sma sederajat"  <?= $pendidikan == 'sma sederajat' ? 'selected' : null; ?>>Sma sederajat</option>
+                <option value="putus SD" <?= $pendidikan == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat" <?= $pendidikan == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= $pendidikan == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"  <?= $pendidikan == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
                 <option value="D1"<?= $pendidikan == 'D1' ? 'selected' : null; ?>>D1</option>
                 <option value="D2"<?= $pendidikan == 'D2' ? 'selected' : null; ?>>D2</option>
                 <option value="D3"<?= $pendidikan == 'D3' ? 'selected' : null; ?>>D3</option>
@@ -224,10 +254,10 @@
               <select class="form-control" name="pendidikan_ibu">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah" <?= $pendidikan == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
-                <option value="putus sd" <?= $pendidikan == 'putus sd' ? 'selected' : null; ?>>Putus Sd</option>
-                <option value="sd sederajat" <?= $pendidikan == 'sd sederajat' ? 'selected' : null; ?>>Sd Sederajat</option>
-                <option value="smp sederajat"<?= $pendidikan == 'smp sederajat' ? 'selected' : null; ?>>Smp Sederajat</option>
-                <option value="sma sederajat"  <?= $pendidikan == 'sma sederajat' ? 'selected' : null; ?>>Sma sederajat</option>
+                <option value="putus SD" <?= $pendidikan == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat" <?= $pendidikan == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= $pendidikan == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"  <?= $pendidikan == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
                 <option value="D1"<?= $pendidikan == 'D1' ? 'selected' : null; ?>>D1</option>
                 <option value="D2"<?= $pendidikan == 'D2' ? 'selected' : null; ?>>D2</option>
                 <option value="D3"<?= $pendidikan == 'D3' ? 'selected' : null; ?>>D3</option>
@@ -241,14 +271,46 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align">Pekerjaan Ayah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" name="job_ayah" class="form-control" id="" value="<?= $this->input->post('job_ayah') ?? $query->job_ayah; ?>">
+              <?php $jobAyah = $this->input->post('job_ayah') ? $this->input->post('job_ayah') : $query->job_ayah; ?>
+              <select class="form-control" name="job_ayah">
+                <option value="">--Pilih--</option>
+                <option value="tidak bekerja" <?= $jobAyah == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
+                <option value="nelayan" <?= $jobAyah == 'nelayan' ? 'selected' : null; ?>>Nelayan</option>
+                <option value="petani" <?= $jobAyah == 'petani' ? 'selected' : null; ?>>Petani</option>
+                <option value="peternak" <?= $jobAyah == 'peternak' ? 'selected' : null; ?>>Peternak</option>
+                <option value="PNS" <?= $jobAyah == 'PNS' ? 'selected' : null; ?>>PNS</option>
+                <option value="karyawan swasta" <?= $jobAyah == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
+                <option value="pedagang kecil" <?= $jobAyah == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
+                <option value="pedangan besar" <?= $jobAyah == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="wiraswasta" <?= $jobAyah == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
+                <option value="wirausaha" <?= $jobAyah == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
+                <option value="buruh" <?= $jobAyah == 'buruh' ? 'selected' : null; ?>>Buruh</option>
+                <option value="pensiunan" <?= $jobAyah == 'pensiunan' ? 'selected' : null; ?>>Pensiunan</option>
+                <option value="lainnya" <?= $jobAyah == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+              </select>
             </div>
           </div>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_ibu">Pekerjaan Ibu <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="job_ibu" name="job_ibu" value="<?= $this->input->post('job_ibu') ?? $query->job_ibu; ?>" class="form-control ">
+              <?php $jobIbu = $this->input->post('job_ibu') ? $this->input->post('job_ibu') : $query->job_ibu; ?>
+              <select class="form-control" name="job_ibu">
+                <option value="">--Pilih--</option>
+                <option value="tidak bekerja" <?= $jobIbu == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
+                <option value="nelayan" <?= $jobIbu == 'nelayan' ? 'selected' : null; ?>>Nelayan</option>
+                <option value="petani" <?= $jobIbu == 'petani' ? 'selected' : null; ?>>Petani</option>
+                <option value="peternak" <?= $jobIbu == 'peternak' ? 'selected' : null; ?>>Peternak</option>
+                <option value="PNS" <?= $jobIbu == 'PNS' ? 'selected' : null; ?>>PNS</option>
+                <option value="karyawan swasta" <?= $jobIbu == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
+                <option value="pedagang kecil" <?= $jobIbu == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
+                <option value="pedangan besar" <?= $jobIbu == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="wiraswasta" <?= $jobIbu == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
+                <option value="wirausaha" <?= $jobIbu == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
+                <option value="buruh" <?= $jobIbu == 'buruh' ? 'selected' : null; ?>>Buruh</option>
+                <option value="pensiunan" <?= $jobIbu == 'pensiunan' ? 'selected' : null; ?>>Pensiunan</option>
+                <option value="lainnya" <?= $jobIbu == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+              </select>
             </div>
           </div>
            <div class="item form-group">
@@ -258,9 +320,9 @@
               <?php $gaji = $this->input->post('gaji') ? $this->input->post('gaji') : $query->gaji ?>
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
-                <option value="kurang dari 1 juta" <?= $gaji == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 juta" <?= $gaji == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 juta" <?= $gaji == 'lebih dari 2 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+                <option value="kurang dari 1 jt" <?= $gaji == 'kurang dari 1 jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 sampai 2 jt" <?= $gaji == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="lebih dari 2 jt" <?= $gaji == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
               </select>
             </div>
           </div>
@@ -287,10 +349,10 @@
               <?php $jarak = $this->input->post('jarak_sekolah') ? $this->input->post('jarak_sekolah') : $query->jarak_sekolah; ?>
                <select class="form-control" name="jarak_sekolah">
                 <option value="">--Pilih--</option>
-                <option value="<1km" <?= $jarak == '<1km' ? 'selected' : null; ?>>Kurang dari 1 km</option>
+                <option value="0 sampai 1km" <?= $jarak == '0 sampai 1km' ? 'selected' : null; ?>>0 sampai  1 km</option>
                 <option value="1km" <?= $jarak == '1km' ? 'selected' : null; ?>>1 km</option>
                 <option value="2km" <?= $jarak == '2km' ? 'selected' : null; ?>>2 km</option>
-                <option value=">2km" <?= $jarak == '>2km' ? 'selected' : null; ?>>lebih dari 2 km</option>
+                <option value="lebih dari 3km" <?= $jarak == 'lebih dari 3km' ? 'selected' : null; ?>>Lebih dari 3 km</option>
               </select>
             </div>
           </div>
@@ -298,16 +360,36 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_ibu">Cara Ke sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
+              <?php $caraSekolah = $this->input->post('cara_kesekolah') ? $this->input->post('cara_kesekolah') : $query->cara_kesekolah; ?>
                <select class="form-control" name="cara_kesekolah">
-                <?php $kesekolah = $this->input->post('cara_kesekolah') ? $this->input->post('cara_kesekolah') : $query->cara_kesekolah;  ?>
                 <option value="">--Pilih--</option>
-                <option value="jalan" <?= $kesekolah == 'jalan' ? 'selected' : null; ?>>Jalan</option>
-                <option value="naik sepeda" <?= $kesekolah == 'naik sepeda' ? 'selected' : null; ?>>Naik sepeda</option>
-                <option value="antar jemput" <?= $kesekolah == 'antar_jemput' ? 'selected' : null; ?>>Antar Jemput</option>
-                <option value=">taksi" <?= $kesekolah == 'taksi' ? 'selected' : null; ?>>Taksi</option>
+                <option value="jalan kaki"<?= $caraSekolah == 'jalan kaki' ? 'selected' : null; ?>>Jalan Kaki</option>
+                <option value="sepeda"<?= $caraSekolah == 'sepeda' ? 'selected' : null; ?>>Naik sepeda</option>
+                <option value="kendaraan pribadi"<?= $caraSekolah == 'kendaraan pribadi' ? 'selected' : null; ?>>Kendaraan pribadi</option>
+                <option value="kendaraan umum"<?= $caraSekolah == 'kendaraan umum' ? 'selected' : null; ?>>Kendaraan umum</option>
+                <option value="jemputan"<?= $caraSekolah == 'jemputan' ? 'selected' : null; ?>>Jemputan</option>
+                <option value="delman"<?= $caraSekolah == 'delman' ? 'selected' : null; ?>>Delman</option>
+                <option value="kereta api"<?= $caraSekolah == 'kereta api' ? 'selected' : null; ?>>Kereta api</option>
+                <option value="ojek"<?= $caraSekolah == 'ojek' ? 'selected' : null; ?>>Ojek</option>
+                <option value="getek"<?= $caraSekolah == 'getek' ? 'selected' : null; ?>>Getek</option>
+                <option value="lainnya"<?= $caraSekolah == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
               </select>
           </div>
         </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Tinggal <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <?php $tinggal = $this->input->post('tempat_tinggal') ? $this->input->post('tempat_tinggal') : $query->tempat_tinggal; ?>
+               <select class="form-control" name="tempat_tinggal">
+                <option value="">--Pilih--</option>
+                <option value="orang tua" <?= $tinggal == 'orang tua' ? 'selected' : null; ?>>Orang Tua</option>
+                <option value="saudara"<?= $tinggal == 'saudara' ? 'selected' : null; ?>>Saudara</option>
+                <option value="kos"<?= $tinggal == 'kos' ? 'selected' : null; ?>>Kos/Kontrak</option>
+                <option value="panti asuhan"<?= $tinggal == 'panti asuhan' ? 'selected' : null; ?>>Panti asuhan</option>
+              </select>
+            </div>
+          </div>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Mandi <span class="required">*</span>
             </label>
@@ -316,9 +398,9 @@
                <select class="form-control" name="tempat_mandi">
                 <option value="">--Pilih--</option>
                 <option value="kamar mandi" <?= $tempat == 'kamar mandi' ? 'selected' : null; ?>>Kamar Mandi</option>
-                <option value="sumber "<?= $tempat == 'sumber' ? 'selected' : null; ?>>Sumber</option>
-                <option value="sungai "<?= $tempat == 'sungai' ? 'selected' : null; ?>>Sungai</option>
-                <option value="kamar mandi umum "<?= $tempat == 'kamar mandi umum' ? 'selected' : null; ?>>Kamar Mandi Umum</option>
+                <option value="sumber"<?= $tempat == 'sumber' ? 'selected' : null; ?>>Sumber</option>
+                <option value="sungai"<?= $tempat == 'sungai' ? 'selected' : null; ?>>Sungai</option>
+                <option value="kamar mandi umum"<?= $tempat == 'kamar mandi umum' ? 'selected' : null; ?>>Kamar Mandi Umum</option>
               </select>
             </div>
           </div>
@@ -329,7 +411,7 @@
               <?php $mandi = $this->input->post('air_mandi') ? $this->input->post('air_mandi') : $query->air_mandi; ?>
               <select class="form-control" name="air_mandi">
                 <option value="">--Pilih--</option>
-                <option value="pdam" <?= $mandi == 'pdam' ? 'selected' : null; ?>>Pdam</option>
+                <option value="PDAM" <?= $mandi == 'PDAM' ? 'selected' : null; ?>>PDAM</option>
                 <option value="sumber" <?= $mandi == 'sumber' ? 'selected' : null; ?>>Sumber</option>
                 <option value="sungai" <?= $mandi == 'sungai' ? 'selected' : null; ?>>Sungai</option>
                 <option value="kamar mandi umum" <?= $mandi == 'kamar mandi umum' ? 'selected' : null; ?>>Kamar Mandi Umum</option>
@@ -342,10 +424,12 @@
               <select class="form-control" name="air_minum">
                 <?php $minum = $this->input->post('air_minum') ? $this->input->post('air_minum') : $query->air_minum; ?>
                 <option value="">--Pilih--</option>
-                <option value="pdam" <?= $minum == 'pdam' ? 'selected' : null; ?>>Pdam</option>
+                <option value="PDAM" <?= $minum == 'PDAM' ? 'selected' : null; ?>>PDAM</option>
                 <option value="sungai"<?= $minum == 'sungai' ? 'selected' : null; ?>>Sungai</option>
                 <option value="sumber"<?= $minum == 'sumber' ? 'selected' : null; ?>>Sumber</option>
                 <option value="tengki"<?= $minum == 'tengki' ? 'selected' : null; ?>>Tengki</option>
+                <option value="kemasan"<?= $minum == 'kemasan' ? 'selected' : null; ?>>Kemasan</option>
+                <option value="isi ulang"<?= $minum == 'isi ulang' ? 'selected' : null; ?>>Isi Ulang</option>
               </select>
             </div>
           </div>
@@ -397,11 +481,47 @@
               <input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= $this->input->post('nama_wali') ?? $query->nama_wali; ?>">
             </div>
           </div>
+          <div class="item form-group">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Wali <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 ">
+              <?php $pendWali = $this->input->post('pendidikan_wali') ? $this->input->post('pendidikan_wali') : $query->pendidikan_wali; ?>
+              <select class="form-control" name="pendidikan_wali">
+                <option value="">--Pilih--</option>
+                <option value="tidak sekolah" <?= $pendWali == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
+                <option value="putus SD" <?= $pendWali == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat" <?= $pendWali == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= $pendWali == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"  <?= $pendWali == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
+                <option value="D1"<?= $pendWali == 'D1' ? 'selected' : null; ?>>D1</option>
+                <option value="D2"<?= $pendWali == 'D2' ? 'selected' : null; ?>>D2</option>
+                <option value="D3"<?= $pendWali == 'D3' ? 'selected' : null; ?>>D3</option>
+                <option value="D4/S1" <?= $pendWali == 'D4/S1' ? 'selected' : null; ?>>D4/S1</option>
+                <option value="S2"<?= $pendWali == 'S2' ? 'selected' : null; ?>>S2</option>
+                <option value="S3" <?= $pendWali == 'S3' ? 'selected' : null; ?>>S3</option>
+              </select>
+            </div>
+          </div>
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_wali">Pekerjaan Wali <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" class="form-control" id="job_wali" name="job_wali" value="<?= $this->input->post('job_wali') ?? $query->job_wali; ?>">
+              <?php $jobWali = $this->input->post('job_wali') ? $this->input->post('job_wali') : $query->job_wali; ?>
+              <select class="form-control" name="job_wali">
+                <option value="">--Pilih--</option>
+                <option value="tidak bekerja" <?= $jobWali == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
+                <option value="nelayan" <?= $jobWali == 'nelayan' ? 'selected' : null; ?>>Nelayan</option>
+                <option value="petani" <?= $jobWali == 'petani' ? 'selected' : null; ?>>Petani</option>
+                <option value="peternak" <?= $jobWali == 'peternak' ? 'selected' : null; ?>>Peternak</option>
+                <option value="PNS" <?= $jobWali == 'PNS' ? 'selected' : null; ?>>PNS</option>
+                <option value="karyawan swasta" <?= $jobWali == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
+                <option value="pedagang kecil" <?= $jobWali == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
+                <option value="pedangan besar" <?= $jobWali == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="wiraswasta" <?= $jobWali == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
+                <option value="wirausaha" <?= $jobWali == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
+                <option value="buruh" <?= $jobWali == 'buruh' ? 'selected' : null; ?>>Buruh</option>
+                <option value="pensiunan" <?= $jobWali == 'pensiunan' ? 'selected' : null; ?>>Pensiunan</option>
+                <option value="lainnya" <?= $jobWali == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+              </select>
             </div>
           </div>
       </div>

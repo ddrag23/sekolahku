@@ -48,7 +48,8 @@ public function add()
 			    	$this->load->view('template/main', [
 			    		'src' => 'module/siswa/addsiswa',
 			    		'page' => 'tambah siswa',
-			    		"kelas" => $this->m_master->getKelas()->result()
+			    		"kelas" => $this->m_master->getKelas()->result(),
+                        "guru" => $this->m_master->getGuru()->result()
 			    	]);
                 }
                 else
@@ -73,7 +74,8 @@ public function add()
                         	"src" => "module/siswa/editsiswa",
                         	"page" => "Edit Siswa",
                         	"query" => $query->row(),
-                            "kelas" => $this->m_master->getKelas()->result()
+                            "kelas" => $this->m_master->getKelas()->result(),
+                            "guru" => $this->m_master->getGuru()->result()
                         ]);    
                     }else{
                         show_404();
@@ -128,6 +130,7 @@ public function add()
         $this->form_validation->set_rules('tb', 'Tinggi Badan', 'required');
         $this->form_validation->set_rules('gol_darah', 'Golongan Darah', 'required');
         $this->form_validation->set_rules('asal_sekolah', 'Asal Sekolah', 'required');
+        $this->form_validation->set_rules('nama_sekolah_asal', 'Nama Asal Sekolah', 'required');
         $this->form_validation->set_rules('keadaan_status', 'Keadaan Status', 'required');
         // form ortu
         $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
@@ -142,6 +145,7 @@ public function add()
         // kehidupan
         $this->form_validation->set_rules('cara_kesekolah', 'Cara Ke Sekolah', 'required');
         $this->form_validation->set_rules('jarak_sekolah', 'Jarak Ke sekolah', 'required');
+        $this->form_validation->set_rules('tempat_tinggal', 'Tempat Tinggal', 'required');
         $this->form_validation->set_rules('tempat_mandi', 'Tempat Mandi', 'required');
         $this->form_validation->set_rules('air_mandi', 'Pengadaan Air Mandi', 'required');
         $this->form_validation->set_rules('air_minum', 'Pengadaan Air Minum', 'required');
