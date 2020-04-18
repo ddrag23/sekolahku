@@ -21,7 +21,7 @@
                 <?php if ($this->fungsi->user_login()->level == 'guru'): ?>
                   <h2>Panitia</h2>
                 <?php endif ?>
-                <?php if ($this->fungsi->user_login()->level == 'siswa'): ?>
+                <?php if ($this->fungsi->user_login()->level == 'user'): ?>
                   <h2>Siswa</h2>
                 <?php endif ?>
                 

@@ -1,4 +1,4 @@
-<form class="form-horizontal form-label-left" method="post" action="<?= site_url('siswa/add'); ?>">
+<form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="<?= site_url('siswa/add'); ?>">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
         <li>
@@ -36,6 +36,13 @@
       </ul>
       <div id="step-1">
           <?= validation_errors(); ?>
+           <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Foto<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="file" id="first-name" name="foto" class="form-control" value="">
+            </div>
+          </div>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
             </label>
@@ -126,10 +133,10 @@
             <div class="col-md-6 col-sm-6 ">
               <div id="gender" class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="L" <?= set_value('gender') == 'L' ? 'selected' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
+                  <input type="radio" name="gender_siswa" value="L" <?= set_value('gender') == 'L' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
                 </label>
                 <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="P"<?= set_value('gender') == 'P' ? 'selected' : null; ?> class="join-btn"> Perempuan
+                  <input type="radio" name="gender_siswa" value="P"<?= set_value('gender') == 'P' ? 'checked' : null; ?> class="join-btn"> Perempuan
                 </label>
               </div>
             </div>

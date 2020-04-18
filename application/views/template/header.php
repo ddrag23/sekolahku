@@ -36,6 +36,8 @@
     <link href="<?= base_url()?>assets/template/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>assets/template/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    
   </head>
 
   <body class="nav-md">

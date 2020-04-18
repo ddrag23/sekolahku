@@ -67,7 +67,7 @@
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url()?>assets/template/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <script src="<?= base_url()?>assets/template/vendors/select2/dist/js/select2.full.min.js"></script>
-    
+     <script src="<?= base_url()?>assets/template/vendors/switchery/dist/switchery.min.js"></script>
     <script src="<?= base_url()?>assets/template/build/js/custom.min.js"></script>
     <script>
         $('#myDatepicker2').datetimepicker({

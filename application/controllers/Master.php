@@ -95,7 +95,20 @@ class Master extends CI_Controller {
 	}
 	public function editGuru($id_guru)
 	{
-		$query = $this->m_master->getGuru($id_guru);
+		$this->validasi();
+		if ($this->form_validation->run() == FALSE) {
+			$query = $this->m_master->getGuru($id_guru);
+			if ($query->num_rows() > 0) {
+				$this->load->view('template/main', [
+					"src" => "module/guru/formguru",
+					"page" => ucfirst("edit data Guru"),
+					"query" => $query->row(),
+					"submit" => "editguru"
+				]);
+			}			
+			} else {
+				$this->proses();
+			}
 	}
 
 
@@ -121,7 +134,7 @@ class Master extends CI_Controller {
 			$this->form_validation->set_rules('nip', 'NIP', 'trim|required');
 			$this->form_validation->set_rules('nama_guru', 'Nama Guru', 'trim|required');
 			$this->form_validation->set_rules('alamat_guru', 'Alamat Guru', 'trim|required');
-			$this->form_validation->set_rules('gender', 'Jenis Kelamin', 'trim|required');
-			$this->form_validation->set_rules('no_hp', 'No Telepon', 'trim|required');
+			$this->form_validation->set_rules('gender_guru', 'Jenis Kelamin', 'trim|required');
+			$this->form_validation->set_rules('no_hp_guru', 'No Telepon', 'trim|required');
 	}
 }

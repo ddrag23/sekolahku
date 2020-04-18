@@ -9,6 +9,7 @@ class Ppdb extends CI_Controller {
 		$this->load->model('m_ppdb');
 		$this->load->model('m_master');
 		$this->load->model('m_user');
+        $this->load->model('m_siswa');
 	}
 	public function index()
 	{
@@ -63,6 +64,7 @@ class Ppdb extends CI_Controller {
                         	"page" => "Edit Siswa",
                         	"query" => $query->row(),
                             "kelas" => $this->m_master->getKelas()->result(),
+                            "guru" => $this->m_master->getGuru()->result(),
                             "user" => $this->m_user->get()->result()
                         ]);    
                     }else{
@@ -86,11 +88,6 @@ class Ppdb extends CI_Controller {
     }
     public function validasi()
     {
-        if ($this->session->userdata('level') == 'admin') {
-        $this->form_validation->set_rules('status', 'Status Siswa', 'required');
-        $this->form_validation->set_rules('kelas_id', 'Kelas', 'trim|required');
-            # code...
-        }
         // form data diri
         $this->form_validation->set_rules('nis', 'NIS', 'required|min_length[5]');
         $this->form_validation->set_rules('nama_siswa', 'Nama', 'required');

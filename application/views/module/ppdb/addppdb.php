@@ -1,4 +1,4 @@
-<form class="form-horizontal form-label-left" method="post" action="<?= site_url('ppdb/add'); ?>">
+<form class="" method="post" enctype="multipart/form-data" action="<?= site_url('ppdb/add'); ?>">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
         <li>
@@ -35,30 +35,35 @@
         </li>
       </ul>
       <div id="step-1">
-          <?= validation_errors(); ?>
-          <?php if ($this->session->userdata('level') == 'admin'): ?>
-             <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Username <span class="required">*</span></label>
+	  <?= validation_errors(); ?>
+	  <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Foto<span class="required">*</span>
+            </label>
             <div class="col-md-6 col-sm-6 ">
-              <select class="ex-select2 form-control" name="users_id">
-                <option value="">--Pilih--</option>
-                <?php foreach ($user as $key):?>
-                <option value="<?= $key->id;?>" <?= set_value('users_id') == $key->id ? 'selected' : null; ?>><?= $key->username; ?></option>
-                <?php endforeach;?>
-              </select>
+              <input type="file" id="foto" name="foto" class="form-control" value="">
             </div>
           </div>
-          <?php endif ?>
-          <?php if ($this->session->userdata('level') == 'siswa'): ?>
-            <input type="hidden" name="users_id" value="<?= $this->session->userdata('id'); ?>">
-          <?php endif ?>
+          <?php if ($this->session->userdata('level') == 'user'): ?>
+            <input type="hidden" name="users_id" id="" value="<?= $this->session->userdata('id');?>">
+          <?php endif; ?>
+        <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru' ): ?>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="first-name" name="nis" class="form-control" value="<?= set_value('nis'); ?>">
+              <input type="text" id="first-name" name="nis" class="form-control" value="<?= set_value('nis') ?>">
             </div>
-          </div>
+          </div> 
+        <?php endif ?>
+        <?php if ($this->session->userdata('level') == 'user' ): ?>
+           <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nis" class="form-control" value="<?= $this->fungsi->user_login()->username; ?>" readonly="readonly">
+            </div>
+          </div> 
+        <?php endif ?>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
@@ -115,19 +120,6 @@
               <input type="text" id="first-name" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
             </div>
           </div>
-          <?php if ($this->session->userdata('level') == 'admin'): ?>
-             <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="ex-select2 form-control" name="kelas_id">
-                <option value="">--Pilih--</option>
-                <?php foreach ($kelas as $key):?>
-                <option value="<?= $key->id_kelas;?>" <?= set_value('kelas_id') == $key->id_kelas ? 'selected' : null; ?>><?= $key->nama_kelas; ?></option>
-                <?php endforeach;?>
-              </select>
-            </div>
-          </div>
-          <?php endif ?>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
             <div class="col-md-6 col-sm-6 ">
@@ -148,21 +140,6 @@
               <textarea name="alamat_siswa" id="" cols="30" rows="10" class="form-control"><?= set_value('alamat_siswa'); ?></textarea>
             </div>
           </div>
-          <?php if ($this->session->userdata('level') == 'admin'): ?>
-            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Status Siswa <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="ex-select2 form-control" name="status">
-                <option value="">--Pilih--</option>
-                <option value="praaktif"<?= set_value('status') == 'praaktif' ? 'selected' : null; ?> >Praaktif</option>
-                <option value="aktif" <?= set_value('status') == 'aktif' ? 'selected' : null; ?>>Aktif</option>
-                <option value="mutasi" <?= set_value('status') == 'mutasi' ? 'selected' : null; ?>>Mutasi</option>
-                <option value="alumni" <?= set_value('status') == 'alumni' ? 'selected' : null; ?>>Alumni</option>
-              </select>
-            </div>
-          </div>
-          <?php endif ?>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Saudara <span class="required">*</span>
             </label>
@@ -185,7 +162,7 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Nama asal Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="nama_asal_sekolah" name="asal_sekolah" class="form-control" value="<?= set_value('nama_asal_sekolah'); ?>">
+              <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= set_value('nama_sekolah_asal'); ?>">
             </div>
           </div>
            <div class="item form-group">
@@ -197,7 +174,7 @@
                 <option value="yatim" <?= set_value('keadaan_status') == 'yatim' ? 'selected' : null; ?>>Yatim</option>
                 <option value="piatu" <?= set_value('keadaan_status') == 'piatu' ? 'selected' : null; ?>>Piatu</option>
                 <option value="yatim piatu" <?= set_value('keadaan_status') == 'yatim piatu' ? 'selected' : null; ?>>Yatim Piatu</option>
-                <option value="tidak semua"  <?= set_value('keadaan_status') == 'tidak semua' ? 'selected' : null; ?>>Tidak Semua</option>
+                <option value="tidak yatim/piatu"  <?= set_value('keadaan_status') == 'tidak yatim/piatu' ? 'selected' : null; ?>>Tidak yatim/piatu</option>
               </select>
             </div>
           </div>
@@ -256,10 +233,10 @@
               <select class="form-control" name="pendidikan_ibu">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah" <?= set_value('pendidikan_ibu') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
-                <option value="putus sd" <?= set_value('pendidikan_ibu') == 'putus sd' ? 'selected' : null; ?>>Putus Sd</option>
-                <option value="sd sederajat" <?= set_value('pendidikan_ibu') == 'sd sederajat' ? 'selected' : null; ?>>Sd Sederajat</option>
-                <option value="smp sederajat"<?= set_value('pendidikan_ibu') == 'smp sederajat' ? 'selected' : null; ?>>Smp Sederajat</option>
-                <option value="sma sederajat"  <?= set_value('pendidikan_ibu') == 'sma sederajat' ? 'selected' : null; ?>>Sma sederajat</option>
+                <option value="putus SD" <?= set_value('pendidikan_ibu') == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat" <?= set_value('pendidikan_ibu') == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= set_value('pendidikan_ibu') == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"  <?= set_value('pendidikan_ibu') == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
                 <option value="D1"<?= set_value('pendidikan_ibu') == 'D1' ? 'selected' : null; ?>>D1</option>
                 <option value="D2"<?= set_value('pendidikan_ibu') == 'D2' ? 'selected' : null; ?>>D2</option>
                 <option value="D3"<?= set_value('pendidikan_ibu') == 'D3' ? 'selected' : null; ?>>D3</option>
@@ -319,9 +296,9 @@
             <div class="col-md-6 col-sm-6 ">
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
-                <option value="kurang dari 1 juta" <?= set_value('gaji') == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 juta" <?= set_value('gaji') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 juta" <?= set_value('gaji') == 'lebih dari 2 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+                <option value="kurang dari 1 jt" <?= set_value('gaji') == 'kurang dari 1jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 sampai 2 jt" <?= set_value('gaji') == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="lebih dari 2 jt" <?= set_value('gaji') == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
               </select>
             </div>
           </div>
@@ -347,7 +324,7 @@
             <div class="col-md-6 col-sm-6 ">
                <select class="form-control" name="jarak_sekolah">
                 <option value="">--Pilih--</option>
-                <option value="0 sampai 1km" <?= set_value('jarak_sekolah') == '<1km' ? 'selected' : null; ?>>0 sampai  1 km</option>
+                <option value="0 sampai 1km" <?= set_value('jarak_sekolah') == '0 sampai 1km' ? 'selected' : null; ?>>0 sampai  1 km</option>
                 <option value="1km" <?= set_value('jarak_sekolah') == '1km' ? 'selected' : null; ?>>1 km</option>
                 <option value="2km" <?= set_value('jarak_sekolah') == '2km' ? 'selected' : null; ?>>2 km</option>
                 <option value="lebih dari 3km" <?= set_value('jarak_sekolah') == 'lebih dari 3km' ? 'selected' : null; ?>>Lebih dari 3 km</option>
@@ -360,29 +337,29 @@
             <div class="col-md-6 col-sm-6 ">
                <select class="form-control" name="cara_kesekolah">
                 <option value="">--Pilih--</option>
-                <option value="jalan" <?= set_value('cara_kesekolah') == 'jalan kaki' ? 'selected' : null; ?>>Jalan Kaki</option>
+                <option value="jalan kaki" <?= set_value('cara_kesekolah') == 'jalan kaki' ? 'selected' : null; ?>>Jalan Kaki</option>
                 <option value="sepeda" <?= set_value('cara_kesekolah') == 'sepeda' ? 'selected' : null; ?>>Naik sepeda</option>
                 <option value="kendaraan pribadi" <?= set_value('cara_kesekolah') == 'kendaraan pribadi' ? 'selected' : null; ?>>Kendaraan pribadi</option>
-                <option value=">kendaraan umum" <?= set_value('cara_kesekolah') == 'kendaraan umum' ? 'selected' : null; ?>>Kendaraan umum</option>
-                <option value=">jemputan" <?= set_value('cara_kesekolah') == 'jemputan' ? 'selected' : null; ?>>Jemputan</option>
-                <option value=">delman" <?= set_value('cara_kesekolah') == 'delman' ? 'selected' : null; ?>>Delman</option>
-                <option value=">kereta api" <?= set_value('cara_kesekolah') == 'kereta api' ? 'selected' : null; ?>>Kereta api</option>
-                <option value=">ojek" <?= set_value('cara_kesekolah') == 'ojek' ? 'selected' : null; ?>>Ojek</option>
-                <option value=">getek" <?= set_value('cara_kesekolah') == 'getek' ? 'selected' : null; ?>>Getek</option>
-                <option value=">lainnya" <?= set_value('cara_kesekolah') == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
+                <option value="kendaraan umum" <?= set_value('cara_kesekolah') == 'kendaraan umum' ? 'selected' : null; ?>>Kendaraan umum</option>
+                <option value="jemputan" <?= set_value('cara_kesekolah') == 'jemputan' ? 'selected' : null; ?>>Jemputan</option>
+                <option value="delman" <?= set_value('cara_kesekolah') == 'delman' ? 'selected' : null; ?>>Delman</option>
+                <option value="kereta api" <?= set_value('cara_kesekolah') == 'kereta api' ? 'selected' : null; ?>>Kereta api</option>
+                <option value="ojek" <?= set_value('cara_kesekolah') == 'ojek' ? 'selected' : null; ?>>Ojek</option>
+                <option value="getek" <?= set_value('cara_kesekolah') == 'getek' ? 'selected' : null; ?>>Getek</option>
+                <option value="lainnya" <?= set_value('cara_kesekolah') == 'lainnya' ? 'selected' : null; ?>>Lainnya</option>
               </select>
           </div>
         </div>
-        <div class="item form-group">
+          <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Tinggal <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
                <select class="form-control" name="tempat_tinggal">
                 <option value="">--Pilih--</option>
                 <option value="orang tua" <?= set_value('tempat_tinggal') == 'orang tua' ? 'selected' : null; ?>>Orang Tua</option>
-                <option value="saudara "<?= set_value('tempat_tinggal') == 'saudara' ? 'selected' : null; ?>>Saudara</option>
-                <option value="kos "<?= set_value('tempat_tinggal') == 'kos' ? 'selected' : null; ?>>Kos/Kontrak</option>
-                <option value="panti asuhan "<?= set_value('tempat_tinggal') == 'panti asuhan' ? 'selected' : null; ?>>Panti asuhan</option>
+                <option value="saudara"<?= set_value('tempat_tinggal') == 'saudara' ? 'selected' : null; ?>>Saudara</option>
+                <option value="kos"<?= set_value('tempat_tinggal') == 'kos' ? 'selected' : null; ?>>Kos/Kontrak</option>
+                <option value="panti asuhan"<?= set_value('tempat_tinggal') == 'panti asuhan' ? 'selected' : null; ?>>Panti asuhan</option>
               </select>
             </div>
           </div>
@@ -462,7 +439,6 @@
               </select>
             </div>
           </div>
-          
       </div>
       <div id="step-4">
         <div class="item form-group">
@@ -477,11 +453,11 @@
             <div class="col-md-6 col-sm-6 ">
               <select class="form-control" name="pendidikan_wali">
                 <option value="">--Pilih--</option>
-                <option value="tidak sekolah" <?= set_value('pendidikan_wali') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
-                <option value="putus sd" <?= set_value('pendidikan_wali') == 'putus sd' ? 'selected' : null; ?>>Putus Sd</option>
-                <option value="sd sederajat" <?= set_value('pendidikan_wali') == 'sd sederajat' ? 'selected' : null; ?>>Sd Sederajat</option>
-                <option value="smp sederajat"<?= set_value('pendidikan_wali') == 'smp sederajat' ? 'selected' : null; ?>>Smp Sederajat</option>
-                <option value="sma sederajat"  <?= set_value('pendidikan_wali') == 'sma sederajat' ? 'selected' : null; ?>>Sma sederajat</option>
+                <option value="tidak sekolah"<?= set_value('pendidikan_wali') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
+                <option value="putus SD"<?= set_value('pendidikan_wali') == 'putus SD' ? 'selected' : null; ?>>Putus SD</option>
+                <option value="SD sederajat"<?= set_value('pendidikan_wali') == 'SD sederajat' ? 'selected' : null; ?>>SD Sederajat</option>
+                <option value="SMP sederajat"<?= set_value('pendidikan_wali') == 'SMP sederajat' ? 'selected' : null; ?>>SMP Sederajat</option>
+                <option value="SMA sederajat"<?= set_value('pendidikan_wali') == 'SMA sederajat' ? 'selected' : null; ?>>SMA sederajat</option>
                 <option value="D1"<?= set_value('pendidikan_wali') == 'D1' ? 'selected' : null; ?>>D1</option>
                 <option value="D2"<?= set_value('pendidikan_wali') == 'D2' ? 'selected' : null; ?>>D2</option>
                 <option value="D3"<?= set_value('pendidikan_wali') == 'D3' ? 'selected' : null; ?>>D3</option>

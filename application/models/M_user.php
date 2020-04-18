@@ -15,30 +15,14 @@ class M_user extends CI_Model
     {
         $created = date('Y-m-d H:i:s');
         $params = array(
-            'nama' => $post['nama'],
             'username' => $post['username'],
             'password' => sha1($post['password']),
             'level' => 'siswa',
+            'is_active' => '1',
             'date_created' => $created
         );
         $this->db->insert('users', $params);
     }
-    public function getSiswa()
-    {
-        $this->db->where('level', 'siswa');
-        $this->db->get('users');
-    }
-    public function getGuru()
-    {
-        $this->db->where('level', 'guru');
-        $this->db->get('users');
-    }
-    public function getAdmin()
-    {
-        $this->db->where('level', 'Admin');
-        $this->db->get('users');
-    }
-
     public function get($id = null){
         $this->db->from('users');
         if($id != null){
@@ -51,13 +35,10 @@ class M_user extends CI_Model
         $created_by = $this->session->userdata('id');
         $created = date('Y-m-d H:i:s');
         $params = array(
-            'nama' => $post['nama'],
-            'username' => $post['username'],
-            'password' => sha1($post['username']),
-            'alamat' => $post['alamat'],
-            'nmr_telp' => $post['nomor'],
+            'username' => htmlspecialchars($post['username']),
+            'password' => sha1($post['password']),
             'level' => $post['level'],
-            'is_active' => '1',
+            'is_active' => $post['is_active'],
             'date_created' => $created,
             'created_by' => $created_by
         );
@@ -68,17 +49,13 @@ class M_user extends CI_Model
         $modifBy = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
-            'nama' => $post['nama'],
-            'username' => $post['username'],
-            'password' => !empty($post['password']) ? sha1($post['password']) : null,
-            'alamat' => $post['alamat'] != "" ? $post['alamat'] : null,
-            'nmr_telp' => $post['nomor'],
+            'username' => htmlspecialchars($post['username']),
+            'password' => empty($post['password']) ? null :  sha1($post['password']),
             'level' => $post['level'],
-            'is_active' => $post['aktif'],
+            'is_active' => $post['is_active'],
             'modified_by' => $modifBy,
-            'modified_created' => $modified 
+            'modified_date' => $modified 
         );
-
         $this->db->where('id', $post['id']);
         $this->db->update('users', $params);
     }

@@ -58,11 +58,32 @@ class M_master extends CI_Model
 			'nip' => $post['nip'],
 			'nama_guru' => $post['nama_guru'],
 			'alamat_guru' => $post['alamat_guru'],
-			'gender' => $post['gender'],
-			'no_hp' => $post['no_hp'],
+			'gender_guru' => $post['gender_guru'],
+			'no_hp_guru' => $post['no_hp_guru'],
 			'created_by' => $created_by,
 			'date_created' => $created
 		];
 		$this->db->insert('guru', $params);
 	}
+	public function editGuru($post)
+	{
+		$modifBy = $this->session->userdata('id');
+        $modified = date('Y-m-d H:i:s');
+        $params = [
+        	'nip' => $post['nip'],
+			'nama_guru' => $post['nama_guru'],
+			'alamat_guru' => $post['alamat_guru'],
+			'gender_guru' => $post['gender_guru'],
+			'no_hp_guru' => $post['no_hp_guru'],
+			'modified_by' => $modifBy,
+			'modified_date' => $modified
+        ];
+        $this->db->where('id_guru', $post['id_guru']);
+        $this->db->update('guru', $params);
+	}
+	 public function delGuru($id_guru)
+    {
+        $this->db->where('id_guru', $id_guru);
+        $this->db->delete('guru');
+    }
 }

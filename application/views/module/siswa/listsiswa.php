@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>Foto</th>
             <th>Nis</th>
             <th>Nama</th>
             <th>Alamat</th>
@@ -20,6 +21,9 @@
           <?php $no=0; foreach ($try as $key) :?>
           <tr>
            <td><?= ++$no;?></td>
+            <td>
+              <img src="<?= base_url('uploads/image/'.$key->foto)?>" alt="" style="width: 100%">
+              </td>
             <td><?= $key->nis;?></td>
             <td><?= $key->nama_siswa;?></td>
             <td><?= $key->alamat_siswa;?></td>

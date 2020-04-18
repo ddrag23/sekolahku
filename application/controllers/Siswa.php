@@ -54,7 +54,7 @@ public function add()
                 }
                 else
                 {
-                	$post = $this->input->post(null, TRUE);
+                	$post = $this->input->post(null, TRUE);;
                 	$this->m_siswa->add($post);
                 	if ($this->db->affected_rows() > 0) {
                 		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
@@ -84,7 +84,15 @@ public function add()
                 }
                 else
                 {
-                	$post = $this->input->post(null, TRUE);
+                    $post = $this->input->post(null, TRUE);
+                    $gambar = $this->m_siswa->get($post['id_siswa'])->row();
+                    if ($gambar->foto != null) {
+                        $target_file = './uploads/image'.$gambar->foto;
+                        unlink($target_file);
+                    } else {
+                        # code...
+                    }
+                    
                 	$this->m_siswa->edit($post);
                     // echo json_encode($this->m_siswa->edit($post));
                     // die();

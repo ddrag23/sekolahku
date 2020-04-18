@@ -9,8 +9,6 @@
             <th>Nama</th>
             <th>Alamat</th>
             <th>Jenis Kelamin</th>
-            <th>Kelas</th>
-            <th>Status Siswa</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -22,8 +20,6 @@
             <td><?= $key->nama_siswa;?></td>
             <td><?= $key->alamat_siswa;?></td>
             <td><?= $key->gender_siswa;?></td>
-            <td><?= $key->nama_kelas;?></td>
-            <td><?= $key->nama_status;?></td>
              <td wid_siswath="160px" class="text-center">
               <a href="<?=site_url('ppdb/edit/'.$key->id_siswa); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
 

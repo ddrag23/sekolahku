@@ -1,4 +1,4 @@
-<form class="form-horizontal form-label-left" method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
         <li>
@@ -36,6 +36,14 @@
       </ul>
       <div id="step-1">
           <?= validation_errors(); ?>
+          <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
+           <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Upload foto <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="file" id="gambar" name="foto" class="form-control" value="">
+            </div>
+          </div>
           <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
@@ -112,7 +120,7 @@
             </div>
           </div>
           <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Wali Kelas <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="ex-select2 form-control" name="guru_id">
                 <!-- <option value="">--Pilih--</option> -->
@@ -123,15 +131,15 @@
             </div>
           </div>
           <div class="item form-group">
+              <?php $gender = $this->input->post('gender_siswa') ? $this->input->post('gender_siswa') : $query->gender_siswa; ?>
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
             <div class="col-md-6 col-sm-6 ">
-              <?php $gender = $this->input->post('gender_siswa') ? $this->input->post('gender_siswa') : $query->gender_siswa; ?>
               <div id="gender" class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="L" <?= $gender == 'L' ? 'selected' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
+                  <input type="radio" name="gender_siswa" value="L"<?= $gender == 'L' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
                 </label>
                 <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="P"<?= $gender == 'P' ? 'selected' : null; ?> class="join-btn"> Perempuan
+                  <input type="radio" name="gender_siswa" value="P"<?= $gender == 'P' ? 'checked' : null; ?> class="join-btn"> Perempuan
                 </label>
               </div>
             </div>

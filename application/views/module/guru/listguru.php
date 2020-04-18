@@ -10,6 +10,7 @@
             <th>Nama</th>
             <th>Alamat Guru</th>
             <th>Jenis Kelamin</th>
+            <th>No HP Guru</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -20,11 +21,12 @@
             <td><?= $key->nip;?></td>
             <td><?= $key->nama_guru;?></td>
             <td><?= $key->alamat_guru;?></td>
-            <td><?= $key->gender;?></td>
+            <td><?= $key->gender_guru;?></td>
+            <td><?= $key->no_hp_guru;?></td>
              <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('siswa/edit/'.$key->id_guru); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
+              <a href="<?=site_url('master/editGuru/'.$key->id_guru); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
 
-              <a href="<?=site_url('siswa/delete/'.$key->id_guru); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+              <a href="<?=site_url('master/delGuru/'.$key->id_guru); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
 
             </td>
           </tr>

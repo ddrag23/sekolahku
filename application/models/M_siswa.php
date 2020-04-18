@@ -49,6 +49,7 @@ class M_siswa extends CI_Model
         $usersId = $this->db->insert_id();
         $params = array(
             'users_id' => !empty($post['users_id']) ? $post['users_id'] : $usersId,
+            'foto' => uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'),
             'nis' => $post['nis'],
             'kelas_id' => $post['kelas_id'],
             'guru_id' => $post['guru_id'],
@@ -94,14 +95,17 @@ class M_siswa extends CI_Model
             'date_created' => $created,
             'created_by' => $created_by
         );
+        
         $this->db->insert('siswa', $params);
     }
     public function edit($post)
     {
+        return uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto');
         $modifBy = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
             'users_id' => !empty($post['users_id']) ? $post['users_id'] : null,
+            'foto' => uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'),
             'kelas_id' => $post['kelas_id'],
             'guru_id' => $post['guru_id'],
             'nis' => $post['nis'],
@@ -147,7 +151,7 @@ class M_siswa extends CI_Model
             'modified_by' => $modifBy,
             'modified_created' => $modified 
         );
-
+        die();
         $this->db->where('id_siswa', $post['id_siswa']);
         $this->db->update('siswa', $post);
     }

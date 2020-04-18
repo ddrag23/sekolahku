@@ -34,14 +34,6 @@
                 <small class="text-danger"><?= form_error('username'); ?></small>
               </div>
               <div>
-                <input type="text" class="form-control" placeholder="fullname" name="nama" />
-                <small class="text-danger"><?= form_error('nama'); ?></small>
-              </div>
-              <!-- <div>
-                <input type="email" class="form-control" placeholder="Email" name="email" />
-                <small class="text-danger"><?= form_error('username'); ?></small>
-              </div> -->
-              <div>
                 <input type="password" class="form-control" placeholder="Password" name="password" />
                 <small class="text-danger"><?= form_error('password'); ?></small>
               </div>
