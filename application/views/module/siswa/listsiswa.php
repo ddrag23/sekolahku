@@ -31,10 +31,9 @@
             <td><?= $key->nama_kelas;?></td>
             <td><?= $key->status;?></td>
              <td wid_siswath="160px" class="text-center">
+              <a href="<?=site_url('siswa/printpdf/'.$key->id_siswa); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Print</a>
               <a href="<?=site_url('siswa/edit/'.$key->id_siswa); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
-
               <a href="<?=site_url('siswa/delete/'.$key->id_siswa); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
-
             </td>
           </tr>
         <?php endforeach; ?>

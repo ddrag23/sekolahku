@@ -121,6 +121,15 @@ public function add()
     //         return TRUE;
     //     }
     // }
+
+  public function printpdf($id_siswa) 
+  {
+  $data['row'] = $this->m_siswa->get($id_siswa)->row();
+  $html = $this->load->view('module/dokumen/formreg',$data,true);
+  $this->fungsi->pdfPrint($html,'coba','A4','potrait');
+  }
+
+
     public function validasi()
     {
          // form data diri

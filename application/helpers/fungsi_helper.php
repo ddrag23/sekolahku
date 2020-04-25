@@ -48,4 +48,5 @@ function uploader($imageName, $locationImage, $typeImage, $sizeImage, $nameForm)
     $dfile = $result['foto']['file_name'];
     return $dfile;
 }
+
 ?>
