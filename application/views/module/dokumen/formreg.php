@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Print Dokumen</title>
 <style>
+@page{
+size:A4;
+}
+body{
+font-family:'Times New Roman', Times, serif;
+}
 .cop{
 margin-bottom: 10px;
 }
 .logo img{
- float: left;
+float: left;
 width: 10em;
 height: 9em;
 margin-left: 3em;
@@ -22,23 +28,37 @@ margin-bottom: 5px;
 margin-top: 10px;
 }
 .title .tsatu{
-font-size: 14px;
+font-size: 14pt;
 }
 .title .tdua{
-font-size: 18px;
+font-size: 18pt;
 }
 .title .ttiga{
-font-size: 28px;
+font-size: 28pt;
 }
-/* hr{ */
-/* margin-top: 30px; */
-/* } */
 .isi{
 margin-top:20px; 
+box-sizing: border-box;
 }
-.ttd p{
-text-align: left;
+.footer {
+text-align:right;
 }
+.footer p{
+font-size: 12pt;
+}
+.foo1{
+
+}
+.foo2{
+margin-top:-15px;
+margin-right:3.5em;
+margin-bottom: 5em;
+}
+.foo3{
+margin-top:-20px;
+margin-right:2.4em;
+}
+
 </style>
 </head>
 <body>
@@ -55,7 +75,7 @@ text-align: left;
 </div>
 <hr>
 <div class="isi">
-  <table cellpadding="5">
+  <table cellpadding="6">
     <tr>
       <td>Nama Peserta Didik</td>
       <td>:</td>
@@ -64,7 +84,8 @@ text-align: left;
     <tr>
       <td>Alamat</td>
       <td>:</td>
-      <td><?=$row->alamat_siswa;?></td>
+      <!-- <td><?=$row->alamat_siswa;?></td> -->
+      <td><?= wordwrap("1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950", 60,'<br>',true);?></td>
     </tr>
     <tr>
       <td>Kelas</td>
@@ -144,12 +165,10 @@ text-align: left;
   </table>
 </div>
 <div class="footer">
-<div class="ttd">
-<p><Pepe, <?= strtotime(date('Y-m-d'));?></p>
-<p>Orang Tua/Wali Murid</p>
+<p class="foo1">Pepe, <?= date('d-F-Y');?></p>
+<p class="foo2">Orang Tua/Wali Murid</p>
 <p>(...................................................................)</p>
-<p>Nama Jelas dan Tanda Tangan</p>
-</div>
+<p class="foo3">Nama Jelas dan Tanda Tangan</p>
 </div>
 </body>
 </html>

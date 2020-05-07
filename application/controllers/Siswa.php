@@ -1,4 +1,7 @@
 <?php
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
@@ -70,7 +73,7 @@ public function add()
                 {
                     $query = $this->m_siswa->get($id_siswa);
                     if ($query->num_rows() > 0) {
-							$this->load->view('template/main', [
+                          $this->load->view('template/main', [
                         	"src" => "module/siswa/editsiswa",
                         	"page" => "Edit Siswa",
                         	"query" => $query->row(),
@@ -84,20 +87,11 @@ public function add()
                 }
                 else
                 {
-                    $post = $this->input->post(null, TRUE);
-                    $gambar = $this->m_siswa->get($post['id_siswa'])->row();
-                    if ($gambar->foto != null) {
-                        $target_file = './uploads/image'.$gambar->foto;
-                        unlink($target_file);
-                    } else {
-                        # code...
-                    }
-                    
-                	$this->m_siswa->edit($post);
-                    // echo json_encode($this->m_siswa->edit($post));
-                    // die();
+                  $post = $this->input->post(null, true);
+                 	$this->m_siswa->edit($post);
                 	if ($this->db->affected_rows() > 0) {
                 		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+                    redirect('siswa', 'refresh');
                 	}
                 	$this->session->set_flashdata('gagal', 'data gagal ditambkan');
                 	redirect('siswa/edit/'.$id_siswa,'refresh');
@@ -128,7 +122,90 @@ public function add()
   $html = $this->load->view('module/dokumen/formreg',$data,true);
   $this->fungsi->pdfPrint($html,'coba','A4','potrait');
   }
-
+  
+    public function export(){
+    $siswa = $this->m_siswa->get()->result();
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+    $sheet->setCellValue('A1', 'NO');
+    $sheet->setCellValue('B1', 'NAMA SISWA');
+    $sheet->setCellValue('C1', 'ALAMAT SISWA');
+    $sheet->setCellValue('D1', 'TEMPAT LAHIR');
+    $sheet->setCellValue('E1', 'TANGGAL LAHIR');
+    $sheet->setCellValue('F1', 'AGAMA');
+    $sheet->setCellValue('G1', 'UMUR');
+    $sheet->setCellValue('H1', 'BERAT BADAN');
+    $sheet->setCellValue('I1', 'TINGGI BADAN');
+    $sheet->setCellValue('J1', 'GOLONGAN DARAH');
+    $sheet->setCellValue('K1', 'PENYAKIT');
+    $sheet->setCellValue('L1', 'JENIS KELAMIN');
+    $sheet->setCellValue('M1', 'JUMLAH SAUDARA');
+    $sheet->setCellValue('N1', 'ASAL SEKOLAH');
+    $sheet->setCellValue('O1', 'STATUS SISWA');
+    $sheet->setCellValue('P1', 'NAMA AYAH');
+    $sheet->setCellValue('Q1', 'PEKERJAAN AYAH');
+    $sheet->setCellValue('R1', 'KTP AYAH');
+    $sheet->setCellValue('S1', 'PENDIDIKAN AYAH');
+    $sheet->setCellValue('T1', 'GAJI');
+    $sheet->setCellValue('U1', 'TEMPAT TINGGAL');
+    $sheet->setCellValue('V1', 'JARAK KE SEKOLAH');
+    
+    $no=0;
+    $baris=2;
+    foreach ($siswa as $key) {
+      $sheet->setCellValue('A'.$baris,$no++);
+      $sheet->setCellValue('B'.$baris,$key->nama_siswa);
+      $sheet->setCellValue('C'.$baris,$key->alamat_siswa);
+      $sheet->setCellValue('D'.$baris,$key->tempat_tinggal);
+      $sheet->setCellValue('E'.$baris,$key->tanggal_lahir);
+      $sheet->setCellValue('F'.$baris,$key->agama);
+      $sheet->setCellValue('G'.$baris,$key->umur);
+      $sheet->setCellValue('H'.$baris,$key->bb);
+      $sheet->setCellValue('I'.$baris,$key->tb);
+      $sheet->setCellValue('J'.$baris,$key->gol_darah);
+      $sheet->setCellValue('K'.$baris,$key->penyakit);
+      $sheet->setCellValue('L'.$baris,$key->gender_siswa);
+      $sheet->setCellValue('M'.$baris,$key->jumlah_saudara);
+      $sheet->setCellValue('N'.$baris,$key->asal_sekolah);
+      $sheet->setCellValue('O'.$baris,$key->keadaan_status);
+      $sheet->setCellValue('P'.$baris,$key->nama_ayah);
+      $sheet->setCellValue('Q'.$baris,$key->job_ayah);
+      $sheet->setCellValue('R'.$baris,$key->pendidikan_ayah);
+      $sheet->setCellValue('S'.$baris,$key->gaji);
+      $sheet->setCellValue('T'.$baris,$key->tempat_tinggal);
+      $sheet->setCellValue('U'.$baris,$key->jarak_sekolah);
+      $baris++;
+    }
+    $sheet->setTitle('Data Siswa');
+    $writer = new Xlsx($spreadsheet);
+    $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet,'Xlsx');
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment; filename="data_siswa.xlsx"');
+    $writer->save("php://output");
+    }
+    public function import(){
+      $file_mimes = array(
+        'application/octet-stream',
+        'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv',
+        'text/csv', 'application/csv', 'application/excel',
+        'application/vnd.msexcel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      );
+    if(isset($_FILES['berkas_excel']['name']) &&
+      in_array($_FILES['berkas_excel']['type'], $file_mimes)) {
+      $arr_file = explode('.', $_FILES['berkas_excel']['name']);
+      $extension = end($arr_file);     
+       if('csv' == $extension) {
+         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+       }
+       else {
+        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+       }
+      $spreadsheet = $reader->load($_FILES['berkas_excel']['tmp_name']);
+      $sheetData = $spreadsheet->getActiveSheet()->toArray();
+    }
+     
+  }
 
     public function validasi()
     {

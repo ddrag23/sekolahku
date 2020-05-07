@@ -1,5 +1,18 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2><?= $page ?></h2>
+            <ul class="nav navbar-right panel_toolbox">
+             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+             </ul>
+             <div class="clearfix"></div>
+             </div>
+            <div class="x_content">
+            <!-- content starts here -->
+
     <form action="" method="post">
-      <?php print_r($query); ?>
     <?= validation_errors(); ?>
     <?php if ($this->router->fetch_method() == 'editGuru'): ?>
       <input type="hidden" name="id_guru" value="<?php echo $query->id_guru; ?>">
@@ -54,3 +67,8 @@
         </div>
       </div>
     </form>
+            </div>
+      </div>
+    </div>
+</div>
+</div>

@@ -55,6 +55,13 @@ class M_siswa extends CI_Model
             'guru_id'           => $post['guru_id'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],
+            'dusun'             => $post['dusun'],
+            'rt'                => $post['rt'],
+            'rw'                => $post['rw'],
+            'desa'              => $post['desa'],
+            'kecamatan'         => $post['kecamatan'],
+            'kabupaten'         => $post['kabupaten'],
+            'provinsi'          => $post['provinsi'],
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],
@@ -100,7 +107,7 @@ class M_siswa extends CI_Model
     }
     public function edit($post)
     {
-        return uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto');
+        /* return uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'); */
         $modifBy  = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
@@ -111,6 +118,13 @@ class M_siswa extends CI_Model
             'nis'               => $post['nis'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],
+            'dusun'             => $post['dusun'],
+            'rt'                => $post['rt'],
+            'rw'                => $post['rw'],
+            'desa'              => $post['desa'],
+            'kecamatan'         => $post['kecamatan'],
+            'kabupaten'         => $post['kabupaten'],
+            'provinsi'          => $post['provinsi'],
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],

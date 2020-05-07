@@ -59,10 +59,10 @@ class Ppdb extends CI_Controller {
                 {
                     $query = $this->m_ppdb->get($id_siswa);
                     if ($query->num_rows() > 0) {
-							$this->load->view('template/main', [
-                        	"src" => "module/siswa/editsiswa",
-                        	"page" => "Edit Siswa",
-                        	"query" => $query->row(),
+                          $this->load->view('template/main', [
+                            "src" => "module/siswa/editsiswa",
+                            "page" => "Edit Siswa",
+                            "query" => $query->row(),
                             "kelas" => $this->m_master->getKelas()->result(),
                             "guru" => $this->m_master->getGuru()->result(),
                             "user" => $this->m_user->get()->result()

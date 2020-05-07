@@ -1,3 +1,18 @@
+ <div class="row">
+    <div class="col-md-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2><?= $page ?></h2>
+            <ul class="nav navbar-right panel_toolbox">
+             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+             </ul>
+             <div class="clearfix"></div>
+             </div>
+            <div class="x_content">
+            <!-- content starts here -->
+
+
 <form class="" method="post" enctype="multipart/form-data" action="<?= site_url('ppdb/add'); ?>">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
@@ -140,6 +155,51 @@
               <textarea name="alamat_siswa" id="" cols="30" rows="10" class="form-control"><?= set_value('alamat_siswa'); ?></textarea>
             </div>
           </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Dusun <span class="required">*</span>
+            </label>
+            <div class="col-md-2 col-sm-2 col-xs-12 ">
+              <input class="form-control" type="text" name="dusun" value="<?= set_value('dusun')?>" placeholder="Dusun">
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12 ">
+              <input class="form-control" type="text" name="rt" value="<?= set_value('rt')?>" placeholder="RT">
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12 ">
+              <input class="form-control" type="text" name="rw" value="<?= set_value('rw')?>" placeholder="RW">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Desa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="desa" value="<?= set_value('desa')?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align"
+            for="first-name">Kecamatan <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="kecamatan" value="<?= set_value('kecamatan')?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align"
+            for="first-name">Kabupaten <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="kabupaten" value="<?= set_value('kabupaten')?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align"
+            for="first-name">Provinsi<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="provinsi" value="Jawa Timur" readonly>
+            </div>
+          </div>
+
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Saudara <span class="required">*</span>
             </label>
@@ -494,3 +554,8 @@
     </div>
       <!-- End SmartWizard Content -->
       </form>
+            </div>
+      </div>
+    </div>
+ </div>
+</div>

@@ -35,6 +35,13 @@ class M_ppdb extends CI_Model
             'nis'               => $post['nis'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],
+            'dusun'             => $post['dusun'],
+            'rt'                => $post['rt'],
+            'rw'                => $post['rw'],
+            'desa'              => $post['desa'],
+            'kecamatan'         => $post['kecamatan'],
+            'kabupaten'         => $post['kabupaten'],
+            'provinsi'          => $post['provinsi'],
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => 'praaktif',
@@ -91,6 +98,13 @@ class M_ppdb extends CI_Model
             'nis'               => $post['nis'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],
+            'dusun'             => $post['dusun'],
+            'rt'                => $post['rt'],
+            'rw'                => $post['rw'],
+            'desa'              => $post['desa'],
+            'kecamatan'         => $post['kecamatan'],
+            'kabupaten'         => $post['kabupaten'],
+            'provinsi'          => $post['provinsi'],
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],
@@ -132,7 +146,6 @@ class M_ppdb extends CI_Model
             'modified_created'  => $modified
         );
           // echo json_encode($params);
-          die();
         $this->db->where('id_siswa', $post['id_siswa']);
         $this->db->update('siswa', $post);
     }

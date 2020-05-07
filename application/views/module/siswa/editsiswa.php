@@ -148,7 +148,59 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Alamat <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <textarea name="alamat_siswa" id="" cols="30" rows="10" class="form-control"><?= $this->input->post('alamat_siswa') ?? $query->alamat_siswa; ?> </textarea>
+              <textarea name="alamat_siswa" id="" cols="30" rows="10" class="form-control"><?=
+              $this->input->post('alamat_siswa') ?? $query->alamat_siswa; ?> </textarea>
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Dusun <span class="required">*</span>
+            </label>
+            <div class="col-md-2 col-sm-2 col-xs-12 ">
+            <input class="form-control" type="text" name="dusun" value="<?=
+            $this->input->post('dusun') ?? $query->dusun;?>" placeholder="Dusun">
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12 ">
+              <input class="form-control" type="text" name="rt" value="<?=
+              $this->input->post('rt') ?? $query->rt; ?>" placeholder="RT">
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12 ">
+              <input class="form-control" type="text" name="rw" value="<?=
+              $this->input->post('rw') ?? $query->rw; ?>" placeholder="RW">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Desa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="desa" value="<?=
+              $this->input->post('desa')?? $query->desa; ?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align"
+            for="first-name">Kecamatan <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="kecamatan" value="<?=
+              $this->input->post('kecamatan') ?? $query->kecamatan; ?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align"
+            for="first-name">Kabupaten <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+              <input class="form-control" type="text" name="kabupaten" value="<?=
+              $this->input->post('kabupaten') ?? $query->kabupaten; ?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align"
+            for="first-name">Provinsi<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
+            <input class="form-control" type="text" name="provinsi" value="<?=
+            $this->input->post('provinsi') ?? $query->provinsi; ?>" >
             </div>
           </div>
           <div class="item form-group">

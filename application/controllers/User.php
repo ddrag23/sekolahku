@@ -15,6 +15,22 @@ class User extends CI_Controller {
         $data['src'] = 'module/users/listUser';
         $this->load->view('template/main', $data);
     }
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     */
+    public function detail($id_siswa)
+    {
+      $this->load->view('template/main',[
+        'src' => 'module/siswa/detail',
+        'page' => 'Detail Siswa',
+        'query' => $this->db->get($id_siswa)->result()
+      ]);
+    }
+    
+
     public function add()
     {
         $params = new StdClass();

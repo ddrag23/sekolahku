@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
+$_batchImport;
 class M_master extends CI_Model
 {
 	public function getKelas($id_kelas = null)
@@ -28,7 +29,7 @@ class M_master extends CI_Model
 	public function edit($post)
 	{
 		$modifBy = $this->session->userdata('id');
-        $modified = date('Y-m-d H:i:s');
+    $modified = date('Y-m-d H:i:s');
         $params = [
         	'nama_kelas' => $post['nama_kelas'],
         	'guru_id' => !empty($post['guru_id']) ? $post['guru_id'] : null
@@ -86,4 +87,11 @@ class M_master extends CI_Model
         $this->db->where('id_guru', $id_guru);
         $this->db->delete('guru');
     }
+  public function setBatchImport($batchImport){
+     $this->_batchImport = $batchImport;
+  }
+  public function importData(){
+    $data = $this->_batchImport;
+    $this->db->insert_batch('guru',$data);
+  }
 }
