@@ -9,7 +9,7 @@ class Ppdb extends CI_Controller {
 		$this->load->model('m_ppdb');
 		$this->load->model('m_master');
 		$this->load->model('m_user');
-        $this->load->model('m_siswa');
+    $this->load->model('m_siswa');
 	}
 	public function index()
 	{
@@ -29,42 +29,50 @@ class Ppdb extends CI_Controller {
 		
 	}
 	public function add(){
+    $params = new StdClass();
+    $params->id_ppdb = null;
+    $params->username = null;
+    $params->nama_ppdb = null;
+    $params->alamat_rumah_ppdb = null;
+    $params->gender_ppdb = null;
+    $params->tempat_lahir_ppdb = null;
+    $params->tanggal_lahir_ppdb= null;
+    $params->nama_ortu_ppdb = null;
+    $params->nama_panggilan =null;
+    $params->no_hp_ppdb = null;
+    $params->asal_sekolah_ppdb = null;
+    $params->alamat_sekolah_ppdb = null;
+
         $this->validasi();	
     	 if ($this->form_validation->run() == FALSE)
                 {
 			    	$this->load->view('template/main', [
-			    		'src' => 'module/ppdb/addppdb',
+			    		'src' => 'module/ppdb/formppdb',
 			    		'page' => 'tambah peserta didik baru',
-                        'query' => $this->m_ppdb->get()->row(),
-			    		"kelas" => $this->m_master->getKelas()->result(),
+              'submit' => 'save',
+              'query' => $params, 
 			    		"user" => $this->m_user->get()->result()
 			    	]);
                 }
                 else
                 {
-                	$post = $this->input->post(null, TRUE);
-                	$this->m_ppdb->add($post);
-                	if ($this->db->affected_rows() > 0) {
-                		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
-                	}
-                	$this->session->set_flashdata('gagal', 'data gagal ditambkan');
-                	redirect('ppdb/add','refresh');
+                  $this->proses();
                 }
 	}
-	public function edit($id_siswa)
+	public function edit($id_ppdb)
     {
         cekAdmin();
         $this->validasi();  
     	 if ($this->form_validation->run() == FALSE)
                 {
-                    $query = $this->m_ppdb->get($id_siswa);
+                    $query = $this->m_ppdb->get($id_ppdb);
                     if ($query->num_rows() > 0) {
                           $this->load->view('template/main', [
-                            "src" => "module/siswa/editsiswa",
+                            "src" => "module/ppdb/formppdb",
                             "page" => "Edit Siswa",
+                            "submit" => "edit",
                             "query" => $query->row(),
                             "kelas" => $this->m_master->getKelas()->result(),
-                            "guru" => $this->m_master->getGuru()->result(),
                             "user" => $this->m_user->get()->result()
                         ]);    
                     }else{
@@ -74,60 +82,47 @@ class Ppdb extends CI_Controller {
                 }
                 else
                 {
-                	$post = $this->input->post(null, TRUE);
-                	$this->m_ppdb->edit($post);
-                    // echo json_encode($this->m_siswa->edit($post));
-                    // die();
-                	if ($this->db->affected_rows() > 0) {
-                		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
-                        redirect('ppdb','refresh');
-                	}
-                	$this->session->set_flashdata('gagal', 'data gagal ditambkan');
-                	redirect('ppdb/edit/'.$id_siswa,'refresh');
+                  $this->proses();
                 }
+   }
+  /**
+   * undocumented function
+   *
+   * @return void
+   */
+  public function delete($id_ppdb)
+  {
+    $this->m_ppdb->delete($id_ppdb);
+    $this->session->set_flashdata('sukses', 'Data berhasil dihapus');
+    redirect('ppdb', 'refresh');
+  }
+  
+  public function proses()
+  {
+    $post = $this->input->post(null, true);
+    if (isset($post['save'])) {
+      $this->m_ppdb->add($post);
+    }elseif(isset($post['edit'])){
+    $this->m_ppdb->edit($post);
     }
+    if ($this->db->affected_rows() > 0) {
+      $this->session->set_flashdata('sukses', 'Data berhasil dimasukkan');
+    }
+    redirect('ppdb', 'refresh');
+
+  }
+  
     public function validasi()
     {
         // form data diri
-        $this->form_validation->set_rules('nis', 'NIS', 'required|min_length[5]');
-        $this->form_validation->set_rules('nama_siswa', 'Nama', 'required');
-        $this->form_validation->set_rules('alamat_siswa', 'Alamat', 'required');
-        $this->form_validation->set_rules('gender_siswa', 'Jenis Kelamin', 'required');
-        $this->form_validation->set_rules('no_hp', 'Nomor Telepon', 'required');
-        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
-        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
-        $this->form_validation->set_rules('umur', 'Umur', 'required');
-        $this->form_validation->set_rules('bb', 'Berat Badan', 'required');
-        $this->form_validation->set_rules('tb', 'Tinggi Badan', 'required');
-        $this->form_validation->set_rules('gol_darah', 'Golongan Darah', 'required');
-        $this->form_validation->set_rules('asal_sekolah', 'Asal Sekolah', 'required');
-        $this->form_validation->set_rules('keadaan_status', 'Keadaan Status', 'required');
-        // form ortu
-        $this->form_validation->set_rules('nama_ayah', 'Nama Ayah', 'required');
-        $this->form_validation->set_rules('nama_ibu', 'Nama_ibu', 'required');
-        $this->form_validation->set_rules('pendidikan_ayah', 'Pendidikan Ayah', 'required');
-        $this->form_validation->set_rules('pendidikan_ibu', 'Pendidikan Ibu', 'required');
-        $this->form_validation->set_rules('job_ayah', 'Pekerjaan Ayah', 'required');
-        $this->form_validation->set_rules('job_ibu', 'Pekerjaan Ibu', 'required');
-        $this->form_validation->set_rules('gaji', 'Gaji', 'required');
-        $this->form_validation->set_rules('ktp_ayah', 'Ktp Ayah', 'required');
-        $this->form_validation->set_rules('ktp_ibu', 'Ktp Ibu', 'required');
-        // kehidupan
-        $this->form_validation->set_rules('cara_kesekolah', 'Cara Ke Sekolah', 'required');
-        $this->form_validation->set_rules('jarak_sekolah', 'Jarak Ke sekolah', 'required');
-        $this->form_validation->set_rules('tempat_mandi', 'Tempat Mandi', 'required');
-        $this->form_validation->set_rules('air_mandi', 'Pengadaan Air Mandi', 'required');
-        $this->form_validation->set_rules('air_minum', 'Pengadaan Air Minum', 'required');
-        $this->form_validation->set_rules('bangunan', 'Bangunan Rumah', 'required');
-        $this->form_validation->set_rules('lantai', 'Lantai Rumah', 'required');
-        $this->form_validation->set_rules('penerangan', 'Penerangan Rumah', 'required');
-        $this->form_validation->set_rules('waktu', 'Waktu Tempu Ke Sekolah', 'required');
-        $this->form_validation->set_rules('jumlah_saudara', 'Jumlah Saudara', 'required');
-        // message validation
-        $this->form_validation->set_message('numeric', '%s harus menggunakan angka');
-        $this->form_validation->set_message('required', '%s field tidak boleh kosong');
-        $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
-        $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_rules('nama_ppdb', 'Nama', 'required');
+        $this->form_validation->set_rules('alamat_rumah_ppdb', 'Alamat', 'required');
+        $this->form_validation->set_rules('gender_ppdb', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('no_hp_ppdb', 'Nomor Telepon', 'required');
+        $this->form_validation->set_rules('tempat_lahir_ppdb', 'Tempat Lahir', 'required');
+        $this->form_validation->set_rules('asal_sekolah_ppdb', 'Tanggal Lahir', 'required');
+        $this->form_validation->set_rules('alamat_sekolah_ppdb', 'Tanggal Lahir', 'required');
+        $this->form_validation->set_rules('nama_ortu_ppdb', 'Tanggal Lahir', 'required');
         $this->form_validation->set_error_delimiters('<small class="text-danger required">','</small>');
     }
 }
