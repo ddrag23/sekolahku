@@ -39,7 +39,7 @@
           <tr>
            <td><?= ++$no;?></td>
             <td>
-              <img src="<?= base_url('uploads/image/'.$key->foto)?>" class="img-thumbnail" alt="" style="width: 100%">
+              <img src="<?= base_url('uploads/image/'.$key->foto)?>" class="img-thumbnail" alt="" style="width:150px; height:170px;margin:0; ">
               </td>
             <td><?= $key->nis;?></td>
             <td><?= $key->nama_siswa;?></td>

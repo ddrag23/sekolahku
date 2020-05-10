@@ -1,3 +1,16 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2><?= $page ?></h2>
+            <ul class="nav navbar-right panel_toolbox">
+             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+             </ul>
+             <div class="clearfix"></div>
+             </div>
+            <div class="x_content">
+   
 <form method="post" action="" enctype="multipart/form-data">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
@@ -21,7 +34,7 @@
           <a href="#step-3">
             <span class="step_no">3</span>
             <span class="step_descr">
-              Step 3 Data Kehidupan<br />
+              Step 3 Data UKS<br />
           </span>
           </a>
         </li>
@@ -41,6 +54,11 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Upload foto <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
+              <?php if ($query->foto != null): ?>
+                <div style="margin-bottom:5px">
+                <img style="width:80%" src="<?=base_url('uploads/image/'.$query->foto);?>" alt="">
+                </div>
+              <?php endif; ?>
               <input type="file" id="gambar" name="foto" class="form-control" value="">
             </div>
           </div>
@@ -243,6 +261,21 @@
               <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= $this->input->post('nama_sekolah_asal') ?? $query->nama_sekolah_asal; ?>">
             </div>
           </div>
+         <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="hobi">Hobi <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="hobi" name="hobi" class="form-control" value="<?= $this->input->post('hobi') ?? $query->hobi; ?>">
+            </div>
+          </div>
+         <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="cita">Cita-Cita <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="cita" name="cita" class="form-control" value="<?= $this->input->post('cita') ?? $query->cita; ?>">
+            </div>
+          </div>
+
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Keadaan Status Siswa <span class="required">*</span>
             </label>
@@ -589,3 +622,7 @@
     </div>
       <!-- End SmartWizard Content -->
       </form>
+            </div>
+      </div>
+    </div>
+</div>

@@ -36,7 +36,7 @@
           <a href="#step-3">
             <span class="step_no">3</span>
             <span class="step_descr">
-              Step 3 Data Kehidupan<br />
+              Step 3 Data UKS<br />
           </span>
           </a>
         </li>
@@ -239,10 +239,24 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Nama asal Sekolah <span class="required">*</span>
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_sekolah_asal">Nama asal Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= set_value('nama_sekolah_asal'); ?>">
+            </div>
+          </div>
+         <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="hobi">Hobi <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="hobi" name="hobi" class="form-control" value="<?= set_value('hobi'); ?>">
+            </div>
+          </div>
+         <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="cita">Cita-Cita <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="cita" name="cita" class="form-control" value="<?= set_value('cita'); ?>">
             </div>
           </div>
            <div class="item form-group">

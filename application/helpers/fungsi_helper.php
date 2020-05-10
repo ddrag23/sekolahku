@@ -34,7 +34,7 @@ function cekAdmin()
 function uploader($imageName, $locationImage, $typeImage, $sizeImage, $nameForm)
 {
     $ci =& get_instance();
-    $nmFile = $imageName."_".date('Ymd-His');
+    $nmFile = $imageName."_".date('Ymd');
     $config['upload_path'] = 'uploads/'.$locationImage;
     $config['allowed_types'] = $typeImage;
     $config['max_size'] = $sizeImage;

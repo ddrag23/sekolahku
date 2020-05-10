@@ -39,16 +39,8 @@ class M_siswa extends CI_Model
     {
         $created_by = $this->session->userdata('id');
         $created    = date('Y-m-d H:i:s');
-        $data       = array(
-            'username'  => htmlspecialchars($post['nis']),
-            'password'  => htmlspecialchars(sha1($post['nis'])),
-            'level'     => 'user',
-            'is_active' => '1',
-         );
-        $this->db->insert('users', $data);
-        $usersId = $this->db->insert_id();
-        $params  = array(
-            'users_id'          => !empty($post['users_id']) ? $post['users_id'] : $usersId,
+            $params              = array(
+            'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
             'foto'              => uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'),
             'nis'               => $post['nis'],
             'kelas_id'          => $post['kelas_id'],
@@ -66,6 +58,8 @@ class M_siswa extends CI_Model
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],
             'agama'             => $post['agama'],
+            'hobi'              => $post['hobi'],
+            'cita'              => $post['cita'],
             'umur'              => $post['umur'],
             'bb'                => $post['bb'],
             'tb'                => $post['tb'],
@@ -112,7 +106,6 @@ class M_siswa extends CI_Model
         $modified = date('Y-m-d H:i:s');
           $params = array(
             'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
-            'foto'              => uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'),
             'kelas_id'          => $post['kelas_id'],
             'guru_id'           => $post['guru_id'],
             'nis'               => $post['nis'],
@@ -128,7 +121,9 @@ class M_siswa extends CI_Model
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],
-            'agama'             => $post['agama'],
+             'hobi'             => $post['hobi'],
+            'cita'              => $post['cita'],
+           'agama'              => $post['agama'],
             'umur'              => $post['umur'],
             'bb'                => $post['bb'],
             'tb'                => $post['tb'],
@@ -163,10 +158,13 @@ class M_siswa extends CI_Model
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
             'modified_by'       => $modifBy,
-            'modified_created'  => $modified
+            'modified_date'  => $modified
         );
+        if ($post['foto'] != null) {
+          $params['foto'] = $post['foto']; 
+        }
         $this->db->where('id_siswa', $post['id_siswa']);
-        $this->db->update('siswa', $post);
+        $this->db->update('siswa', $params);
     }
     public function del($id_siswa)
     {

@@ -41,6 +41,23 @@ class Siswa extends CI_Controller
             "query" => $this->m_siswa->getAlumni()->result(),
             ]);
     }
+/**
+ * undocumented function
+ *
+ * @return void
+ */
+public function detail($id_siswa)
+{
+  $query = $this->m_siswa->get($id_siswa);
+  if ($query->num_rows() > 0) {
+     $this->load->view('template/main', [
+    'src' => 'module/siswa/detailsiswa',
+    'page' => 'detail siswa',
+    'query' => $query->row_array()
+  ]);
+
+  }
+ }
 
 
 public function add()
@@ -68,6 +85,11 @@ public function add()
     }
     public function edit($id_siswa)
     {
+      $config['upload_path'] = 'uploads/image/';
+      $config['allowed_types'] = 'jpg|png|jpeg';
+      $config['max_sizes'] = 2048;
+      $config['file_name'] = 'item-'.date('Ymd');
+      $this->load->library('upload',$config);
     	$this->validasi();
     	 if ($this->form_validation->run() == FALSE)
                 {
@@ -88,11 +110,32 @@ public function add()
                 else
                 {
                   $post = $this->input->post(null, true);
-                 	$this->m_siswa->edit($post);
-                	if ($this->db->affected_rows() > 0) {
-                		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+                  if (@$_FILES['foto']['name'] != null) {
+                    if ($this->upload->do_upload('foto')) {
+                      $post['foto'] = $this->upload->data('file_name');
+                      $image = $this->m_siswa->get($id_siswa)->row_array();
+                      if ($image != null) {
+                        $target = 'uploads/image/'.$image['foto'];
+                        unlink($target);
+                      }
+                      $this->m_siswa->edit($post);
+                      if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+                      }
+                        redirect('siswa', 'refresh');
+                    }else{
+                      $error = $this->upload->display_errors();
+                      $this->session->set_flashdata('gagal', $error);
+                      redirect('siswa/edit/'.$id_siswa, 'refresh');
+                    }
+                  } else {
+                    $post['foto'] = null;
+                    $this->m_siswa->edit($post);
+                    if ($this->db->affected_rows() > 0) {
+                      $this->session->set_flashdata('sukses', 'Data berhasil ditambah');
+                    }
                     redirect('siswa', 'refresh');
-                	}
+                  }
                 	$this->session->set_flashdata('gagal', 'data gagal ditambkan');
                 	redirect('siswa/edit/'.$id_siswa,'refresh');
                 }
