@@ -11,14 +11,10 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-
 <?php if ($this->session->flashdata('sukses')):?>
   <?= $this->session->flashdata('sukses'); ?>
   <?php endif;?>
-  <a class="btn btn-primary" style="float:right;" href="<?= site_url('master/addGuru'); ?>">add</a>
-    <form action="<?= site_url('master/import');?>" method="post" enctype="multipart/form-data">
-    <input type="file" name="fileURL">
-    <button type="submit" class="btn btn-primary">simpan</button>
+  <a class="btn btn-primary" style="margin-bottom:2em;" href="<?= site_url('master/addGuru'); ?>"><i class="fa fa-plus"></i> Tambah</a>
       <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
         <thead>
           <tr>
@@ -41,15 +37,22 @@
             <td><?= $key->gender_guru;?></td>
             <td><?= $key->no_hp_guru;?></td>
              <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('master/editGuru/'.$key->id_guru); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
-              <a href="<?=site_url('master/delGuru/'.$key->id_guru); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+              <a href="<?=site_url('master/editGuru/'.$key->id_guru); ?>"
+              data-tonggle="tooltip" data-placement="left" title="Edit" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+              <a href="<?=site_url('master/delGuru/'.$key->id_guru); ?>"
+              data-tonggle="tooltip" data-placement="left" title="Hapus" class="btn btn-danger btn-xs" onclick="new PNotify({
+                                  title: 'Regular Success',
+                                  text: 'Data Berhasil di Hapus',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });" ><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php endforeach; ?>
         </tbody>
       </table>
     </form>
-            </div>
+    </div>
       </div>
     </div>
   </div>

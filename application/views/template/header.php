@@ -26,8 +26,12 @@
     <link href="<?= base_url()?>assets/template/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="<?= base_url()?>assets/template/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
+
     <!-- Datatables -->
-    
     <link href="<?= base_url()?>assets/template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">

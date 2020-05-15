@@ -44,6 +44,9 @@
     <script src="<?= base_url()?>assets/template/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="<?= base_url()?>assets/template/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <!-- bootstrap-daterangepicker -->
+    <script src="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.nonblock.js"></script>
     <script src="<?= base_url()?>assets/template/vendors/moment/min/moment.min.js"></script>
     <script src="<?= base_url()?>assets/template/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- Datatables -->
@@ -76,6 +79,7 @@
                 $(document).ready(function() {
             $('.ex-select2').select2();
         });
+        
     </script>
   
   </body>

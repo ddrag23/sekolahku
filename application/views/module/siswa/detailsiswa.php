@@ -11,7 +11,6 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-
                   <div class="col-md-6 col-sm-6 col-xs-12">
                   <table class="table">
                       <tbody>
@@ -142,7 +141,7 @@
                         <td>Foto</td>
                         <td>:</td>
                         <td>
-                        <img src="<?= base_url('uploads/image/');?>" style="margin:0;width:150px;height:170px;" alt="">
+                        <img src="<?= base_url('uploads/image/'.$query['foto']);?>" style="margin:0;width:150px;height:170px;" alt="">
                         </td>
                       </tr>
                     </table>

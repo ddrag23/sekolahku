@@ -19,11 +19,12 @@ class Ppdb extends CI_Controller {
 			"page" => "PPDB",
 			"query" => $this->m_ppdb->get()->result()
 		]);
-		}elseif ($this->session->userdata('level') == 'siswa') {
+		}elseif ($this->session->userdata('level') == 'user') {
+      $id = $this->session->userdata('id_ppdb');
 			$this->load->view('template/main',[
 			"src" => "module/ppdb/homepage",
 			"page" => "PPDB",
-			"query" => $this->m_ppdb->get()->result()
+			"query" => $this->m_ppdb->get($id)->row_array() 
 		]);
 		}
 		

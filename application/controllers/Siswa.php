@@ -296,6 +296,5 @@ public function add()
         $this->form_validation->set_message('required', '%s field tidak boleh kosong');
         $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
         $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
-        $this->form_validation->set_error_delimiters('<small class="text-danger required">','</small>');
     }
 }

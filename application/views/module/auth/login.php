@@ -31,7 +31,7 @@
               <div class="alert alert-success" role="alert"><?= $this->session->flashdata('gagal'); ?></div>
             <?php endif; ?>
             <form method="post" action="<?= site_url('auth'); ?>">
-              <h1>Login Form</h1>
+              <h1>Selamat Datang</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Username" name="username" />
                 <?= form_error('username'); ?>
@@ -42,21 +42,20 @@
               </div>
               <div>
                 <button class="btn btn-secondary btn-sm" type="submit" name="login">Log in</button>
-                <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="<?= site_url('auth/register');?>" class="to_register"> Create Account </a>
+                <p class="change_link">Belum punya akun ?
+                  <a href="<?= site_url('auth/register');?>" class="to_register"> Buat Akun Baru </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                  <h1><i class="fa fa-paw"></i> MI Hasyim Asy'ari</h1>
                   <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                 </div>
               </div>

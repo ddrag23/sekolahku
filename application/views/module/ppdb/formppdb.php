@@ -14,6 +14,9 @@
 <form class="" method="post" enctype="multipart/form-data" action="">
 <?=validation_errors();?>
 <input type="hidden" name="id_ppdb" value="<?= $query->id_ppdb; ?>">
+<?php if ($this->session->userdata('level') == 'user'): ?>
+  <input type="hidden" name="user_id" value="<?= $this->session->userdata('id')?>">
+<?php endif; ?>
 <?php if ($this->session->userdata('level') == 'admin'): ?>
   	<div class="item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Username <span class="required">*</span>

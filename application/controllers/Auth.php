@@ -28,12 +28,15 @@ class Auth extends CI_Controller {
             //   cek user
             if ($query->num_rows() > 0) {
             $row = $query->row();
+            $coba = $this->users->getSeleksi($row->id)->row();  
             if ($row->is_active == 1) {
                  $params = array(
                 'id' => $row->id,
-                'level' => $row->level
+                'id_ppdb' => $coba->id_ppdb,
+                'level' => $row->level,
+                'seleksi' => $coba->seleksi 
             );
-            // echo json_encode($row);die();
+             /* echo json_encode($params);die(); */
             $this->session->set_userdata($params);
             }
             // cek jika sudah login

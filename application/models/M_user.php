@@ -11,13 +11,19 @@ class M_user extends CI_Model
         $this->db->where('is_active','1');
         return $this->db->get();
     }
+    public function getSeleksi($id){
+      $this->db->select('id_ppdb,seleksi');
+      $this->db->from('ppdb');
+      $this->db->where('user_id', $id);
+      return $this->db->get();
+    }
     public function register($post)
     {
         $created = date('Y-m-d H:i:s');
         $params = array(
             'username' => $post['username'],
             'password' => sha1($post['password']),
-            'level' => 'siswa',
+            'level' => 'user',
             'is_active' => '1',
             'date_created' => $created
         );

@@ -15,7 +15,7 @@
       <?php if ($this->session->flashdata('sukses')):?>
   <?= $this->session->flashdata('sukses'); ?>
   <?php endif;?>
-      <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%"> 
+      <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
         <thead>
           <tr>
             <th>No</th>

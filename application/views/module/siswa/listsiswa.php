@@ -47,11 +47,20 @@
             <td><?= $key->gender_siswa;?></td>
             <td><?= $key->nama_kelas;?></td>
             <td><?= $key->status;?></td>
-             <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('siswa/printpdf/'.$key->id_siswa); ?>" class="btn btn-warning btn-xs"><i class="fa fa-file-pdf-o"></i></a>
-              <a href="<?=site_url('siswa/edit/'.$key->id_siswa); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-              <a href="<?=site_url('siswa/detail/'.$key->id_siswa); ?>" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
-              <a href="<?=site_url('siswa/delete/'.$key->id_siswa); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+             <td class="text-center">
+              <a href="<?=site_url('siswa/printpdf/'.$key->id_siswa); ?>"
+              data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs"><i class="fa fa-file-pdf-o"></i></a>
+              <a href="<?=site_url('siswa/edit/'.$key->id_siswa); ?>"
+              data-toggle="tooltip" data-placement="left" title="Edit Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+              <a href="<?=site_url('siswa/detail/'.$key->id_siswa); ?>"
+              data-toggle="tooltip" data-placement="left" title="Lihat Detail Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
+              <a href="<?=site_url('siswa/delete/'.$key->id_siswa); ?>"
+              data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" onclick="new PNotify({
+                                  title: 'Regular Success',
+                                  text: 'Data Berhasil di Hapus',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });" ><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php endforeach; ?>

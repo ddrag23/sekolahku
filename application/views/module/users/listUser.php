@@ -11,13 +11,12 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-
-
- <a href="<?= site_url('user/add'); ?>">add</a>
+ <a href="<?= site_url('user/add'); ?>" class="btn btn-primary"
+ style="margin-bottom:2em;"><i class="fa fa-plus"></i> Tambah Akun</a>
  <?php if ($this->session->flashdata('sukses')): ?>
    <?= $this->session->flashdata('sukses'); ?>
  <?php endif ?>
- <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
+ <table id="datatable" class="table table-striped table-bordered" style="width:100%">
   <thead>
   <tr>
     <th>No</th>
@@ -35,12 +34,17 @@
     <td><?= $key->level;?></td>
     <td><?= $key->is_active;?></td>
     <td width="160px" class="text-center">
-      <a href="<?=site_url('user/edit/'.$key->id); ?>" class="btn btn-success btn-xs"><i class="fa fa-user-edit"></i> Ubah</a>
+      <a href="<?=site_url('user/edit/'.$key->id); ?>" data-toggle="tooltip"
+      data-placement="left" title="Edit" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
 
-      <a href="<?=site_url('user/delete/'.$key->id); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
-
+      <a href="<?=site_url('user/delete/'.$key->id); ?>" data-toggle="tooltip"
+      data-placement="left" title="Hapus" class="btn btn-danger btn-xs" onclick="new PNotify({
+                                  title: 'Regular Success',
+                                  text: 'Data Berhasil di Hapus',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });" ><i class="fa fa-trash"></i></a>
     </td>
-    
     </tr>
   <?php endforeach;?>
 </table>

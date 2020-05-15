@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_ppdb extends CI_Model
 {
 	public function get($id_ppdb = null){
+        $this->db->select('*');
         $this->db->from('ppdb');
         $this->db->join('users', 'users.id = ppdb.user_id', 'left');
         if($id_ppdb != null){
@@ -26,10 +27,10 @@ class M_ppdb extends CI_Model
             'is_active' => '1',
          );
         $this->db->insert('users', $data);
-        $usersId = $this->db->insert_id();
         }
+        $usersId = $this->db->insert_id();
         $params                    = array(
-            'user_id'            => !empty($post['users_id']) ? $post['users_id'] : $usersId,
+            'user_id'            => !empty($post['user_id']) ? $post['user_id'] : $usersId,
             'nama_ppdb'           => $post['nama_ppdb'],
             'nama_panggilan'      => $post['nama_panggilan'],
             'gender_ppdb'         => $post['gender_ppdb'],
@@ -43,7 +44,6 @@ class M_ppdb extends CI_Model
             'date_created'        => $created,
             'created_by'          => $created_by
         );
-
         $this->db->insert('ppdb', $params);
         $this->db->trans_complete();
     }
@@ -52,7 +52,7 @@ class M_ppdb extends CI_Model
         $modifBy = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
-            'user_id'            => !empty($post['users_id']) ? $post['users_id'] : null,
+            'user_id'             => !empty($post['users_id']) ? $post['users_id'] : null,
             'nama_ppdb'           => $post['nama_ppdb'],
             'nama_panggilan'      => $post['nama_panggilan'],
             'gender_ppdb'         => $post['gender_ppdb'],
@@ -63,6 +63,8 @@ class M_ppdb extends CI_Model
             'alamat_rumah_ppdb'   => $post['alamat_rumah_ppdb'],
             'no_hp_ppdb'          => $post['no_hp_ppdb'],
             'nama_ortu_ppdb'      => $post['nama_ortu_ppdb'],
+            'seleksi'             => $post['seleksi'],
+            'nilai'               => $post['nilai'],
             'modified_by'         => $modifBy,
             'date_modified'       => $$modified
           );

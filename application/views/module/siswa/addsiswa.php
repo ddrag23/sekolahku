@@ -11,8 +11,6 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-
-
 <form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="<?= site_url('siswa/add'); ?>">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
@@ -49,13 +47,20 @@
           </a>
         </li>
       </ul>
-      <div id="step-1">
-          <?= validation_errors(); ?>
+      <div id="step-1" style="height:450px;">
+<?php if (validation_errors()): ?>
+                   <div class="alert alert-danger alert-dismissible " role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+            <?= validation_errors();?>
+                  </div>
+<?php endif; ?>
+
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Foto<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
-              <input type="file" id="first-name" name="foto" class="form-control" value="">
+              <input type="file" id="first-name" name="foto" class="form-control" value="" >
             </div>
           </div>
            <div class="item form-group">
@@ -273,7 +278,7 @@
             </div>
           </div>
       </div>
-      <div id="step-2">
+      <div id="step-2" style="height:450px;">
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Ayah <span class="required">*</span>
             </label>
@@ -404,7 +409,7 @@
             </div>
           </div>
       </div>
-      <div id="step-3">
+      <div id="step-3" style="height:450px">
        <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Waktu Tempuh Ke Sekolah <span class="required">*</span>
             </label>
@@ -534,7 +539,7 @@
             </div>
           </div>
       </div>
-      <div id="step-4">
+      <div id="step-4" style="height:450px;">
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_wali">Nama Wali <span class="required">*</span>
             </label>
