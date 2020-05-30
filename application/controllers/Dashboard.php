@@ -1,6 +1,4 @@
 <?php
-
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
@@ -25,6 +23,6 @@ class Dashboard extends CI_Controller {
   {
   $data['row'] = $this->m_siswa->get()->row();
   $html = $this->load->view('module/dokumen/formreg',$data,true);
-  $this->fungsi->pdfPrint($html,'coba','A4','potrait');
+  $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
   }
 }
