@@ -11,13 +11,8 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-
-     <?php if($this->session->flashdata('sukses')) : ?>
-      <div class="alert alert-success" role="alert">
-         <?= $this->session->flashdata('sukses'); ?>
-      </div>
-      <?php endif; ?>
-     <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a>
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
+    <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a>
      <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/export');?>"><i class="fa fa-download"></i> Download Format</a>
      <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/import');?>"><i class="fas fa-file-import"></i> Import Data</a>
       <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
@@ -55,12 +50,7 @@
               <a href="<?=site_url('siswa/detail/'.$key->id_siswa); ?>"
               data-toggle="tooltip" data-placement="left" title="Lihat Detail Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></a>
               <a href="<?=site_url('siswa/delete/'.$key->id_siswa); ?>"
-              data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" onclick="new PNotify({
-                                  title: 'Regular Success',
-                                  text: 'Data Berhasil di Hapus',
-                                  type: 'success',
-                                  styling: 'bootstrap3'
-                              });" ><i class="fa fa-trash"></i></a>
+              data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php endforeach; ?>

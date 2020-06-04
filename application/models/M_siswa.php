@@ -51,6 +51,7 @@ class M_siswa extends CI_Model
             'rt'                => $post['rt'],
             'rw'                => $post['rw'],
             'desa'              => $post['desa'],
+            'kodepos'           => $post['kodepos'],
             'kecamatan'         => $post['kecamatan'],
             'kabupaten'         => $post['kabupaten'],
             'provinsi'          => $post['provinsi'],
@@ -79,6 +80,7 @@ class M_siswa extends CI_Model
             'job_ayah'          => $post['job_ayah'],
             'job_ibu'           => $post['job_ibu'],
             'gaji'              => $post['gaji'],
+            'gaji_ibu'          => $post['gaji_ibu'],
             'no_hp'             => $post['no_hp'],
             'waktu'             => $post['waktu'],
             'jarak_sekolah'     => $post['jarak_sekolah'],
@@ -93,6 +95,7 @@ class M_siswa extends CI_Model
             'nama_wali'         => $post['nama_wali'],
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
+            'gaji_wali'         => $post['gaji_wali'],
             'date_created'      => $created,
             'created_by'        => $created_by
         );
@@ -115,15 +118,16 @@ class M_siswa extends CI_Model
             'rt'                => $post['rt'],
             'rw'                => $post['rw'],
             'desa'              => $post['desa'],
+            'kodepos'           => $post['kodepos'],
             'kecamatan'         => $post['kecamatan'],
             'kabupaten'         => $post['kabupaten'],
             'provinsi'          => $post['provinsi'],
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],
-             'hobi'             => $post['hobi'],
+            'hobi'              => $post['hobi'],
             'cita'              => $post['cita'],
-           'agama'              => $post['agama'],
+            'agama'             => $post['agama'],
             'umur'              => $post['umur'],
             'bb'                => $post['bb'],
             'tb'                => $post['tb'],
@@ -143,6 +147,7 @@ class M_siswa extends CI_Model
             'job_ayah'          => $post['job_ayah'],
             'job_ibu'           => $post['job_ibu'],
             'gaji'              => $post['gaji'],
+            'gaji_ibu'          => $post['gaji_ibu'],
             'no_hp'             => $post['no_hp'],
             'waktu'             => $post['waktu'],
             'jarak_sekolah'     => $post['jarak_sekolah'],
@@ -157,8 +162,9 @@ class M_siswa extends CI_Model
             'nama_wali'         => $post['nama_wali'],
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
+            'gaji_wali'         => $post['gaji_wali'],
             'modified_by'       => $modifBy,
-            'modified_date'  => $modified
+            'modified_date'     => $modified
         );
         if ($post['foto'] != null) {
           $params['foto'] = $post['foto']; 

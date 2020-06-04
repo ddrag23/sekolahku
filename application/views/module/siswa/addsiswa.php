@@ -48,14 +48,7 @@
         </li>
       </ul>
       <div id="step-1" style="height:450px;">
-<?php if (validation_errors()): ?>
-                   <div class="alert alert-danger alert-dismissible " role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                    </button>
-            <?= validation_errors();?>
-                  </div>
-<?php endif; ?>
-
+      <div class="flash-error" data-flashdata="<?= validation_errors();?>"></div>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Foto<span class="required">*</span>
             </label>
@@ -63,13 +56,22 @@
               <input type="file" id="first-name" name="foto" class="form-control" value="" >
             </div>
           </div>
-           <div class="item form-group">
+            <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NPSN TK <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="npsn" class="form-control" value="<?= set_value('npsn'); ?>">
+            </div>
+          </div>
+        <?php if ( $this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
+            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nis" class="form-control" value="<?= set_value('nis'); ?>">
             </div>
           </div>
+        <?php endif; ?>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
@@ -192,8 +194,11 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align"
             for="first-name">Kecamatan <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 col-xs-12 ">
+            <div class="col-md-3 col-sm-3 col-xs-12 ">
               <input class="form-control" type="text" name="kecamatan" value="<?= set_value('kecamatan')?>">
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 ">
+              <input class="form-control" type="text" name="kodepos" placeholder="Masukkan Kode Pos" value="<?= set_value('kodepos')?>">
             </div>
           </div>
           <div class="item form-group">
@@ -390,14 +395,26 @@
             </div>
           </div>
            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji <span class="required">*</span>
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ayah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
-                <option value="kurang dari 1 jt" <?= set_value('gaji') == 'kurang dari 1jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="kurang dari 1 jt" <?= set_value('gaji') == 'kurang dari 1 jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
                 <option value="1 sampai 2 jt" <?= set_value('gaji') == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
                 <option value="lebih dari 2 jt" <?= set_value('gaji') == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+              </select>
+            </div>
+          </div>
+           <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ibu<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <select class="form-control" name="gaji_ibu">
+                <option value="">--Pilih--</option>
+                <option value="Kurang dari 1 juta" <?= set_value('gaji_ibu') == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 sampai 2 juta" <?= set_value('gaji_ibu') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="Lebih dari 3 juta" <?= set_value('gaji_ibu') == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
               </select>
             </div>
           </div>
@@ -588,9 +605,21 @@
               </select>
             </div>
           </div>
+       <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Wali<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 ">
+          <select class="form-control" name="gaji_wali">
+            <option value="">--Pilih--</option>
+            <option value="Kurang dari 1 juta" <?= set_value('gaji_wali') == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+            <option value="1 sampai 2 juta" <?= set_value('gaji_wali') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+            <option value="Lebih dari 3 juta" <?= set_value('gaji_wali') == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+          </select>
+        </div>
       </div>
 
-    </div>
+      </div>
+</div>
       <!-- End SmartWizard Content -->
       </form>
             </div>

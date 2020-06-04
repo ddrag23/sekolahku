@@ -77,7 +77,7 @@ public function add()
                 	$post = $this->input->post(null, TRUE);;
                 	$this->m_siswa->add($post);
                 	if ($this->db->affected_rows() > 0) {
-                		$this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+                		$this->session->set_flashdata('sukses', 'ditambah');
                         redirect('siswa','refresh');
                 	}
                 }
@@ -110,17 +110,19 @@ public function add()
                 else
                 {
                   $post = $this->input->post(null, true);
+                  // jika input image ada isinya
                   if (@$_FILES['foto']['name'] != null) {
                     if ($this->upload->do_upload('foto')) {
                       $post['foto'] = $this->upload->data('file_name');
                       $image = $this->m_siswa->get($id_siswa)->row_array();
+                      // replace gambar sebelumnya dengan gambar yang baru
                       if ($image != null) {
                         $target = 'uploads/image/'.$image['foto'];
                         unlink($target);
                       }
                       $this->m_siswa->edit($post);
                       if ($this->db->affected_rows() > 0) {
-                        $this->session->set_flashdata('sukses', 'data berhasil ditambahkan');
+                        $this->session->set_flashdata('sukses', 'diubah');
                       }
                         redirect('siswa', 'refresh');
                     }else{
@@ -128,11 +130,11 @@ public function add()
                       $this->session->set_flashdata('gagal', $error);
                       redirect('siswa/edit/'.$id_siswa, 'refresh');
                     }
-                  } else {
+                  } else { // jika input image tidak ada isinya
                     $post['foto'] = null;
                     $this->m_siswa->edit($post);
                     if ($this->db->affected_rows() > 0) {
-                      $this->session->set_flashdata('sukses', 'Data berhasil ditambah');
+                      $this->session->set_flashdata('sukses', 'diubah');
                     }
                     redirect('siswa', 'refresh');
                   }
@@ -144,7 +146,7 @@ public function add()
     public function delete($id_siswa)
     {
         $this->m_siswa->del($id_siswa);
-        $this->session->set_flashdata('hapus','Data berhasil dihapus');
+        $this->session->set_flashdata('sukses','dihapus');
         redirect('siswa','refresh');
     }
     // public function username_check()
@@ -161,9 +163,9 @@ public function add()
 
   public function printpdf($id_siswa) 
   {
-  $data['row'] = $this->m_siswa->get($id_siswa)->row();
-  $html = $this->load->view('module/dokumen/formreg',$data,true);
-  $this->fungsi->pdfPrint($html,'coba','A4','potrait');
+      $data['row'] = $this->m_siswa->get($id_siswa)->row();
+      $html = $this->load->view('module/dokumen/formreg',$data,true);
+      $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
   }
   
     public function export(){
@@ -192,6 +194,7 @@ public function add()
     $sheet->setCellValue('T1', 'GAJI');
     $sheet->setCellValue('U1', 'TEMPAT TINGGAL');
     $sheet->setCellValue('V1', 'JARAK KE SEKOLAH');
+    $sheet->setCellValue('X1', 'KELAS');
     
     $no=0;
     $baris=2;
@@ -217,6 +220,8 @@ public function add()
       $sheet->setCellValue('S'.$baris,$key->gaji);
       $sheet->setCellValue('T'.$baris,$key->tempat_tinggal);
       $sheet->setCellValue('U'.$baris,$key->jarak_sekolah);
+      $sheet->setCellValue('V'.$baris,$key->jarak_sekolah);
+      $sheet->setCellValue('X'.$baris,$key->nama_kelas);
       $baris++;
     }
     $sheet->setTitle('Data Siswa');
@@ -296,5 +301,6 @@ public function add()
         $this->form_validation->set_message('required', '%s field tidak boleh kosong');
         $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
         $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
+        $this->form_validation->set_error_delimiters('', '');
     }
 }

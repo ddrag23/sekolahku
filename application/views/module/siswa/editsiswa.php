@@ -4,6 +4,7 @@
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
+            <li><a  href="<?= site_url('siswa'); ?>" class="collapse-link"><i class="fa fa-mail-reply"></i></a></li>
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
              </ul>
@@ -47,7 +48,7 @@
           </a>
         </li>
       </ul>
-      <div id="step-1">
+      <div id="step-1" style="height:450px;">
           <?= validation_errors(); ?>
           <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
            <div class="item form-group">
@@ -63,13 +64,22 @@
             </div>
           </div>
           <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
-           <div class="item form-group">
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NPSN TK <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="npsn" class="form-control" value="<?= $this->input->post('npsn') ?? $query->npsn; ?>">
+            </div>
+          </div>
+        <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
+            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nis" class="form-control" value="<?= $this->input->post('nis') ?? $query->nis; ?>">
             </div>
           </div>
+       <?php endif; ?>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
@@ -198,9 +208,13 @@
             <label class="col-form-label col-md-3 col-sm-3 label-align"
             for="first-name">Kecamatan <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 col-xs-12 ">
+            <div class="col-md-3 col-sm-3 col-xs-12 ">
               <input class="form-control" type="text" name="kecamatan" value="<?=
               $this->input->post('kecamatan') ?? $query->kecamatan; ?>">
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 ">
+              <input class="form-control" type="text" name="kodepos" placeholder="Masukkan Kode Pos" value="<?=
+              $this->input->post('kodepos') ?? $query->kodepos; ?>">
             </div>
           </div>
           <div class="item form-group">
@@ -291,7 +305,7 @@
             </div>
           </div>
       </div>
-      <div id="step-2">
+      <div id="step-2" style="height:450px;">
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Ayah <span class="required">*</span>
             </label>
@@ -407,7 +421,7 @@
             </div>
           </div>
            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji <span class="required">*</span>
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ibu<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <?php $gaji = $this->input->post('gaji') ? $this->input->post('gaji') : $query->gaji ?>
@@ -415,10 +429,24 @@
                 <option value="">--Pilih--</option>
                 <option value="kurang dari 1 jt" <?= $gaji == 'kurang dari 1 jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
                 <option value="1 sampai 2 jt" <?= $gaji == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 jt" <?= $gaji == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+                <option value="lebih dari 2 jt" <?= $gaji == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 3 juta</option>
               </select>
             </div>
           </div>
+            <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ibu<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <?php $gajiIbu = $this->input->post('gaji_ibu') ? $this->input->post('gaji_ibu') : $query->gaji_ibu ?>
+              <select class="form-control" name="gaji_ibu">
+                <option value="">--Pilih--</option>
+                <option value="Kurang dari 1 juta" <?= $gajiIbu == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 juta sampai 2 juta" <?= $gajiIbu == '1 juta sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="Lebih dari 3 juta" <?= $gajiIbu == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 3 juta</option>
+              </select>
+            </div>
+          </div>
+
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">Nomor Telepon<span class="required">*</span>
             </label>
@@ -427,7 +455,7 @@
             </div>
           </div>
       </div>
-      <div id="step-3">
+      <div id="step-3" style="height:450px;">
        <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Waktu Tempuh Ke Sekolah <span class="required">*</span>
             </label>
@@ -566,7 +594,7 @@
             </div>
           </div>
       </div>
-      <div id="step-4">
+      <div id="step-4" style="height:450px;">
         <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_wali">Nama Wali <span class="required">*</span>
             </label>
@@ -617,6 +645,20 @@
               </select>
             </div>
           </div>
+            <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <?php $gajiWali = $this->input->post('gaji_wali') ? $this->input->post('gaji_wali') : $query->gaji_wali; ?>
+              <select class="form-control" name="gaji_wali">
+                <option value="">--Pilih--</option>
+                <option value="Kurang dari 1 juta" <?= $gajiWali == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 juta sampai 2 juta" <?= $gajiWali == '1 juta sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="Lebih dari 3 juta" <?= $gajiWali == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 3 juta</option>
+              </select>
+            </div>
+          </div>
+
       </div>
 
     </div>

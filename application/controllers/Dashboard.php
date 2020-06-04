@@ -19,10 +19,11 @@ class Dashboard extends CI_Controller {
 			"page" => "Dashboard"
 		]);
   }
-  public function printpdf() 
+  public function printpdf($id) 
   {
-  $data['row'] = $this->m_siswa->get()->row();
-  $html = $this->load->view('module/dokumen/formreg',$data,true);
-  $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
+          $data['row'] = $this->m_siswa->get($id)->row();
+          $html = $this->load->view('module/dokumen/formreg',$data,true);
+          $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
   }
+  
 }

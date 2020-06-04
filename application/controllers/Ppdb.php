@@ -27,8 +27,20 @@ class Ppdb extends CI_Controller {
 			"query" => $this->m_ppdb->get($id)->row_array() 
 		]);
 		}
-		
 	}
+  public function listNilai()
+  {
+    $this->load->view('template/main', [
+        "src" => "module/ppdb/nilaiPpdb",
+        "page" => "List Nilai",
+        "query" => $this->m_ppdb->get()->result(),
+    ]);
+  }
+  public function getNilai()
+  {
+    $post = $this->input->post(null, true);
+    echo json_encode($this->m_ppdb->get($post['id'])->result());
+  }
 	public function add(){
     $params = new StdClass();
     $params->id_ppdb = null;
@@ -86,11 +98,7 @@ class Ppdb extends CI_Controller {
                   $this->proses();
                 }
    }
-  /**
-   * undocumented function
-   *
-   * @return void
-   */
+ 
   public function delete($id_ppdb)
   {
     $this->m_ppdb->delete($id_ppdb);

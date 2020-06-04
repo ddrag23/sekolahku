@@ -11,6 +11,7 @@
 
     <!-- jQuery -->
     <script src="<?= base_url()?>assets/template/vendors/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="<?= base_url()?>assets/template/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
@@ -72,15 +73,6 @@
     <script src="<?= base_url()?>assets/template/vendors/select2/dist/js/select2.full.min.js"></script>
      <script src="<?= base_url()?>assets/template/vendors/switchery/dist/switchery.min.js"></script>
     <script src="<?= base_url()?>assets/template/build/js/custom.min.js"></script>
-    <script>
-        $('#myDatepicker2').datetimepicker({
-                format: 'DD.MM.YYYY'
-            });
-                $(document).ready(function() {
-            $('.ex-select2').select2();
-        });
-        
-    </script>
-  
-  </body>
+    <script src="<?= base_url()?>assets/template/build/js/myscript.js"></script>
+    </body>
 </html>

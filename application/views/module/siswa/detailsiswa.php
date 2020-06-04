@@ -50,9 +50,9 @@
                           <td><?= $query['desa'];?></td>
                         </tr>
                         <tr>
-                          <th>Kecamatan</th>
+                          <th>Kecamatan <br> Kodepos</th>
                           <td>:</td>
-                          <td><?= $query['kecamatan']?></td>
+                          <td><?= $query['kecamatan']?> <br> <?= $query['kodepos']?> </td>
                         </tr>
                         <tr>
                           <th>Kabupaten</th>
@@ -132,13 +132,18 @@
                           <td>:</td>
                           <td><?= $query['job_wali'] ;?></td>
                         </tr>
+                        <tr>
+                            <th>Gaji Wali</th>
+                            <td>:</td>
+                            <td><?= $query['gaji_wali'];?></td>
+                        </tr>
                       </tbody>
                     </table>
                     </div>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <table class="table">
                       <tr>
-                        <td>Foto</td>
+                        <th>Foto</th>
                         <td>:</td>
                         <td>
                         <img src="<?= base_url('uploads/image/'.$query['foto']);?>" style="margin:0;width:150px;height:170px;" alt="">
@@ -174,6 +179,11 @@
                           <tr>
                           <th colspan="3" style="text-align:center;" scope="row">Ibu</th>
                           </tr>
+                        <tr>
+                            <th>Gaji Ayah</th>
+                            <td>:</td>
+                            <td><?= $query['gaji'];?></td>
+                        </tr>
                           <tr>
                             <th>KTP</th>
                             <td>:</td>
@@ -194,11 +204,11 @@
                             <td>:</td>
                             <td><?= $query['job_ibu'];?></td>
                           </tr>
-                          <tr>
-                            <th>Gaji</th>
+                        <tr>
+                            <th>Gaji Ibu</th>
                             <td>:</td>
-                            <td><?= $query['gaji'];?></td>
-                          </tr>
+                            <td><?= $query['gaji_ibu'];?></td>
+                        </tr>
                           <tr>
                             <th>No Telepon / No Whatsapp</th>
                             <td>:</td>
