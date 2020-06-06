@@ -12,8 +12,8 @@ font-family: 'Times New Roman', Times, serif;
 .page-break{ page-break-before:always;}
 .logo img{
 float: left;
-width: 10em;
-height: 9em;
+width: 9em;
+height: 10em;
 }
 .tittle p{
 text-align: center;
@@ -69,7 +69,7 @@ text-align:justify;
 <body>
     <div class="page-surat-pernyataan">
         <div class="cop">
-            <div class="logo"><img src="assets/logo/logomi.png" alt=""></div>
+            <div class="logo"><img src="assets/logo/logomaarif.jpeg" alt=""></div>
             <div class="tittle">
                 <p class="t-1">PANITIA PPDB TAHUN AJARAN <?= date('Y');?> / <?= date('Y')+1; ?></p>
                 <p class="t-2">MADRASAH IBTIDAIYAH HASYIM ASY'ARI</p>
@@ -146,7 +146,7 @@ text-align:justify;
     <div class="page-break"></div>
      <div class="page-form-pendaftaran">
         <div class="cop">
-            <div class="logo"><img src="assets/logo/logomi.png" alt=""></div>
+            <div class="logo"><img src="assets/logo/logomaarif.jpeg" alt=""></div>
             <div class="tittle">
                 <p class="t-1">PANITIA PPDB TAHUN AJARAN <?= date('Y');?> / <?= date('Y')+1; ?></p>
                 <p class="t-2">MADRASAH IBTIDAIYAH HASYIM ASY'ARI</p>
