@@ -35,10 +35,9 @@
             <td><?= $key->alamat_rumah_ppdb;?></td>
             <td><?= $key->asal_sekolah_ppdb;?></td>
              <td wid_siswath="160px" class="text-center">
+              <a href="<?=site_url('ppdb/printPdf/'.$key->id_ppdb); ?>" class="btn btn-success btn-xs"><i class="fa fa-print"></i> Ubah</a>
               <a href="<?=site_url('ppdb/edit/'.$key->id_ppdb); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
-
               <a href="<?=site_url('ppdb/delete/'.$key->id_ppdb); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
-
             </td>
           </tr>
         <?php endforeach; ?>

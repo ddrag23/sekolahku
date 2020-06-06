@@ -120,6 +120,20 @@ class Ppdb extends CI_Controller {
     redirect('ppdb', 'refresh');
 
   }
+
+  /**
+   * undocumented function
+   *
+   * @return void
+   */
+  public function printPdf($id_ppdb)
+  {
+      $data['row'] = $this->m_ppdb->get($id_ppdb)->row();
+      $html = $this->load->view('module/dokumen/formRegPpdb',$data,true);
+      $this->fungsi->pdfPrint($html,'coba','A4','potrait');
+    
+  }
+  
   
     public function validasi()
     {
