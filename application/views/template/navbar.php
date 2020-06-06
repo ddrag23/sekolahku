@@ -53,7 +53,9 @@
                   <li><a><i class="fa fa-edit"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('ppdb'); ?>">Dashboard PPDB</a></li>
+                    <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
                       <li><a href="<?= site_url('ppdb/nilai'); ?>">Nilai PPDB</a></li>
+                    <?php endif; ?>
                       <li><a href="<?= site_url('ppdb/add'); ?>">Tambah Data PPDB</a></li>
                       <?php  if ($this->session->userdata('level') == 'user' && $this->session->userdata('seleksi') == 'lulus'): ?>
                       <li><a href="<?= site_url('siswa/add') ;?>">Daftar Ulang</a></li>

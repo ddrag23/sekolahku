@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+use application\controller\Siswa;
 class Ppdb extends CI_Controller {
 
 	public function __construct(){
@@ -21,10 +21,12 @@ class Ppdb extends CI_Controller {
 		]);
 		}elseif ($this->session->userdata('level') == 'user') {
       $id = $this->session->userdata('id_ppdb');
+      $sessIdSiswa = $this->session->userdata('id_siswa');
 			$this->load->view('template/main',[
 			"src" => "module/ppdb/homepage",
 			"page" => "PPDB",
-			"query" => $this->m_ppdb->get($id)->row_array() 
+			"query" => $this->m_ppdb->get($id)->row_array(), 
+      "siswa" => $this->m_siswa->get($sessIdSiswa)->row_array()
 		]);
 		}
 	}
@@ -131,10 +133,12 @@ class Ppdb extends CI_Controller {
       $data['row'] = $this->m_ppdb->get($id_ppdb)->row();
       $html = $this->load->view('module/dokumen/formRegPpdb',$data,true);
       $this->fungsi->pdfPrint($html,'coba','A4','potrait');
-    
   }
-  
-  
+  public function printPdfSiswa($id_siswa){
+      $data['row'] = $this->m_siswa->get($id_siswa)->row();
+      $html = $this->load->view('module/dokumen/formreg',$data,true);
+      $this->fungsi->pdfPrint($html,'siswa',array(0,0,609.4488,935.433),'potrait');
+  }
     public function validasi()
     {
         // form data diri

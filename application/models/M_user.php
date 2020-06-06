@@ -17,6 +17,12 @@ class M_user extends CI_Model
       $this->db->where('user_id', $id);
       return $this->db->get();
     }
+    public function getSessIdSiswa($id){
+        $this->db->select('id_siswa');
+        $this->db->from('siswa');
+        $this->db->where('users_id', $id);
+        return $this->db->get();
+    }
     public function register($post)
     {
         $created = date('Y-m-d H:i:s');
