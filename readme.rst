@@ -2,8 +2,8 @@
 SISTEM INFORMASI PENGELOLAHAN DATA SISWA
 ########################################
 
-FITUR 
-{
+FITUR :
+
  ->DASHBOARD
   -view total ppdb
   -view total siswa
@@ -30,11 +30,10 @@ FITUR
   -add user role(admin && panitia ppdb) 
   -edit user
   -delete user
-}
 
-UPDATE CHANGELOG
-{
+
+UPDATE CHANGELOG :
   -add input field gaji ibu, gaji wali, kode pos
   -add print pdf ppd  >add input field gaji ibu, gaji wali, kode pos
   -add print pdf ppdb
-}
+
