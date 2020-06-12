@@ -28,7 +28,7 @@ function cekAdmin()
     $ci =& get_instance();
     $ci->load->library('fungsi');
     if ($ci->fungsi->user_login()->level != 'admin') {
-        redirect('dashboard','refresh');
+        redirect('ppdb','refresh');
     }
 }
 function uploader($imageName, $locationImage, $typeImage, $sizeImage, $nameForm)

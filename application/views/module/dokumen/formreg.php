@@ -323,8 +323,7 @@ margin-right:2.4em;
     <tr>
       <td>Alamat</td>
       <td>:</td>
-      <!-- <td><?=$row->alamat_siswa;?></td> -->
-      <td><?= wordwrap("1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950", 60,'<br>',true);?></td>
+      <td><?=wordwrap($row->alamat_siswa,60,'<br>',true);?></td> 
     </tr>
     <tr>
       <td>Kelas</td>

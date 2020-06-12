@@ -11,7 +11,7 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-<form id="form" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="<?= site_url('siswa/add'); ?>">
+<form id="form" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
         <li>
@@ -47,7 +47,7 @@
           </a>
         </li>
       </ul>
-      <div id="step-1" style="height:450px;">
+      <div id="step-1" style="height:450px; display:block;">
           <div id="error" data-error="<?= validation_errors();?>"></div>
            <?php if ($this->session->userdata('level') == 'user'): ?>
            <input type="hidden" name="users_id" value="<?=  $this->session->userdata('id');?>">
@@ -64,6 +64,13 @@
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="npsn" class="form-control" value="<?= set_value('npsn'); ?>">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= set_value('nik_siswa'); ?>">
             </div>
           </div>
         <?php if ( $this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>

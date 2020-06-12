@@ -37,8 +37,8 @@ class M_nilai extends CI_Model
             'created_by' => $created_by,
             'date_created' => $created
         ];
-        echo json_encode($params);
-        die();
+        /* echo json_encode($params); */
+        /* die(); */
        $this->db->insert('nilai', $params); 
     }
 

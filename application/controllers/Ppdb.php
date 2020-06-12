@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-use application\controller\Siswa;
 class Ppdb extends CI_Controller {
 
 	public function __construct(){
@@ -17,13 +16,13 @@ class Ppdb extends CI_Controller {
 			"query" => $this->m_ppdb->get()->result()
 		]);
 		}elseif ($this->session->userdata('level') == 'user') {
-      $id = $this->session->userdata('id_ppdb');
-      $sessIdSiswa = $this->session->userdata('id_siswa');
-			$this->load->view('template/main',[
+        $id = $this->session->userdata('id_ppdb');
+        $id_siswa = $this->session->userdata('id_siswa');
+  			$this->load->view('template/main',[
 			"src" => "module/ppdb/homepage",
 			"page" => "PPDB",
-			"query" => $this->m_ppdb->get($id)->row_array(), 
-      "siswa" => $this->m_siswa->get($sessIdSiswa)->row_array(),
+      "query" => $this->m_ppdb->get_where($id)->row_array(),
+      "siswa" => $this->db->get_where('siswa',['id_siswa' => $id_siswa])->row_array(),
       "nilai" => $this->m_nilai->get($id)->row_array()
 		]);
 		}
@@ -32,6 +31,7 @@ class Ppdb extends CI_Controller {
 	public function add(){
     $params = new StdClass();
     $params->id_ppdb = null;
+    $params->id = null;
     $params->username = null;
     $params->nama_ppdb = null;
     $params->alamat_rumah_ppdb = null;
@@ -99,7 +99,7 @@ class Ppdb extends CI_Controller {
     if (isset($post['save'])) {
       $this->m_ppdb->add($post);
     }elseif(isset($post['edit'])){
-    $this->m_ppdb->edit($post);
+      $this->m_ppdb->edit($post);
     }
     if ($this->db->affected_rows() > 0) {
       $this->session->set_flashdata('sukses', 'Data berhasil dimasukkan');

@@ -14,6 +14,10 @@ class M_ppdb extends CI_Model
         }
         return $this->db->get();
     }
+  public function get_where($id)
+  {
+    return $this->db->get_where('ppdb', ['id_ppdb' => $id]);
+  }
    public function add($post)
     {
         $this->db->trans_start();
@@ -45,14 +49,17 @@ class M_ppdb extends CI_Model
             'created_by'          => $created_by
         );
         $this->db->insert('ppdb', $params);
+        $id = $this->db->insert_id();
+        $this->session->set_userdata('id_ppdb',$id );
         $this->db->trans_complete();
     }
     public function edit($post)
     {
+        
         $modifBy = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
-            'user_id'             => !empty($post['users_id']) ? $post['users_id'] : null,
+            'user_id'             => !empty($post['user_id']) ? $post['user_id'] : $post['id'],
             'nama_ppdb'           => $post['nama_ppdb'],
             'nama_panggilan'      => $post['nama_panggilan'],
             'gender_ppdb'         => $post['gender_ppdb'],
@@ -63,12 +70,11 @@ class M_ppdb extends CI_Model
             'alamat_rumah_ppdb'   => $post['alamat_rumah_ppdb'],
             'no_hp_ppdb'          => $post['no_hp_ppdb'],
             'nama_ortu_ppdb'      => $post['nama_ortu_ppdb'],
-            'seleksi'             => $post['seleksi'],
-            'nilai'               => $post['nilai'],
             'modified_by'         => $modifBy,
-            'date_modified'       => $$modified
+            'date_modified'       => $modified
           );
-          // echo json_encode($params);
+           /* echo json_encode($params); */
+        /* die; */
         $this->db->where('id_ppdb', $post['id_ppdb']);
         $this->db->update('ppdb', $params);
     }

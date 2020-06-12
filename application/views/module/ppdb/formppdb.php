@@ -18,6 +18,7 @@
   <input type="hidden" name="user_id" value="<?= $this->session->userdata('id')?>">
 <?php endif; ?>
 <?php if ($this->session->userdata('level') == 'admin'): ?>
+    <input type="hidden" name="id" value="<?= $query->id;?>">
   	<div class="item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Username <span class="required">*</span>
     </label>

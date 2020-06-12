@@ -51,6 +51,7 @@
       <div id="step-1" style="height:450px;">
           <div id="error" data-error="<?= validation_errors();?>"></div>
           <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
+          <input type="hidden" name="id" value="<?= $query->id; ?>">
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Upload foto <span class="required">*</span>
             </label>
@@ -63,7 +64,6 @@
               <input type="file" id="gambar" name="foto" class="form-control" value="">
             </div>
           </div>
-          <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NPSN TK <span class="required">*</span>
             </label>
@@ -71,6 +71,14 @@
               <input type="text" id="first-name" name="npsn" class="form-control" value="<?= $this->input->post('npsn') ?? $query->npsn; ?>">
             </div>
           </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= $this->input->post('nik_siswa') ?? $query->nik_siswa; ?>">
+            </div>
+          </div>
+
         <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
             <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>

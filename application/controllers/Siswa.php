@@ -14,17 +14,16 @@ class Siswa extends CI_Controller
 		parent::__construct();
 		cekNotLogin();
     
-		$this->load->model('m_siswa');
-        $this->load->model('m_master');
+		$this->load->model(['m_siswa','m_master','m_user']);
 	}
 	public function index()
 	{
         cekAdmin();
-		$this->load->view('template/main', [
-			"src" => "module/siswa/listsiswa",
-			"page" => "Data siswa",
-            "try" => $this->m_siswa->getAktif()->result(),
-			]);
+        $this->load->view('template/main', [
+          "src" => "module/siswa/listsiswa",
+          "page" => "Data siswa",
+                "try" => $this->m_siswa->getAktif()->result(),
+        ]);
 	}
     public function SiswaMutasi()
     {
@@ -82,10 +81,9 @@ public function add()
             $this->m_siswa->add($post);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('sukses', 'ditambah');
-                redirect('siswa','refresh');
             }
-        }
-    	
+            redirect('siswa','refresh');
+        }	
     }
     public function edit($id_siswa)
     {
@@ -110,7 +108,6 @@ public function add()
                     }else{
                         show_404();
                     }
-			    	
                 }
                 else
                 {
@@ -267,15 +264,17 @@ public function add()
     public function validasi()
     {
          // form data diri
+        if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
         $this->form_validation->set_rules('nis', 'NIS', 'required|min_length[5]');
+        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+        $this->form_validation->set_rules('status', 'Status Siswa', 'required');
+        }
         $this->form_validation->set_rules('nama_siswa', 'Nama', 'required');
         $this->form_validation->set_rules('alamat_siswa', 'Alamat', 'required');
         $this->form_validation->set_rules('gender_siswa', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('no_hp', 'Nomor Telepon', 'required');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required');
-        $this->form_validation->set_rules('status', 'Status Siswa', 'required');
-        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
         $this->form_validation->set_rules('umur', 'Umur', 'required');
         $this->form_validation->set_rules('bb', 'Berat Badan', 'required');
         $this->form_validation->set_rules('tb', 'Tinggi Badan', 'required');

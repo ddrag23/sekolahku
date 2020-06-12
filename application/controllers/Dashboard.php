@@ -6,13 +6,17 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		cekNotLogin();
+    cekAdmin();
     $this->load->model(['m_siswa','m_nilai','m_user','m_ppdb','m_master']);
 	}
 	public function index()
 	{
+     
 		$this->load->view('module/dashboard/dashboard',[
       "page" => "Dashboard",
-      "siswa" => $this->m_siswa->get()->num_rows(),
+      "aktif" => $this->m_siswa->getAktif()->num_rows(),
+      "mutasi" => $this->m_siswa->getMutasi()->num_rows(),
+      "alumni" => $this->m_siswa->getAlumni()->num_rows(),
       "lulus" => $this->m_nilai->getLulus()->num_rows(),
       "tidakLulus" => $this->m_nilai->getTidakLulus()->num_rows(),
       "ppdb" => $this->m_ppdb->get()->num_rows(),

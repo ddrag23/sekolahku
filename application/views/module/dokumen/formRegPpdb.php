@@ -87,11 +87,11 @@ text-align:justify;
             </div>
             <div class="isi">
                 <p>Yang bertandatangan dibawah ini :</p>
-               <table cellpadding="6">
+               <table cellpadding="6" >
                    <tr>
                        <td>Nama</td>
                        <td>:</td>
-                       <td><?= $row->nama_ppdb;?></td>
+                        <td><?= $row->nama_ppdb;?></td>
                    </tr>
                    <tr>
                        <td>Calon Wali Murid dari</td>

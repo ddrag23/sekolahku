@@ -23,18 +23,17 @@ class Auth extends CI_Controller {
     private function proses(){
         $post = $this->input->post(null, TRUE);
         if (isset($post['login'])) {
-            
             $query = $this->users->login($post);
             //   cek user
             if ($query->num_rows() > 0) {
             $row = $query->row();
-            $coba = $this->users->getSeleksi($row->id)->row();  
+            $sessIdPpdb = $this->users->getSeleksi($row->id)->row();
             $sessIdSiswa = $this->users->getSessIdSiswa($row->id)->row();
-            $nilai = $this->users->getNilai($coba->id_ppdb)->row();
+            $nilai = $this->users->getNilai($sessIdPpdb->id_ppdb)->row();
             if ($row->is_active == 1) {
                  $params = array(
                 'id' => $row->id,
-                'id_ppdb' => $coba->id_ppdb,
+                'id_ppdb' => $sessIdPpdb->id_ppdb,
                 'id_siswa' => $sessIdSiswa->id_siswa,
                 'level' => $row->level,
                 'nilai' => $nilai->status_ppdb,
@@ -51,7 +50,6 @@ class Auth extends CI_Controller {
             }
             // cek jika sudah login
             // login dengan role admin atau petugas
-
           }else {
             $this->session->set_flashdata('gagal', 'username / pass tidak valid atau sudah tidak aktif silahkan hubungi admin');
               redirect('auth');   
@@ -78,8 +76,7 @@ class Auth extends CI_Controller {
     }
 
     public function logout(){
-        $params = array('id','level');
-        $this->session->unset_userdata($params);
+        $this->session->sess_destroy();
         redirect('auth');
     }
 }
