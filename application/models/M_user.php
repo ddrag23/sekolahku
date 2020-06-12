@@ -12,10 +12,15 @@ class M_user extends CI_Model
         return $this->db->get();
     }
     public function getSeleksi($id){
-      $this->db->select('id_ppdb,seleksi');
+      $this->db->select('id_ppdb');
       $this->db->from('ppdb');
       $this->db->where('user_id', $id);
       return $this->db->get();
+    }
+    public function getNilai($id){
+        $this->db->join('ppdb', 'ppdb.id_ppdb = nilai.ppdb_id ');
+        $this->db->where('ppdb_id',$id);
+        return $this->db->get('nilai');
     }
     public function getSessIdSiswa($id){
         $this->db->select('id_siswa');
@@ -41,6 +46,21 @@ class M_user extends CI_Model
             $this->db->where('id',$id);
         }
         return $this->db->get();
+    }
+
+    public function getAdmin()
+    {
+        $this->db->where('level', 'admin');
+        return $this->db->get('users');
+    }
+
+    public function getPanitia()
+    {
+       return $this->db->where('level', 'guru')->get('users'); 
+    }
+    public function getUser()
+    {
+        return $this->db->where('level', 'user')->get('users');
     }
     public function add($post)
     {

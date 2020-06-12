@@ -54,10 +54,10 @@
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('ppdb'); ?>">Dashboard PPDB</a></li>
                     <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
-                      <li><a href="<?= site_url('ppdb/nilai'); ?>">Nilai PPDB</a></li>
+                      <li><a href="<?= site_url('nilai'); ?>">Nilai PPDB</a></li>
                     <?php endif; ?>
                       <li><a href="<?= site_url('ppdb/add'); ?>">Tambah Data PPDB</a></li>
-                      <?php  if ($this->session->userdata('level') == 'user' && $this->session->userdata('seleksi') == 'lulus'): ?>
+                      <?php  if ($this->session->userdata('level') == 'user' && $this->session->userdata('nilai') == 'lulus'): ?>
                       <li><a href="<?= site_url('siswa/add') ;?>">Daftar Ulang</a></li>
                       <?php endif; ?>
                       <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>

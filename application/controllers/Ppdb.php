@@ -6,10 +6,7 @@ class Ppdb extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		cekNotLogin();
-		$this->load->model('m_ppdb');
-		$this->load->model('m_master');
-		$this->load->model('m_user');
-    $this->load->model('m_siswa');
+		$this->load->model(['m_ppdb','m_master','m_user','m_siswa','m_nilai']);
 	}
 	public function index()
 	{
@@ -26,23 +23,12 @@ class Ppdb extends CI_Controller {
 			"src" => "module/ppdb/homepage",
 			"page" => "PPDB",
 			"query" => $this->m_ppdb->get($id)->row_array(), 
-      "siswa" => $this->m_siswa->get($sessIdSiswa)->row_array()
+      "siswa" => $this->m_siswa->get($sessIdSiswa)->row_array(),
+      "nilai" => $this->m_nilai->get($id)->row_array()
 		]);
 		}
 	}
-  public function listNilai()
-  {
-    $this->load->view('template/main', [
-        "src" => "module/ppdb/nilaiPpdb",
-        "page" => "List Nilai",
-        "query" => $this->m_ppdb->get()->result(),
-    ]);
-  }
-  public function getNilai()
-  {
-    $post = $this->input->post(null, true);
-    echo json_encode($this->m_ppdb->get($post['id'])->result());
-  }
+  
 	public function add(){
     $params = new StdClass();
     $params->id_ppdb = null;
@@ -79,26 +65,25 @@ class Ppdb extends CI_Controller {
         cekAdmin();
         $this->validasi();  
     	 if ($this->form_validation->run() == FALSE)
-                {
-                    $query = $this->m_ppdb->get($id_ppdb);
-                    if ($query->num_rows() > 0) {
-                          $this->load->view('template/main', [
-                            "src" => "module/ppdb/formppdb",
-                            "page" => "Edit Siswa",
-                            "submit" => "edit",
-                            "query" => $query->row(),
-                            "kelas" => $this->m_master->getKelas()->result(),
-                            "user" => $this->m_user->get()->result()
-                        ]);    
-                    }else{
-                        show_404();
-                    }
-			    	
-                }
-                else
-                {
-                  $this->proses();
-                }
+         {
+            $query = $this->m_ppdb->get($id_ppdb);
+            if ($query->num_rows() > 0) {
+                  $this->load->view('template/main', [
+                    "src" => "module/ppdb/formppdb",
+                    "page" => "Edit Siswa",
+                    "submit" => "edit",
+                    "query" => $query->row(),
+                    "kelas" => $this->m_master->getKelas()->result(),
+                    "user" => $this->m_user->get()->result()
+                ]);    
+            }else{
+                show_404();
+            }
+        }
+         else
+        { 
+             $this->proses();
+        }
    }
  
   public function delete($id_ppdb)
@@ -139,6 +124,7 @@ class Ppdb extends CI_Controller {
       $html = $this->load->view('module/dokumen/formreg',$data,true);
       $this->fungsi->pdfPrint($html,'siswa',array(0,0,609.4488,935.433),'potrait');
   }
+
     public function validasi()
     {
         // form data diri

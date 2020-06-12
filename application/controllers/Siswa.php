@@ -13,12 +13,13 @@ class Siswa extends CI_Controller
 	{
 		parent::__construct();
 		cekNotLogin();
-        cekAdmin();
+    
 		$this->load->model('m_siswa');
         $this->load->model('m_master');
 	}
 	public function index()
 	{
+        cekAdmin();
 		$this->load->view('template/main', [
 			"src" => "module/siswa/listsiswa",
 			"page" => "Data siswa",
@@ -27,6 +28,7 @@ class Siswa extends CI_Controller
 	}
     public function SiswaMutasi()
     {
+        cekAdmin();
         $this->load->view('template/main', [
             "src" => "module/siswa/listSiswaMutasi",
             "page" => "Data siswa mutasi",
@@ -35,6 +37,7 @@ class Siswa extends CI_Controller
     }
     public function Alumni()
     {
+        cekAdmin();
         $this->load->view('template/main', [
             "src" => "module/siswa/listAlumni",
             "page" => "Data alumni siswa",
@@ -48,6 +51,7 @@ class Siswa extends CI_Controller
  */
 public function detail($id_siswa)
 {
+        cekAdmin();
   $query = $this->m_siswa->get($id_siswa);
   if ($query->num_rows() > 0) {
      $this->load->view('template/main', [
@@ -63,28 +67,29 @@ public function detail($id_siswa)
 public function add()
     {
         $this->validasi();
-    	 if ($this->form_validation->run() == FALSE)
-                {
+    	  if ($this->form_validation->run() == FALSE)
+        {
 			    	$this->load->view('template/main', [
 			    		'src' => 'module/siswa/addsiswa',
 			    		'page' => 'tambah siswa',
 			    		"kelas" => $this->m_master->getKelas()->result(),
-                        "guru" => $this->m_master->getGuru()->result()
+              "guru" => $this->m_master->getGuru()->result()
 			    	]);
-                }
-                else
-                {
-                	$post = $this->input->post(null, TRUE);;
-                	$this->m_siswa->add($post);
-                	if ($this->db->affected_rows() > 0) {
-                		$this->session->set_flashdata('sukses', 'ditambah');
-                        redirect('siswa','refresh');
-                	}
-                }
+        }
+        else
+        {
+            $post = $this->input->post(null, TRUE);
+            $this->m_siswa->add($post);
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('sukses', 'ditambah');
+                redirect('siswa','refresh');
+            }
+        }
     	
     }
     public function edit($id_siswa)
     {
+        cekAdmin();
       $config['upload_path'] = 'uploads/image/';
       $config['allowed_types'] = 'jpg|png|jpeg';
       $config['max_sizes'] = 2048;
@@ -99,8 +104,8 @@ public function add()
                         	"src" => "module/siswa/editsiswa",
                         	"page" => "Edit Siswa",
                         	"query" => $query->row(),
-                            "kelas" => $this->m_master->getKelas()->result(),
-                            "guru" => $this->m_master->getGuru()->result()
+                          "kelas" => $this->m_master->getKelas()->result(),
+                          "guru" => $this->m_master->getGuru()->result()
                         ]);    
                     }else{
                         show_404();
@@ -145,6 +150,7 @@ public function add()
 
     public function delete($id_siswa)
     {
+        cekAdmin();
         $this->m_siswa->del($id_siswa);
         $this->session->set_flashdata('sukses','dihapus');
         redirect('siswa','refresh');
@@ -163,12 +169,14 @@ public function add()
 
   public function printpdf($id_siswa) 
   {
+      cekAdmin();
       $data['row'] = $this->m_siswa->get($id_siswa)->row();
       $html = $this->load->view('module/dokumen/formreg',$data,true);
       $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
   }
   
     public function export(){
+        cekAdmin();
     $siswa = $this->m_siswa->get()->result();
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
@@ -232,6 +240,7 @@ public function add()
     $writer->save("php://output");
     }
     public function import(){
+        cekAdmin();
       $file_mimes = array(
         'application/octet-stream',
         'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv',

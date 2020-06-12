@@ -11,7 +11,7 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
     <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a>
      <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/export');?>"><i class="fa fa-download"></i> Download Format</a>
      <a class="btn btn-success" style="margin-bottom:20px;" href="<?= base_url('siswa/import');?>"><i class="fas fa-file-import"></i> Import Data</a>

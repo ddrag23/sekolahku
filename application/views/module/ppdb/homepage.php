@@ -1,4 +1,5 @@
 <div><?= $this->session->flashdata('sukses') ;?></div>
+<?= print_r($nilai);?>
   <div class="row">
     <div class="col-md-12">
       <div class="x_panel">

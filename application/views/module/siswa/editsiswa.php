@@ -49,7 +49,7 @@
         </li>
       </ul>
       <div id="step-1" style="height:450px;">
-          <?= validation_errors(); ?>
+          <div id="error" data-error="<?= validation_errors();?>"></div>
           <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Upload foto <span class="required">*</span>

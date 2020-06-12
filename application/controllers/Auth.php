@@ -30,13 +30,14 @@ class Auth extends CI_Controller {
             $row = $query->row();
             $coba = $this->users->getSeleksi($row->id)->row();  
             $sessIdSiswa = $this->users->getSessIdSiswa($row->id)->row();
+            $nilai = $this->users->getNilai($coba->id_ppdb)->row();
             if ($row->is_active == 1) {
                  $params = array(
                 'id' => $row->id,
                 'id_ppdb' => $coba->id_ppdb,
                 'id_siswa' => $sessIdSiswa->id_siswa,
                 'level' => $row->level,
-                'seleksi' => $coba->seleksi 
+                'nilai' => $nilai->status_ppdb,
             );
              /* echo json_encode($params);die(); */
             $this->session->set_userdata($params);

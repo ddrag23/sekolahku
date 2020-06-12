@@ -11,7 +11,7 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-<form class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="<?= site_url('siswa/add'); ?>">
+<form id="form" class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="<?= site_url('siswa/add'); ?>">
 <div id="wizard" class="form_wizard wizard_horizontal">
       <ul class="wizard_steps">
         <li>
@@ -48,7 +48,10 @@
         </li>
       </ul>
       <div id="step-1" style="height:450px;">
-      <div class="flash-error" data-flashdata="<?= validation_errors();?>"></div>
+          <div id="error" data-error="<?= validation_errors();?>"></div>
+           <?php if ($this->session->userdata('level') == 'user'): ?>
+           <input type="hidden" name="users_id" value="<?=  $this->session->userdata('id');?>">
+           <?php endif; ?>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Foto<span class="required">*</span>
             </label>
@@ -128,7 +131,8 @@
               <input type="text" id="first-name" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
             </div>
           </div>
-          <div class="item form-group">
+        <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
+           <div class="item form-group">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="ex-select2 form-control" name="kelas_id">
@@ -150,6 +154,20 @@
               </select>
             </div>
           </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Status Siswa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <select class="ex-select2 form-control" name="status">
+                <option value="">--Pilih--</option>
+                <option value="praaktif"<?= set_value('status') == 'praaktif' ? 'selected' : null; ?> >Praaktif</option>
+                <option value="aktif" <?= set_value('status') == 'aktif' ? 'selected' : null; ?>>Aktif</option>
+                <option value="mutasi" <?= set_value('status') == 'mutasi' ? 'selected' : null; ?>>Mutasi</option>
+                <option value="alumni" <?= set_value('status') == 'alumni' ? 'selected' : null; ?>>Alumni</option>
+              </select>
+            </div>
+          </div>
+        <?php endif; ?>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
             <div class="col-md-6 col-sm-6 ">
@@ -215,19 +233,6 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input class="form-control" type="text" name="provinsi" value="Jawa Timur" readonly>
-            </div>
-          </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Status Siswa <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="ex-select2 form-control" name="status">
-                <option value="">--Pilih--</option>
-                <option value="praaktif"<?= set_value('status') == 'praaktif' ? 'selected' : null; ?> >Praaktif</option>
-                <option value="aktif" <?= set_value('status') == 'aktif' ? 'selected' : null; ?>>Aktif</option>
-                <option value="mutasi" <?= set_value('status') == 'mutasi' ? 'selected' : null; ?>>Mutasi</option>
-                <option value="alumni" <?= set_value('status') == 'alumni' ? 'selected' : null; ?>>Alumni</option>
-              </select>
             </div>
           </div>
           <div class="item form-group">

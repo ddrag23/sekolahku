@@ -11,14 +11,12 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-              <?php if ($this->session->flashdata('sukses')):?>
-              <?= $this->session->flashdata('sukses'); ?>
-               <?php endif;?>
+            <a href="<?= site_url('nilai/add');?>" class="btn btn-primary"><span class="fa fa-plus"></span> Masukkan Nilai</a>
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
                   <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Nis</th>
                         <th>Nama</th>
                         <th>Nilai</th>
                         <th>Seleksi</th>
@@ -30,12 +28,11 @@
                       <tr>
                        <td><?= ++$no;?></td>
                         <td><?= $key->nama_ppdb;?></td>
-                        <td><?= $key->nama_panggilan;?></td>
-                        <td><?= $key->nilai;?></td>
-                        <td><?= $key->seleksi;?></td>
+                        <td><?= $key->jum_nilai;?></td>
+                        <td><?= $key->status_ppdb;?></td>
                          <td wid_siswath="160px" class="text-center">
-                          <a href="<?=site_url('ppdb/edit/'.$key->id_ppdb); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
-                          <a href="<?=site_url('ppdb/delete/'.$key->id_ppdb); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+                          <a href="<?=site_url('nilai/edit/'.$key->id_nilai); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
+                          <a href="<?=site_url('nilai/del/'.$key->id_nilai); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
