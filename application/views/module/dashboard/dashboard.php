@@ -1,6 +1,7 @@
 <?php include 'application/views/template/header.php';?>
 <?php include 'application/views/template/navbar.php';?>
 
+<div id="sukses" data-flashdata="<?= $this->session->flashdata('sukses');?>" data-name="<?= $this->fungsi->user_login()->username;?>"></div>
      <!-- page content -->
       <div class="right_col" role="main">
         <div class="row">

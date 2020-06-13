@@ -1,15 +1,19 @@
 console.log('myscript')
 //variabel{{
-var path = location.pathname.split('/')
-var controller = path[2].charAt(0).toUpperCase() + path[2].slice(1)
+const path = location.pathname.split('/')
+let controller = path[2].charAt(0).toUpperCase() + path[2].slice(1)
 const flashdata = $('.flash-data').data('flashdata');
+const flashErrors = $('#error').data('error')
+const flashLogin = document.getElementById('sukses');
+const getDataLogin = flashLogin.dataset.flashdata;
+const getDataLoginName = flashLogin.dataset.name;
 //}}
 
 // date picker {{
-   $('#myDatepicker2').datetimepicker({
-      format: 'DD.MM.YYYY'
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
     });
-   $(document).ready(function() {
+      $(document).ready(function() {
      $('.ex-select2').select2();
     });
 // }}
@@ -23,10 +27,18 @@ if (flashdata) {
     styling: 'bootstrap3'
   });
 }
+
+if(getDataLogin){
+  new PNotify({
+    title : 'Hallo ' + getDataLoginName ,
+    text : getDataLogin,
+    type : 'success',
+    styling : 'bootstrap3'
+  });
+}
 // }}
 
 // flash message error{{
- const flashErrors = $('#error').data('error')
 // console.log(flashErrors)
   if (flashErrors) {
     new PNotify({
@@ -38,11 +50,11 @@ if (flashdata) {
   }
 // }}
 function showTime(){
-      var date = new Date();
-      var h = date.getHours(); // 0 - 23
-      var m = date.getMinutes(); // 0 - 59
-      var s = date.getSeconds(); // 0 - 59
-      var session = "AM";
+      let date = new Date();
+      let h = date.getHours(); // 0 - 23
+      let m = date.getMinutes(); // 0 - 59
+      let s = date.getSeconds(); // 0 - 59
+      let session = "AM";
 
       if(h == 0){
                 h = 12;
@@ -57,13 +69,13 @@ function showTime(){
       m = (m < 10) ? "0" + m : m;
       s = (s < 10) ? "0" + s : s;
       
-      var time = h + ":" + m + ":" + s + " " + session+'", ';
+      let time = h + ":" + m + ":" + s + " " + session+'", ';
       document.getElementById("systime").innerText = time;
       setTimeout(showTime, 1000);
 }
 
 function showDate(){
-  var fullMount = new Array();
+  let fullMount = new Array();
   fullMount[0] = "Januari";
   fullMount[1] = "Februari";
   fullMount[2] = "Maret";
@@ -76,7 +88,7 @@ function showDate(){
   fullMount[9] = "Oktober";
   fullMount[10] = "November";
   fullMount[11] = "Desember";
-  var fullDay = new Array();
+  let fullDay = new Array();
   fullDay[0] = "Minggu";
   fullDay[1] = "Senin";
   fullDay[2] = "Selasa";
@@ -84,12 +96,12 @@ function showDate(){
   fullDay[4] = "Kamis";
   fullDay[5] = "Jum'at";
   fullDay[6] = "Sabtu";
-  var date = new Date();
-  var y = date.getFullYear();
-  var m = fullMount[date.getMonth()];
-  var t = date.getDay();
-  var d = fullDay[date.getDay()];
-  var now = d + " - "+ t + " " + m + " " + y  
+  let date = new Date();
+  let y = date.getFullYear();
+  let m = fullMount[date.getMonth()];
+  let t = date.getDay();
+  let d = fullDay[date.getDay()];
+  let now = d + " - "+ t + " " + m + " " + y  
   document.getElementById("sysdate").innerText = now;
 }
 

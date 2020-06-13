@@ -96,12 +96,7 @@
               <input type="text" id="last-name" name="tempat_lahir"  class="form-control" value="<?= set_value('tempat_lahir'); ?>">
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12 ">
-                <div class='input-group date' id='myDatepicker2'>
-                  <input type='text' class="form-control" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>" />
-                  <span class="input-group-addon">
-                     <span class="fa fa-calendar"></span>
-                  </span>
-              </div>
+                  <input type='date' class="form-control" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>" />
             </div>
           </div>
           <div class="item form-group">
@@ -628,6 +623,7 @@
             <option value="Lebih dari 3 juta" <?= set_value('gaji_wali') == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
           </select>
         </div>
+        <input type="hidden" name="tahun_ajaran" value="<?= date('Y');?> / <?= date('Y')+1;?>">
       </div>
 
       </div>

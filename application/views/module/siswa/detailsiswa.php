@@ -19,10 +19,15 @@
                           <td>:</td>
                           <td><?= $query['nis'];?></td>
                         </tr>
-                        <tr>
-                          <th>Nama</th>
+                         <tr>
+                          <th>Npsn</th>
                           <td>:</td>
-                          <td><?= $query['nama_siswa'];?></td>
+                          <td><?= $query['npsn'];?></td>
+                        </tr>
+                        <tr>
+                          <th>Nama <br> NIK</th>
+                          <td>:</td>
+                          <td><?= $query['nama_siswa'];?> <br> <?= $query['nik_siswa'];?></td>
                         </tr>
                        <tr>
                           <th>Jenis Kelamin<br>Agama</th>
@@ -67,7 +72,7 @@
                         <tr>
                           <th>TTL</th>
                           <td>:</td>
-                          <td><?= $query['tempat_lahir']?>, <?= $query['tanggal_lahir'];?></td>
+                          <td><?= $query['tempat_lahir']?>, <?= date('d M Y', strtotime($query['tanggal_lahir']));?></td>
                         </tr>
                         <tr>
                           <th>Status Siswa</th>
@@ -176,14 +181,14 @@
                             <td>:</td>
                             <td><?= $query['job_ayah'];?></td>
                           </tr>
-                          <tr>
-                          <th colspan="3" style="text-align:center;" scope="row">Ibu</th>
-                          </tr>
                         <tr>
                             <th>Gaji Ayah</th>
                             <td>:</td>
                             <td><?= $query['gaji'];?></td>
                         </tr>
+                          <tr>
+                          <th colspan="3" style="text-align:center;" scope="row">Ibu</th>
+                          </tr>
                           <tr>
                             <th>KTP</th>
                             <td>:</td>

@@ -102,13 +102,7 @@
               <input type="text" id="last-name" name="tempat_lahir"  class="form-control" value="<?= $this->input->post('tempat_lahir') ?? $query->tempat_lahir; ?>">
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12 ">
-                <div class='input-group date' id='myDatepicker2'>
-                  <input type='text' class="form-control" name="tanggal_lahir" value="<?= $this->input->post('tanggal_lahir') ?? $query->tanggal_lahir; ?>" />
-                  <span class="input-group-addon">
-                     <span class="fa fa-calendar"></span>
-                  </span>
-              </div>
-            </div>
+                  <input type='date' class="form-control" name="tanggal_lahir" value="<?= $this->input->post('tanggal_lahir') ?? $query->tanggal_lahir; ?>" />
           </div>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="umur">Umur <span class="required">*</span>

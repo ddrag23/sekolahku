@@ -13,7 +13,6 @@ class Siswa extends CI_Controller
 	{
 		parent::__construct();
 		cekNotLogin();
-    
 		$this->load->model(['m_siswa','m_master','m_user']);
 	}
 	public function index()
@@ -269,8 +268,17 @@ public function add()
         $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
         $this->form_validation->set_rules('status', 'Status Siswa', 'required');
         }
+        $this->form_validation->set_rules('npsn', 'NPSN TK', 'required');
+        $this->form_validation->set_rules('nik_siswa', 'NIK Siswa', 'required');
         $this->form_validation->set_rules('nama_siswa', 'Nama', 'required');
         $this->form_validation->set_rules('alamat_siswa', 'Alamat', 'required');
+        $this->form_validation->set_rules('dusun', 'Dusun', 'required');
+        $this->form_validation->set_rules('rt', 'RT', 'required');
+        $this->form_validation->set_rules('rw', 'RW', 'required');
+        $this->form_validation->set_rules('desa', 'Desa', 'required');
+        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required');
+        $this->form_validation->set_rules('kabupaten', 'Kabupaten', 'required');
+        $this->form_validation->set_rules('provinsi', 'Provinsi', 'required');
         $this->form_validation->set_rules('gender_siswa', 'Jenis Kelamin', 'required');
         $this->form_validation->set_rules('no_hp', 'Nomor Telepon', 'required');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required');
@@ -289,7 +297,8 @@ public function add()
         $this->form_validation->set_rules('pendidikan_ibu', 'Pendidikan Ibu', 'required');
         $this->form_validation->set_rules('job_ayah', 'Pekerjaan Ayah', 'required');
         $this->form_validation->set_rules('job_ibu', 'Pekerjaan Ibu', 'required');
-        $this->form_validation->set_rules('gaji', 'Gaji', 'required');
+        $this->form_validation->set_rules('gaji', 'Gaji Ayah', 'required');
+        $this->form_validation->set_rules('gaji_ibu', 'Gaji Ibu', 'required');
         $this->form_validation->set_rules('ktp_ayah', 'Ktp Ayah', 'required');
         $this->form_validation->set_rules('ktp_ibu', 'Ktp Ibu', 'required');
         // kehidupan

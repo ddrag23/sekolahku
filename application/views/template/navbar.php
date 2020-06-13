@@ -40,7 +40,7 @@
                     <li>
                     <a href="<?= site_url('dashboard');?>"><i class="fa fa-home"></i> Home</a>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Siswa <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('siswa/add'); ?>">Tambah Data Siswa</a></li>
                       <li><a href="<?= site_url('siswa'); ?>">Aktif</a></li>
@@ -50,14 +50,14 @@
                   </li>
                   <?php endif ?>
                   
-                  <li><a><i class="fa fa-edit"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-folder"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('ppdb'); ?>">Dashboard PPDB</a></li>
                     <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
                       <li><a href="<?= site_url('nilai'); ?>">Nilai PPDB</a></li>
                     <?php endif; ?>
                       <li><a href="<?= site_url('ppdb/add'); ?>">Tambah Data PPDB</a></li>
-                      <?php  if ($this->session->userdata('level') == 'user' && $this->session->userdata('nilai') == 'lulus'): ?>
+                      <?php  if ($this->session->userdata('level') == 'user' && $this->session->userdata('seleksi') == 'lulus'): ?>
                       <li><a href="<?= site_url('siswa/add') ;?>">Daftar Ulang</a></li>
                       <?php endif; ?>
                       <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>
@@ -79,7 +79,7 @@
               <div class="menu_section">
                 <h3>Fitur Admin</h3>
                 <ul class="nav side-menu">
-                  <li><a href="<?= site_url('user'); ?>"><i class="fa fa-bug"></i>User</a>
+                  <li><a href="<?= site_url('user'); ?>"><i class="fa fa-users"></i>User</a>
                   </li>
                 </ul>
               </div>

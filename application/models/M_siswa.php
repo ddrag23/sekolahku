@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_siswa extends CI_Model
 {
-
     public function get($id_siswa = null){
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
@@ -40,18 +39,8 @@ class M_siswa extends CI_Model
         $this->db->trans_start();
         $created_by = $this->session->userdata('id');
         $created    = date('Y-m-d H:i:s');
-            if ($this->session->userdata('level') == 'admin') {
-                $data = array(
-                'username'  => htmlspecialchars($post['username']),
-                'password'  => htmlspecialchars(sha1($post['username'])),
-                'level'     => 'user',
-                'is_active' => '1',
-             );
-            $this->db->insert('users', $data);
-            }
-        $users_id = $this->db->insert_id();
             $params              = array(
-            'users_id'          => !empty($post['users_id']) ? $post['users_id'] : $users_id,
+            'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
             'foto'              => uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'),
             'npsn'              => $post['npsn'],
             'nik_siswa'         => $post['nik_siswa'],
@@ -105,6 +94,7 @@ class M_siswa extends CI_Model
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
             'gaji_wali'         => $post['gaji_wali'],
+            'tahun_ajaran'      => $post['tahun_ajaran'],
             'date_created'      => $created,
             'created_by'        => $created_by
         );
@@ -118,8 +108,6 @@ class M_siswa extends CI_Model
          }elseif($this->session->userdata('level')=='user'){
             $params['status'] ='aktif';
          }
-       /* echo json_encode($params); */
-        /* die; */
         $this->db->insert('siswa', $params);
         $id = $this->db->insert_id();
         $this->session->set_userdata('id_siswa',$id);
@@ -127,7 +115,6 @@ class M_siswa extends CI_Model
     }
     public function edit($post)
     {
-        /* return uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'); */
         $modifBy  = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
@@ -188,6 +175,7 @@ class M_siswa extends CI_Model
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
             'gaji_wali'         => $post['gaji_wali'],
+            'tahun_ajaran'      => $post['tahun_ajaran'],
             'modified_by'       => $modifBy,
             'modified_date'     => $modified
         );

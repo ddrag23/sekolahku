@@ -36,15 +36,15 @@ class Auth extends CI_Controller {
                 'id_ppdb' => $sessIdPpdb->id_ppdb,
                 'id_siswa' => $sessIdSiswa->id_siswa,
                 'level' => $row->level,
-                'nilai' => $nilai->status_ppdb,
+                'seleksi' => $nilai->status_ppdb,
             );
              /* echo json_encode($params);die(); */
             $this->session->set_userdata($params);
                 if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
-                 $this->session->set_flashdata('sukses', 'Selamat data di pengelolahan data siswa');
+                 $this->session->set_flashdata('sukses', 'Selamat Datang di Pengelolahan Data Siswa');
                  redirect('dashboard');   
                 } else {
-                 $this->session->set_flashdata('sukses', 'Selamat data di pengelolahan data siswa');
+                 $this->session->set_flashdata('sukses', 'Selamat datang Pendaftaran Peserta Didik Baru');
                  redirect('ppdb');
                 }
             }

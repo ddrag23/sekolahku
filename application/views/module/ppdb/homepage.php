@@ -1,13 +1,24 @@
-<div><?= $this->session->flashdata('sukses') ;?></div>
+<?php include 'application/views/template/header.php';?>
+<?php include 'application/views/template/navbar.php';?>
+
+<div class="right_col" role="main">
+<div id="sukses" data-flashdata="<?= $this->session->flashdata('sukses');?>"
+data-name="<?= $this->fungsi->user_login()->username;?>"></div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="well" style="overflow:auto; text-align:center;">
+          <h2><strong>Selamat Anda Telah Dinyatakan Lulus Seleksi</strong></h2>
+          <h3></h3>
+       </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
+             <li><a href="<?= site_url('ppdb/printPdf/'. $query['id_ppdb']);?>" data-toggle="tooltip" data-placement="left" title="Print Formulir PPDB" style="color:green"><i class="fa fa-print"></i></a></li>
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-             <li><a href="<?= site_url('ppdb/printPdf/'. $query['id_ppdb']);?>" class="close-link"><i class="fa fa-print"></i></a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -34,7 +45,7 @@
                         <tr>
                           <th>TTL</th>
                           <td>:</td>
-                          <td><?= $query['tempat_lahir_ppdb'];?>, <?= $query['tanggal_lahir_ppdb'];?></td>
+                          <td><?= $query['tempat_lahir_ppdb'];?>, <?= date('d M Y', strtotime($query['tanggal_lahir_ppdb']));?></td>
                         </tr>
                         <tr>
                         <tr>
@@ -67,15 +78,19 @@
                 </div>
               </div>
             </div>
+
+<?php if ($this->session->userdata('seleksi') == 'lulus'): ?>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
+          <h2>Data Siswa</h2>
             <ul class="nav navbar-right panel_toolbox">
+            <?php if (!empty($query['nis'])): ?>
+             <li><a href="<?= site_url('ppdb/printPdfSiswa/'. $siswa['id_siswa']);?>" style="color:green;" data-toggle="tooltip" data-placement="Left" title="Print Formulir Siswa"><i class="fa fa-print"></i></a></li>
+            <?php endif; ?>
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-             <li><a href="<?= site_url('ppdb/printPdfSiswa/'. $siswa['id_siswa']);?>" class="close-link"><i class="fa fa-print"></i></a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -84,15 +99,17 @@
                   <div class="col-md-6 col-sm-6 col-xs-12">
                   <table class="table">
                       <tbody>
+                        <?php if (!empty($siswa['nis'])): ?>
                         <tr>
                           <th>NIS</th>
                           <td>:</td>
                           <td><?= $siswa['nis'];?></td>
                         </tr>
+                        <?php endif; ?>
                         <tr>
-                          <th>Nama</th>
+                          <th>Nama <br> Nik</th>
                           <td>:</td>
-                          <td><?= $siswa['nama_siswa'];?></td>
+                          <td><?= $siswa['nama_siswa'];?> <br> <?= $siswa['nik_siswa'];?></td>
                         </tr>
                        <tr>
                           <th>Jenis Kelamin<br>Agama</th>
@@ -137,7 +154,7 @@
                         <tr>
                           <th>TTL</th>
                           <td>:</td>
-                          <td><?= $siswa['tempat_lahir']?>, <?= $siswa['tanggal_lahir'];?></td>
+                          <td><?= $siswa['tempat_lahir']?>, <?= date('d M Y',strtotime($siswa['tanggal_lahir']));?></td>
                         </tr>
                         <tr>
                           <th>Status Siswa</th>
@@ -246,14 +263,14 @@
                             <td>:</td>
                             <td><?= $siswa['job_ayah'];?></td>
                           </tr>
-                          <tr>
-                          <th colspan="3" style="text-align:center;" scope="row">Ibu</th>
-                          </tr>
-                        <tr>
+                         <tr>
                             <th>Gaji Ayah</th>
                             <td>:</td>
                             <td><?= $siswa['gaji'];?></td>
                         </tr>
+                         <tr>
+                          <th colspan="3" style="text-align:center;" scope="row">Ibu</th>
+                          </tr>
                           <tr>
                             <th>KTP</th>
                             <td>:</td>
@@ -346,4 +363,6 @@
                   </div>
                 </div>
               </div>
-
+<?php endif; ?>
+</div>
+<?php include 'application/views/template/footer.php';?>

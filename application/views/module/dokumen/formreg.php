@@ -70,7 +70,7 @@ margin-right:2.4em;
             <img style="float:right" width="114px" height="151px" src="uploads/image/<?= $row->foto;?>" alt="">
         <div class="title">
             <p style="font-size:18pt; color:blue;"> FORMULIR DAFTAR ULANG</p>
-            <p style="font-size:12pt"> PESERTA DIDIK BARU TAHUN AJARAN 2020/2021 </p> 
+            <p style="font-size:12pt"> PESERTA DIDIK BARU TAHUN AJARAN <?= date('Y'); ?> / <?=date('Y') + 1;?> </p> 
             <p style="font-size:20pt; color:green;"> MI HASYIM ASY'ARI PEPE </p>
             <p style="font-size:9pt"> Jalan Pahlawan No.01 Pepe Sedati Sidoarjo 61253 Telp. 031-99038415</p>
             <p style="font-size:6pt"> Email : <a href="#">mihaspepe@yahoo.com</a></p> 

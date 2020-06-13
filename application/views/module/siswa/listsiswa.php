@@ -44,7 +44,7 @@
             <td><?= $key->status;?></td>
              <td class="text-center">
               <a href="<?=site_url('siswa/printpdf/'.$key->id_siswa); ?>"
-              data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs"><i class="fa fa-file-pdf-o"></i></a>
+              data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs"><i class="fa fa-print"></i></a>
               <a href="<?=site_url('siswa/edit/'.$key->id_siswa); ?>"
               data-toggle="tooltip" data-placement="left" title="Edit Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
               <a href="<?=site_url('siswa/detail/'.$key->id_siswa); ?>"

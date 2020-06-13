@@ -11,15 +11,12 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-
-      <?php if ($this->session->flashdata('sukses')):?>
-  <?= $this->session->flashdata('sukses'); ?>
-  <?php endif;?>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
       <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
         <thead>
           <tr>
             <th>No</th>
-            <th>Nis</th>
+            <th>Nama Lengkap</th>
             <th>Nama</th>
             <th>Alamat</th>
             <th>Jenis Kelamin</th>
@@ -35,9 +32,9 @@
             <td><?= $key->alamat_rumah_ppdb;?></td>
             <td><?= $key->asal_sekolah_ppdb;?></td>
              <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('ppdb/printPdf/'.$key->id_ppdb); ?>" class="btn btn-success btn-xs"><i class="fa fa-print"></i> Ubah</a>
-              <a href="<?=site_url('ppdb/edit/'.$key->id_ppdb); ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Ubah</a>
-              <a href="<?=site_url('ppdb/delete/'.$key->id_ppdb); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
+              <a href="<?=site_url('ppdb/printPdf/'.$key->id_ppdb); ?>" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs"><i class="fa fa-print"></i></a>
+              <a href="<?=site_url('ppdb/edit/'.$key->id_ppdb); ?>" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
+              <a href="<?=site_url('ppdb/delete/'.$key->id_ppdb); ?>" data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php endforeach; ?>
