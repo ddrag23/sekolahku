@@ -13,7 +13,7 @@
             <!-- content starts here -->
 
     <form action="" method="post">
-    <?= validation_errors(); ?>
+    <div id="error" data-error="<?= validation_errors();?>"></div>
     <?php if ($this->router->fetch_method() == 'editGuru'): ?>
       <input type="hidden" name="id_guru" value="<?php echo $query->id_guru; ?>">
     <?php endif ?>

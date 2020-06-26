@@ -20,12 +20,13 @@ class M_ppdb extends CI_Model
   }
    public function add($post)
     {
-        $this->db->trans_start();
         $created_by = $this->session->userdata('id');
         $created    = date('Y-m-d H:i:s');
         if ($this->session->userdata('level') == 'admin') {
             $data = array(
             'username'  => htmlspecialchars($post['username']),
+            'notelp'  => htmlspecialchars($post['no_hp_ppdb']),
+            'email'  => htmlspecialchars($post['email']),
             'password'  => htmlspecialchars(sha1($post['username'])),
             'level'     => 'user',
             'is_active' => '1',
@@ -49,13 +50,14 @@ class M_ppdb extends CI_Model
             'created_by'          => $created_by
         );
         $this->db->insert('ppdb', $params);
+        if ($this->session->userdata('level') == 'user') {
         $id = $this->db->insert_id();
         $this->session->set_userdata('id_ppdb',$id );
-        $this->db->trans_complete();
+        }
+
     }
     public function edit($post)
     {
-        
         $modifBy = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(

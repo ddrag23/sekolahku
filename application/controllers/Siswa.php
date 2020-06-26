@@ -17,11 +17,17 @@ class Siswa extends CI_Controller
 	}
 	public function index()
 	{
-        cekAdmin();
+      cekAdmin();
+      $try = $this->m_siswa->get()->result();
+        foreach ($try as $key) {
+           $query = $this->m_siswa->get($key->id_siswa)->row(); 
+        }
         $this->load->view('template/main', [
           "src" => "module/siswa/listsiswa",
           "page" => "Data siswa",
-                "try" => $this->m_siswa->getAktif()->result(),
+         "try" => $this->m_siswa->getAktif()->result(),
+          "kelas" => $this->m_master->getKelas()->result(),
+          "query" => $query
         ]);
 	}
     public function SiswaMutasi()
@@ -64,6 +70,9 @@ public function detail($id_siswa)
 
 public function add()
     {
+        if ($this->session->level == 'user') {
+        cekAlreadyInput();
+        }
         $this->validasi();
     	  if ($this->form_validation->run() == FALSE)
         {
@@ -77,6 +86,7 @@ public function add()
         else
         {
             $post = $this->input->post(null, TRUE);
+            $post['foto'] = uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto');   
             $this->m_siswa->add($post);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('sukses', 'ditambah');
@@ -144,6 +154,14 @@ public function add()
                 }
     }
 
+    public function updateInList()
+    {
+        $post = $this->input->post(null, true);
+        if (isset($post['editKelas'])) {
+            $this->m_siswa->edit($post);
+        }
+    }
+
     public function delete($id_siswa)
     {
         cekAdmin();
@@ -177,55 +195,61 @@ public function add()
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setCellValue('A1', 'NO');
-    $sheet->setCellValue('B1', 'NAMA SISWA');
-    $sheet->setCellValue('C1', 'ALAMAT SISWA');
-    $sheet->setCellValue('D1', 'TEMPAT LAHIR');
-    $sheet->setCellValue('E1', 'TANGGAL LAHIR');
-    $sheet->setCellValue('F1', 'AGAMA');
-    $sheet->setCellValue('G1', 'UMUR');
-    $sheet->setCellValue('H1', 'BERAT BADAN');
-    $sheet->setCellValue('I1', 'TINGGI BADAN');
-    $sheet->setCellValue('J1', 'GOLONGAN DARAH');
-    $sheet->setCellValue('K1', 'PENYAKIT');
-    $sheet->setCellValue('L1', 'JENIS KELAMIN');
-    $sheet->setCellValue('M1', 'JUMLAH SAUDARA');
-    $sheet->setCellValue('N1', 'ASAL SEKOLAH');
-    $sheet->setCellValue('O1', 'STATUS SISWA');
-    $sheet->setCellValue('P1', 'NAMA AYAH');
-    $sheet->setCellValue('Q1', 'PEKERJAAN AYAH');
-    $sheet->setCellValue('R1', 'KTP AYAH');
-    $sheet->setCellValue('S1', 'PENDIDIKAN AYAH');
-    $sheet->setCellValue('T1', 'GAJI');
-    $sheet->setCellValue('U1', 'TEMPAT TINGGAL');
-    $sheet->setCellValue('V1', 'JARAK KE SEKOLAH');
+    $sheet->setCellValue('B1', 'FOTO');
+    $sheet->setCellValue('C1', 'NAMA SISWA');
+    $sheet->setCellValue('D1', 'ALAMAT SISWA');
+    $sheet->setCellValue('E1', 'TEMPAT LAHIR');
+    $sheet->setCellValue('F1', 'TANGGAL LAHIR');
+    $sheet->setCellValue('G1', 'AGAMA');
+    $sheet->setCellValue('H1', 'UMUR');
+    $sheet->setCellValue('I1', 'BERAT BADAN');
+    $sheet->setCellValue('J1', 'TINGGI BADAN');
+    $sheet->setCellValue('K1', 'GOLONGAN DARAH');
+    $sheet->setCellValue('L1', 'PENYAKIT');
+    $sheet->setCellValue('M1', 'JENIS KELAMIN');
+    $sheet->setCellValue('N1', 'JUMLAH SAUDARA');
+    $sheet->setCellValue('O1', 'ASAL SEKOLAH');
+    $sheet->setCellValue('P1', 'STATUS SISWA');
+    $sheet->setCellValue('Q1', 'NAMA AYAH');
+    $sheet->setCellValue('R1', 'PEKERJAAN AYAH');
+    $sheet->setCellValue('S1', 'KTP AYAH');
+    $sheet->setCellValue('T1', 'PENDIDIKAN AYAH');
+    $sheet->setCellValue('U1', 'GAJI');
+    $sheet->setCellValue('V1', 'TEMPAT TINGGAL');
+    $sheet->setCellValue('W1', 'JARAK KE SEKOLAH');
     $sheet->setCellValue('X1', 'KELAS');
+    $sheet->setCellValue('Y1', 'KELAS');
+    $sheet->setCellValue('Z1', 'KELAS');
     
     $no=0;
     $baris=2;
     foreach ($siswa as $key) {
       $sheet->setCellValue('A'.$baris,$no++);
-      $sheet->setCellValue('B'.$baris,$key->nama_siswa);
-      $sheet->setCellValue('C'.$baris,$key->alamat_siswa);
-      $sheet->setCellValue('D'.$baris,$key->tempat_tinggal);
-      $sheet->setCellValue('E'.$baris,$key->tanggal_lahir);
-      $sheet->setCellValue('F'.$baris,$key->agama);
-      $sheet->setCellValue('G'.$baris,$key->umur);
-      $sheet->setCellValue('H'.$baris,$key->bb);
-      $sheet->setCellValue('I'.$baris,$key->tb);
-      $sheet->setCellValue('J'.$baris,$key->gol_darah);
-      $sheet->setCellValue('K'.$baris,$key->penyakit);
-      $sheet->setCellValue('L'.$baris,$key->gender_siswa);
-      $sheet->setCellValue('M'.$baris,$key->jumlah_saudara);
-      $sheet->setCellValue('N'.$baris,$key->asal_sekolah);
-      $sheet->setCellValue('O'.$baris,$key->keadaan_status);
-      $sheet->setCellValue('P'.$baris,$key->nama_ayah);
-      $sheet->setCellValue('Q'.$baris,$key->job_ayah);
-      $sheet->setCellValue('R'.$baris,$key->pendidikan_ayah);
-      $sheet->setCellValue('S'.$baris,$key->gaji);
-      $sheet->setCellValue('T'.$baris,$key->tempat_tinggal);
-      $sheet->setCellValue('U'.$baris,$key->jarak_sekolah);
+      $sheet->setCellValue('B'.$baris,$key->foto);
+      $sheet->setCellValue('C'.$baris,$key->nama_siswa);
+      $sheet->setCellValue('D'.$baris,$key->alamat_siswa);
+      $sheet->setCellValue('E'.$baris,$key->tempat_tinggal);
+      $sheet->setCellValue('F'.$baris,$key->tanggal_lahir);
+      $sheet->setCellValue('G'.$baris,$key->agama);
+      $sheet->setCellValue('H'.$baris,$key->umur);
+      $sheet->setCellValue('I'.$baris,$key->bb);
+      $sheet->setCellValue('J'.$baris,$key->tb);
+      $sheet->setCellValue('K'.$baris,$key->gol_darah);
+      $sheet->setCellValue('L'.$baris,$key->penyakit);
+      $sheet->setCellValue('M'.$baris,$key->gender_siswa);
+      $sheet->setCellValue('N'.$baris,$key->jumlah_saudara);
+      $sheet->setCellValue('O'.$baris,$key->asal_sekolah);
+      $sheet->setCellValue('P'.$baris,$key->keadaan_status);
+      $sheet->setCellValue('Q'.$baris,$key->nama_ayah);
+      $sheet->setCellValue('R'.$baris,$key->job_ayah);
+      $sheet->setCellValue('S'.$baris,$key->pendidikan_ayah);
+      $sheet->setCellValue('T'.$baris,$key->gaji);
+      $sheet->setCellValue('U'.$baris,$key->tempat_tinggal);
       $sheet->setCellValue('V'.$baris,$key->jarak_sekolah);
+      $sheet->setCellValue('W'.$baris,$key->jarak_sekolah);
       $sheet->setCellValue('X'.$baris,$key->nama_kelas);
+      $sheet->setCellValue('Y'.$baris,$key->nama_kelas);
+      $sheet->setCellValue('Z'.$baris,$key->nama_kelas);
       $baris++;
     }
     $sheet->setTitle('Data Siswa');
@@ -235,30 +259,47 @@ public function add()
     header('Content-Disposition: attachment; filename="data_siswa.xlsx"');
     $writer->save("php://output");
     }
-    public function import(){
+    public function import()
+    {
         cekAdmin();
-      $file_mimes = array(
-        'application/octet-stream',
-        'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv',
-        'text/csv', 'application/csv', 'application/excel',
-        'application/vnd.msexcel',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-      );
-    if(isset($_FILES['berkas_excel']['name']) &&
-      in_array($_FILES['berkas_excel']['type'], $file_mimes)) {
-      $arr_file = explode('.', $_FILES['berkas_excel']['name']);
-      $extension = end($arr_file);     
-       if('csv' == $extension) {
-         $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+        $fileName = $_FILES['import']['name'];
+        $config['upload_path'] = 'uploads/dokumen'; 
+        $config['file_name'] = $fileName;
+        $config['allowed_types'] = 'xls|xlsx|csv';
+
+        $this->load->library('upload');
+        $this->upload->initialize($config); 
+        if (!$this->upload->do_upload('import')) {
+            echo $this->upload->display_errors();
+            exit();
+        }
+        $inputFileName = 'uploads/dokumen/'.$fileName;
+       try {
+           $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+           $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+           $loadExcel = $reader->load($inputFileName);
+       } catch (Exception $e) {
+           die('Error Loading File "'.pathinfo($inputFileName, PATHINFO_BASENAME).'" : '.$e->getMessage());
        }
-       else {
-        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-       }
-      $spreadsheet = $reader->load($_FILES['berkas_excel']['tmp_name']);
-      $sheetData = $spreadsheet->getActiveSheet()->toArray();
+        $sheet = $loadExcel->getSheet(0);
+        $hightRow = $sheet->getHighestRow();
+        $hightColumn = $sheet->getHighestColumn();
+        for ($i = 2; $i <= $hightRow; $i++) {
+            $rowData = $sheet->rangeToArray('A'. $i . ':'. $hightColumn.$i,null,true,false);
+            $data =  [
+                'nama_siswa' => $rowData[0][0],
+                'alamat_siswa' => $rowData[0][1],
+                'nis' => $rowData[0][2],
+                'nik_siswa' => $rowData[0][3],
+                'status' => $rowData[0][18],
+            ];
+            /* echo json_encode($data);die(); */
+            $this->db->insert('siswa',$data);
+        }
+        unlink($inputFileName);
+        $this->session->set_flashdata('sukses', ' Diimport');
+        redirect('siswa', 'refresh');
     }
-     
-  }
 
     public function validasi()
     {
@@ -267,6 +308,11 @@ public function add()
         $this->form_validation->set_rules('nis', 'NIS', 'required|min_length[5]');
         $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
         $this->form_validation->set_rules('status', 'Status Siswa', 'required');
+        }
+        if ($this->router->fetch_method() != 'edit') {
+         if (empty($_FILES['foto']['name'])) {
+           $this->form_validation->set_rules('foto','Foto', 'required'); 
+        }
         }
         $this->form_validation->set_rules('npsn', 'NPSN TK', 'required');
         $this->form_validation->set_rules('nik_siswa', 'NIK Siswa', 'required');

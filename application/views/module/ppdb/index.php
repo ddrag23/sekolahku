@@ -12,6 +12,7 @@
             <div class="x_content">
             <!-- content starts here -->
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
+    <a href="<?= site_url('ppdb/add');?>" class="btn btn-primary" style="margin-bottom:20px;"><i class="fa fa-plus"></i> Tambah Data PPDB </a>
       <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
         <thead>
           <tr>

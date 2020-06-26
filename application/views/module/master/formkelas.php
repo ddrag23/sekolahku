@@ -11,8 +11,8 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
+    <div id="error" data-error="<?= validation_errors();?>"></div>
 <form action="" method="post">
-	<?= validation_errors(); ?>
 	<?php if ($this->router->fetch_method() == 'edit'): ?>
 	<input type="hidden" name="id_kelas" value="<?= $query->id_kelas; ?>">
 	<?php endif ?>

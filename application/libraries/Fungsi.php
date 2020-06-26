@@ -15,6 +15,7 @@ class Fungsi
         $userData = $this->ci->m_user->get($userId)->row();
         return $userData;
     }
+
     public function pdfPrint($html,$fillename,$paper,$orientation)
     {
     $dompdf = new Dompdf();

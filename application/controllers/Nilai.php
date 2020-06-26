@@ -6,6 +6,7 @@ class Nilai extends CI_Controller
 
     public function __construct(){
         parent::__construct();
+        cekNotLogin();
         cekAdmin();
         $this->load->model('m_nilai');
         $this->load->model('m_ppdb');

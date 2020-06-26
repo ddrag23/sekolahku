@@ -36,12 +36,11 @@ class M_siswa extends CI_Model
   
     public function add($post)
     {
-        $this->db->trans_start();
         $created_by = $this->session->userdata('id');
         $created    = date('Y-m-d H:i:s');
             $params              = array(
             'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
-            'foto'              => uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto'),
+            'foto'              => $post['foto'],
             'npsn'              => $post['npsn'],
             'nik_siswa'         => $post['nik_siswa'],
             'nama_siswa'        => $post['nama_siswa'],
@@ -49,6 +48,10 @@ class M_siswa extends CI_Model
             'dusun'             => $post['dusun'],
             'rt'                => $post['rt'],
             'rw'                => $post['rw'],
+            'nis'               => !empty($post['nis']) ? $post['nis'] : null,
+            'kelas_id'          => !empty($post['kelas_id']) ? $post['kelas_id'] : null,
+            'guru_id'           => !empty($post['guru_id']) ? $post['guru_id'] : null,
+            'status'            => !empty($post['status']) ? $post['status'] : 'aktif',
             'desa'              => $post['desa'],
             'kodepos'           => $post['kodepos'],
             'kecamatan'         => $post['kecamatan'],
@@ -98,27 +101,20 @@ class M_siswa extends CI_Model
             'date_created'      => $created,
             'created_by'        => $created_by
         );
-         if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
-            $params = [
-                'nis' => $post['nis'],
-                'kelas_id' => $post['kelas_id'],
-                'guru_id' => $post['guru_id'],
-                'status' => $post['status']
-            ];    
-         }elseif($this->session->userdata('level')=='user'){
-            $params['status'] ='aktif';
-         }
+        /* echo json_encode($params); */
+        /* die(); */
         $this->db->insert('siswa', $params);
+        if ($this->session->userdata('level') == 'user') {
         $id = $this->db->insert_id();
         $this->session->set_userdata('id_siswa',$id);
-        $this->db->trans_complete();
+        }
     }
     public function edit($post)
     {
         $modifBy  = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
           $params = array(
-            'users_id'          => !empty($post['users_id']) ? $post['users_id'] : $post['id'],
+            'users_id'          => !empty($post['id']) ? $post['id'] : null,
             'kelas_id'          => $post['kelas_id'],
             'guru_id'           => $post['guru_id'],
             'nis'               => $post['nis'],
@@ -175,7 +171,6 @@ class M_siswa extends CI_Model
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
             'gaji_wali'         => $post['gaji_wali'],
-            'tahun_ajaran'      => $post['tahun_ajaran'],
             'modified_by'       => $modifBy,
             'modified_date'     => $modified
         );
@@ -186,6 +181,11 @@ class M_siswa extends CI_Model
         /* die; */
         $this->db->where('id_siswa', $post['id_siswa']);
         $this->db->update('siswa', $params);
+    }
+    public function update($id, $params)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('siswa',$params);
     }
     public function del($id_siswa)
     {

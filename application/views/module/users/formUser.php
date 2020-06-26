@@ -1,5 +1,5 @@
     <form action="" method="post">
-    <?= validation_errors(); ?>
+    <div id="error" data-error="<?= validation_errors();?>"></div>
       <div class="item form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Username <span class="required">*</span>
         </label>
@@ -20,6 +20,20 @@
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="password" id="password" name="passconf" value="" class="form-control">
+        </div>
+      </div>
+      <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 ">
+          <input type="text" id="email" name="email" value="<?= $query->email; ?>" class="form-control ">
+        </div>
+      </div>
+      <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="notelp">No Telepon <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 ">
+          <input type="text" id="notelp" name="notelp" value="<?= $query->notelp; ?>" class="form-control ">
         </div>
       </div>
       <div class="item form-group">

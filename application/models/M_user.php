@@ -34,6 +34,8 @@ class M_user extends CI_Model
         $params = array(
             'username' => $post['username'],
             'password' => sha1($post['password']),
+            'email' => $post['email'],
+            'notelp' => $post['notelp'],
             'level' => 'user',
             'is_active' => '1',
             'date_created' => $created
@@ -69,6 +71,8 @@ class M_user extends CI_Model
         $params = array(
             'username' => htmlspecialchars($post['username']),
             'password' => sha1($post['password']),
+            'email' => $post['email'],
+            'notelp' => $post['notelp'],
             'level' => $post['level'],
             'is_active' => $post['is_active'],
             'date_created' => $created,
@@ -83,6 +87,8 @@ class M_user extends CI_Model
           $params = array(
             'username' => htmlspecialchars($post['username']),
             'password' => empty($post['password']) ? null :  sha1($post['password']),
+            'email' => $post['email'],
+            'notelp' => $post['notelp'],
             'level' => $post['level'],
             'is_active' => $post['is_active'],
             'modified_by' => $modifBy,

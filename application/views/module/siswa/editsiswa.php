@@ -104,6 +104,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12 ">
                   <input type='date' class="form-control" name="tanggal_lahir" value="<?= $this->input->post('tanggal_lahir') ?? $query->tanggal_lahir; ?>" />
           </div>
+          </div>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="umur">Umur <span class="required">*</span>
             </label>

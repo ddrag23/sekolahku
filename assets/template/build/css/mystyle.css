@@ -1,0 +1,282 @@
+.navbar-brand{
+  font-family:viga;
+  font-size:32px;
+  text-transform:uppercase;
+}
+
+.tombol{
+  text-transform:uppercase;
+  border-radius:40px;
+}
+
+.jumbotron{
+  background-image:url(../../production/images/landing.jpg);
+  background-size:cover;
+  height:640px;
+  font-family:viga;
+}
+.jumbotron .display-4{
+  text-align:center;
+  margin-top:150px;
+}
+.display-4{
+  color:white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.lead{
+ color:#d2d2d2;
+}
+.jumbotron {
+  text-align:center;
+}
+.btn-group a{
+  text-align:center;
+  font-size: 20px;
+}
+
+
+/* info panel */
+.info-panel{
+  box-shadow:0 3px 20px rgba(0, 0, 0, 0.5);
+  border-radius:15px;
+  margin-top:-75px;
+  background-color:white;
+  padding:30px;
+}
+
+.info-panel img{
+  margin-right:20px;
+  margin-bottom:20px;
+}
+
+.info-panel h4{
+  font-size:16px;
+  text-transform:uppercase;
+  font-weight:bold;
+  margin-top:5px;  
+  margin-bottom:7px;
+}
+
+.info-panel p{
+  color: #ACACAC;
+  font-size:14px;
+}
+
+
+/* syarat pendaftaran */
+
+.info-syarat{
+  margin-top:120px;
+}
+.info-syarat h3{
+  font-size:52px;
+  margin-top:1.5em;
+  font-weight:bold;
+}
+
+/* prestasi info */
+
+.info-prestasi{
+  margin-top: 120px;
+}
+.info-prestasi h3{
+  margin-top:1.8em;
+  font-size:52px;
+  font-weight: bold;
+}
+
+/* kontak kami */
+.contact-us{
+  margin-top:120px;
+}
+.contact-us h3{
+  margin-top:1.2em;
+  font-size:52px;
+  font-weight:bold;
+}
+.contact-us ul{
+  list-style-type: none;
+}
+.contact-us li{
+  margin-top:10px;
+}
+.contact-us a{
+  color:black;
+  text-decoration: none;
+}
+.contact-us a:hover{
+  color:blue;
+}
+
+/* pembatas */
+.pembatas{
+  margin-top:2em;
+ background-color:#fbfbfb;
+ height:200px;
+ width:100%;
+}
+
+/*footer*/
+.footer {
+  width: 100%;
+  background:#f2f2f2;
+  display: block;
+ }
+
+ .inner-footer {
+   width: 95%;
+   margin: auto;
+   padding: 30px 10px;
+   display: flex;
+   flex-wrap: wrap;
+   box-sizing: border-box;
+   justify-content: center;
+ }
+
+.footer-items {
+  width: 30%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  color: #000;
+}
+
+.footer-items p {
+  font-size: 16px;
+  text-align: justify;
+  line-height: 25px;
+  color: #000;
+}
+
+.footer-items h1 {
+  color: #000;
+}
+
+.border1 {
+  height: 3px;
+  width: 40px;
+  background: #ff9800;
+  color: #ff9800;
+  background-color: #ff9800;
+  border: 0px;
+}
+
+.footer-items ul {
+  list-style: none;
+  color: #000;
+  font-size: 15px;
+  letter-spacing: 0.5px;  
+ }
+
+.footer-items ul a {
+  text-decoration: none;
+  outline: none;
+  color: #000;
+  transition: 0.3s;
+}
+
+.footer-items ul a:hover {
+  color: #ff9800;
+}
+
+.footer-items ul li {
+  margin: 10px 0;
+  height: 25px;
+}
+
+.footer-items li i {
+  margin-right: 20px;
+}
+
+.social-media {
+  width: 100%;
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+}
+
+.social-media a {
+  text-decoration: none;
+}
+
+.social-media i {
+  height: 25px;
+  width: 25px;
+  margin: 20px 10px;
+  padding: 4px;
+  color: #000;
+  transition: 0.5s;
+}
+
+.social-media i:hover {
+  transform: scale(1.5);
+}
+
+.footer-bottom {
+  padding: 10px;
+  background: #00121b;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* for tablet mode view */
+
+@media screen and (max-width: 1275px) {
+  .footer-items {
+    width: 50%;
+  }
+}
+
+/* for mobile screen view */
+
+@media screen and (max-width: 660px) {
+  .footer-items {
+    width: 100%;
+  }
+}
+
+
+/* sticky */
+.sticky{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#25d366;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+.my-float{
+  margin-top:16px;
+}
+
+/* DEKSTOP VERSION */
+@media (min-width: 992px) { 
+.navbar-brand, .nav-link{
+  color:white !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.nav-link{
+  text-transform:uppercase;
+  margin-right:30px;
+}
+
+.nav-link:hover::after{
+  content : '';
+  display: block;
+  border-bottom: 3px solid #0b63DC;
+  width:50%;
+  margin:auto;
+  padding-bottom:5px;
+  margin-bottom:-8px;
+}
+
+.jumbotron{
+  margin-top:-75px;
+}
+}

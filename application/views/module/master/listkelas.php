@@ -11,9 +11,7 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-      <?php if ($this->session->flashdata('sukses')):?>
-    <?= $this->session->flashdata('sukses'); ?>
-    <?php endif;?>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
       <a class="btn btn-primary" href="<?= site_url('master/addKelas') ?>"
       style="margin-bottom:1em;"><i class="fa fa-plus"></i> Tambah Kelas</a>
         <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 

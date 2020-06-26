@@ -8,8 +8,9 @@ class Ppdb extends CI_Controller {
 		$this->load->model(['m_ppdb','m_master','m_user','m_siswa','m_nilai']);
 	}
 	public function index()
-	{
-		if ($this->session->userdata('level') == 'admin' || $this->session->userdata('guru') == 'guru') {
+  {
+   
+		if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
 		$this->load->view('template/main',[
 			"src" => "module/ppdb/index",
 			"page" => "PPDB",
@@ -29,10 +30,12 @@ class Ppdb extends CI_Controller {
 	}
   
 	public function add(){
+    cekAlreadyInput();
     $params = new StdClass();
     $params->id_ppdb = null;
     $params->id = null;
     $params->username = null;
+    $params->email = null;
     $params->nama_ppdb = null;
     $params->alamat_rumah_ppdb = null;
     $params->gender_ppdb = null;
@@ -136,6 +139,6 @@ class Ppdb extends CI_Controller {
         $this->form_validation->set_rules('asal_sekolah_ppdb', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('alamat_sekolah_ppdb', 'Tanggal Lahir', 'required');
         $this->form_validation->set_rules('nama_ortu_ppdb', 'Tanggal Lahir', 'required');
-        $this->form_validation->set_error_delimiters('<small class="text-danger required">','</small>');
+        $this->form_validation->set_error_delimiters('','');
     }
 }

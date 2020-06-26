@@ -11,7 +11,7 @@ class Dashboard extends CI_Controller {
 	}
 	public function index()
 	{
-     
+
 		$this->load->view('module/dashboard/dashboard',[
       "page" => "Dashboard",
       "aktif" => $this->m_siswa->getAktif()->num_rows(),

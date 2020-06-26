@@ -11,8 +11,8 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
+<div id="error" data-error="<?= validation_errors();?>"></div>
 <form class="" method="post" enctype="multipart/form-data" action="">
-<?=validation_errors();?>
 <input type="hidden" name="id_ppdb" value="<?= $query->id_ppdb; ?>">
 <?php if ($this->session->userdata('level') == 'user'): ?>
   <input type="hidden" name="user_id" value="<?= $this->session->userdata('id')?>">
@@ -80,6 +80,13 @@
     </div>
   </div>
 	<div class="item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 ">
+      <input type="email" id="email" name="email" value="<?= $query->email; ?>" class="form-control ">
+    </div>
+  </div>
+	<div class="item form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="alamat_sekolah_ppdb">Alamat Sekolah <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 ">
@@ -103,10 +110,10 @@
   <div class="ln_solid"></div>
   <div class="item form-group">
     <div class="col-md-6 col-sm-6 offset-md-3">
-      <button class="btn btn-primary" type="button">Cancel</button>
+      <button class="btn btn-primary" type="button">Batal</button>
       <button class="btn btn-primary" type="reset">Reset</button>
-      <button type="submit" name="<?= $submit; ?>" class="btn btn-success">Submit</button>
-    </div>
+      <button type="submit" name="<?= $submit; ?>" class="btn btn-success">Simpan</button>
+   </div>
   </div>
  </form>
       </div>

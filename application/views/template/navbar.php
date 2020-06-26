@@ -3,7 +3,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>MI Hasyim Asy'ari</span></a>
+            <a href="<?=site_url('dashboard');?>" class="site_title"><img src="<?=base_url('assets/logo/logomi-nobg.png');?>" alt="mi" class="img-fluid float-left" style="margin-top:10px; border-radius:50%; margin-right:5px; margin-left:-5px;  height:1cm; width:1cm"> <span>MI Hasyim Asy'ari</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -11,7 +11,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?= base_url();?>assets/template/production/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?= base_url();?>assets/template/production/images/user.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -56,10 +56,9 @@
                     <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
                       <li><a href="<?= site_url('nilai'); ?>">Nilai PPDB</a></li>
                     <?php endif; ?>
-                      <li><a href="<?= site_url('ppdb/add'); ?>">Tambah Data PPDB</a></li>
-                      <?php  if ($this->session->userdata('level') == 'user' && $this->session->userdata('seleksi') == 'lulus'): ?>
-                      <li><a href="<?= site_url('siswa/add') ;?>">Daftar Ulang</a></li>
-                      <?php endif; ?>
+                    <?php if ($this->session->userdata('level') == 'user' && empty($this->session->userdata('id_ppdb'))): ?>
+                      <li><a  href="<?= site_url('ppdb/add'); ?>">Masukkan Data PPDB</a></li>
+                    <?php endif; ?>
                       <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>
                       <li><a href="<?= site_url('ppdb/index') ;?>">Data Calon Siswa</a></li>
                       <?php  endif; ?>
@@ -79,7 +78,13 @@
               <div class="menu_section">
                 <h3>Fitur Admin</h3>
                 <ul class="nav side-menu">
-                  <li><a href="<?= site_url('user'); ?>"><i class="fa fa-users"></i>User</a>
+                  <li><a><i class="fa fa-users"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                     <ul class="nav child_menu">
+                     <li><a href="<?= site_url('user');?>">Level Admin</a>
+                     <li><a href="<?= site_url('user/listPanitia');?>">Level Panitia</a>
+                     <li><a href="<?= site_url('user/listUser');?>">Level User</a>
+                        </li>
+                    </ul>
                   </li>
                 </ul>
               </div>
@@ -110,7 +115,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?= base_url(); ?>assets/template/production/images/img.jpg" alt=""><?= $this->fungsi->user_login()->username; ?>
+                    <img src="<?= base_url(); ?>assets/template/production/images/user.png" alt=""><?= $this->fungsi->user_login()->username; ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"  href="<?= site_url('profile');?>"> Profile</a>

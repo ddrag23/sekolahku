@@ -5,12 +5,17 @@
 <div id="sukses" data-flashdata="<?= $this->session->flashdata('sukses');?>"
 data-name="<?= $this->fungsi->user_login()->username;?>"></div>
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <?php if ($this->session->userdata('seleksi') == 'lulus'): ?>
+     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="well" style="overflow:auto; text-align:center;">
           <h2><strong>Selamat Anda Telah Dinyatakan Lulus Seleksi</strong></h2>
           <h3></h3>
+        <?php if (empty($this->session->userdata('id_siswa'))): ?>
+          <a href="<?= site_url('siswa/add');?>">silahkan klik disini untuk daftar ulang</a>
+        <?php endif; ?>
        </div>
     </div>
+    <?php endif; ?>
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -79,7 +84,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
               </div>
             </div>
 
-<?php if ($this->session->userdata('seleksi') == 'lulus'): ?>
+<?php if (!empty($this->session->userdata('id_siswa'))): ?>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">

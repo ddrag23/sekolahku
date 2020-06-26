@@ -29,7 +29,7 @@
           <div class="count"><?= $panitia;?></div>
           <h3>Panitia</h3>
           <p>
-          <a href="<?= site_url('user');?>">Lihat Selengkapnya <i class="fa fa-arrow-right"></i></a>
+          <a href="<?= site_url('user/listPanitia');?>">Lihat Selengkapnya <i class="fa fa-arrow-right"></i></a>
           </p>
         </div>
       </div>

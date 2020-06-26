@@ -12,7 +12,6 @@
             <div class="x_content">
             <!-- content starts here -->
 <form class="" method="post" enctype="multipart/form-data" action="">
-<?php print_r($query);?>
 <div id="error" data-error="<?=validation_errors();?>"></div>
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
 <input type="hidden" name="id_nilai" value="<?= $query->id_nilai; ?>">

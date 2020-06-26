@@ -11,9 +11,8 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-<?php if ($this->session->flashdata('sukses')):?>
-  <?= $this->session->flashdata('sukses'); ?>
-  <?php endif;?>
+
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
   <a class="btn btn-primary" style="margin-bottom:2em;" href="<?= site_url('master/addGuru'); ?>"><i class="fa fa-plus"></i> Tambah</a>
       <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
         <thead>

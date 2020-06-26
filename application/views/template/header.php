@@ -29,8 +29,8 @@
     <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
-
-
+    <!--uploads-->
+    <link href="<?=base_url()?>assets/template/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     <!-- Datatables -->
     <link href="<?= base_url()?>assets/template/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">

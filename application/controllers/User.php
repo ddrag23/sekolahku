@@ -10,12 +10,23 @@ class User extends CI_Controller {
     }
 
     public function index(){
-    	$data['query'] = $this->m_user->get()->result();
+    	$data['query'] = $this->m_user->getAdmin()->result();
+        $data['page'] = 'Users';
+        $data['src'] = 'module/users/listAdmin';
+        $this->load->view('template/main', $data);
+    }
+    public function listPanitia(){
+    	$data['query'] = $this->m_user->getPanitia()->result();
+        $data['page'] = 'Users';
+        $data['src'] = 'module/users/listPanitia';
+        $this->load->view('template/main', $data);
+    }
+    public function listUser(){
+    	$data['query'] = $this->m_user->getUser()->result();
         $data['page'] = 'Users';
         $data['src'] = 'module/users/listUser';
         $this->load->view('template/main', $data);
     }
-
     /**
      * undocumented function
      *
@@ -37,13 +48,19 @@ class User extends CI_Controller {
         $params->id = null;
         $params->username = null;
         $params->password = null;
+        $params->email = null;
+        $params->notelp = null;
         $params->level = null;
         $params->is_active = null;
         $this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|is_unique[users.username]');
+        $this->form_validation->set_rules('email', 'Email', 'required|email');
+        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|number');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
         $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|min_length[5]|matches[password]', array('matches' => '%s tidak sesuai dengan password '));
         $this->form_validation->set_rules('level', 'Level', 'required');
-        $this->form_validation->set_message('required', '%s field tidak boleh kosong');
+        $this->form_validation->set_message('required', '%s {field} tidak boleh kosong');
+        $this->form_validation->set_message('email', '%s field yang anda masukkan bukan email');
+        $this->form_validation->set_message('required', '%s field harus berupa angka');
         $this->form_validation->set_message('min_length', '{field} minimal 5 karakter');
         $this->form_validation->set_message('is_unique', '{field} sudah terpakai');
         $this->form_validation->set_error_delimiters('<small class="text-danger">','</small>');
@@ -128,7 +145,7 @@ class User extends CI_Controller {
             $this->m_user->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('sukses', 'Data berhasil ditambahkan');
+            $this->session->set_flashdata('sukses', ' ditambahkan');
         } 
         redirect('user','refresh');
     }

@@ -18,19 +18,32 @@ function activeMenu($menu){
     $classname = $ci->router->fetch_class();
     return $classname == $menu ? 'active' : null;
 }
-function activeSubMenu($subMenu){
+function activeSubMenu($subMenu)
+{
     $CI =& get_instance();
     $methodName = $CI->router->fetch_method();;
     return $methodName == $subMenu ? 'active' : null;
 }
 function cekAdmin()
 {
-    $ci =& get_instance();
-    $ci->load->library('fungsi');
-    if ($ci->fungsi->user_login()->level != 'admin') {
+    $CI =& get_instance();
+    $CI->load->library('fungsi');
+    if ($CI->fungsi->user_login()->level != 'admin' && $CI->fungsi->user_login()->level != 'guru'){
+        $CI->session->userdata('error','Anda tidak memiliki akses utuk halaman ini');
         redirect('ppdb','refresh');
     }
 }
+
+function cekAlreadyInput()
+{
+    $ci =& get_instance();
+    if ($ci->session->userdata('level') == 'user') {
+     if (!empty($ci->session->userdata('id_ppdb'))&& !empty($ci->session->userdata('id_siswa'))) {
+       redirect('ppdb','refresh'); 
+        }
+    }
+}
+
 function uploader($imageName, $locationImage, $typeImage, $sizeImage, $nameForm)
 {
     $ci =& get_instance();

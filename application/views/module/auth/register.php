@@ -28,7 +28,7 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form method="post" action="<?= site_url('auth/register');?>">
-              <h1>Create Account</h1>
+              <h1>Buat Akun</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Username" name="username" />
                 <small class="text-danger"><?= form_error('username'); ?></small>
@@ -38,22 +38,28 @@
                 <small class="text-danger"><?= form_error('password'); ?></small>
               </div>
               <div>
-                <button class="btn btn-secondary btn-sm" type="submit">Register</button>
+                <input type="email" class="form-control" placeholder="Email" name="email" />
+                <small class="text-danger"><?= form_error('email'); ?></small>
+              </div>
+              <div>
+                <input type="number" class="form-control" placeholder="No Telepon" name="notelp" />
+                <small class="text-danger"><?= form_error('notelp'); ?></small>
+              </div>
+              <div>
+                <button class="btn btn-secondary btn-sm mt-3" type="submit">Daftar Akun</button>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="<?= site_url('auth'); ?>" class="to_register"> Log in </a>
+                <p class="change_link">Sudah Mempunyai akun ?
+                  <a href="<?= site_url('auth'); ?>" class="to_register"> Masuk </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                 </div>
               </div>
             </form>
