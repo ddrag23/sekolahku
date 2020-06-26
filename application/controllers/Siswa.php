@@ -225,7 +225,16 @@ public function add()
     $baris=2;
     foreach ($siswa as $key) {
       $sheet->setCellValue('A'.$baris,$no++);
-      $sheet->setCellValue('B'.$baris,$key->foto);
+      if (file_exists('uploads/image/'.$key->foto)) {
+          $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+          $drawing->setName('foto');
+          $drawing->setPath('uploads/image/'.$key->foto);
+          $drawing->setCoordinates('B'.$baris);
+         $drawing->setHeight('30'); 
+         $drawing->setWorksheet($sheet);
+         $sheet->getRowDimension($baris)->setRowHeight(40);
+      }
+      /* $sheet->setCellValue('B'.$baris,$key->foto); */
       $sheet->setCellValue('C'.$baris,$key->nama_siswa);
       $sheet->setCellValue('D'.$baris,$key->alamat_siswa);
       $sheet->setCellValue('E'.$baris,$key->tempat_tinggal);
