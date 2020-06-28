@@ -60,7 +60,7 @@
                       <li><a  href="<?= site_url('ppdb/add'); ?>">Masukkan Data PPDB</a></li>
                     <?php endif; ?>
                       <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>
-                      <li><a href="<?= site_url('ppdb/index') ;?>">Data Calon Siswa</a></li>
+                      <li><a href="<?= site_url('ppdb/listPpdb') ;?>">Data Calon Siswa</a></li>
                       <?php  endif; ?>
                     </ul>
                   </li>

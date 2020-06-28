@@ -28,6 +28,42 @@ class Ppdb extends CI_Controller {
 		]);
 		}
 	}
+
+  public function listPpdb()
+  {
+    $this->load->view('template/main', [
+        "src" => "module/ppdb/listPpdb",
+        "page" => "Data Peserta Didik Baru",
+        "query" => $this->m_ppdb->get()->result()
+    ]);
+  }
+  function get_ajax_ppdb() {
+        $list = $this->m_ppdb->get_datatables();
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($list as $ppdb) {
+            $no++;
+            $row = array();
+            $row[] = $no.".";
+            $row[] = $ppdb->nama_ppdb;
+            $row[] = $ppdb->nama_panggilan;
+            $row[] = $ppdb->alamat_rumah_ppdb;
+            $row[] = $ppdb->gender_ppdb;
+            // add html for action
+            $row[] = '<a href="'.site_url('ppdb/print/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs"><i class="fa fa-print"></i></a>
+                   <a href="'.site_url('ppdb/edit/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                    <a href="'.site_url('ppdb/delete/'.$ppdb->id_ppdb).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
+            $data[] = $row;
+        }
+        $output = array(
+                    "draw" => @$_POST['draw'],
+                    "recordsTotal" => $this->m_ppdb->count_all(),
+                    "recordsFiltered" => $this->m_ppdb->count_filtered(),
+                    "data" => $data,
+                );
+        // output to json format
+        echo json_encode($output);
+    }
   
 	public function add(){
     cekAlreadyInput();

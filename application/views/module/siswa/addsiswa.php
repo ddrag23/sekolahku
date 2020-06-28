@@ -4,8 +4,7 @@
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
-             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            <li><a class="text-primary" href="<?= site_url('siswa');?>"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -146,17 +145,6 @@
             </div>
           </div>
           <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Wali Kelas <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="ex-select2 form-control" name="guru_id">
-                <option value="">--Pilih--</option>
-                <?php foreach ($guru as $key):?>
-                <option value="<?= $key->id_guru;?>" <?= set_value('guru_id') == $key->id_guru ? 'selected' : null; ?>><?= $key->nama_guru; ?></option>
-                <?php endforeach;?>
-              </select>
-            </div>
-          </div>
-          <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Status Siswa <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -175,10 +163,10 @@
             <div class="col-md-6 col-sm-6 ">
               <div id="gender" class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="L" <?= set_value('gender') == 'L' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
+                  <input type="radio" name="gender_siswa" value="laki-laki" <?= set_value('gender') == 'laki-laki' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
                 </label>
                 <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="P"<?= set_value('gender') == 'P' ? 'checked' : null; ?> class="join-btn"> Perempuan
+                  <input type="radio" name="gender_siswa" value="perempuan"<?= set_value('gender') == 'perempuan' ? 'checked' : null; ?> class="join-btn"> Perempuan
                 </label>
               </div>
             </div>
@@ -234,7 +222,7 @@
             for="first-name">Provinsi<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12 ">
-              <input class="form-control" type="text" name="provinsi" value="Jawa Timur" readonly>
+            <input class="form-control" type="text" name="provinsi" value="<?= set_value('provinsi');?>" >
             </div>
           </div>
           <div class="item form-group">
@@ -407,9 +395,9 @@
             <div class="col-md-6 col-sm-6 ">
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
-                <option value="kurang dari 1 jt" <?= set_value('gaji') == 'kurang dari 1 jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 jt" <?= set_value('gaji') == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 jt" <?= set_value('gaji') == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
+                <option value="kurang dari 1 juta" <?= set_value('gaji') == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 sampai 2 juta" <?= set_value('gaji') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="lebih dari 3 juta" <?= set_value('gaji') == 'lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
               </select>
             </div>
           </div>

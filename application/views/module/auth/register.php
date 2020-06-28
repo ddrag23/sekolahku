@@ -30,7 +30,7 @@
             <form method="post" action="<?= site_url('auth/register');?>">
               <h1>Buat Akun</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" name="username" />
+              <input type="text" class="form-control" placeholder="Username" name="username" value="<?=set_value('username');?>"/>
                 <small class="text-danger"><?= form_error('username'); ?></small>
               </div>
               <div>
@@ -38,11 +38,11 @@
                 <small class="text-danger"><?= form_error('password'); ?></small>
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" name="email" />
+                <input type="email" class="form-control" placeholder="Email" name="email" value="<?=set_value('email');?>"/>
                 <small class="text-danger"><?= form_error('email'); ?></small>
               </div>
               <div>
-                <input type="number" class="form-control" placeholder="No Telepon" name="notelp" />
+              <input type="number" class="form-control" placeholder="No Telepon" name="notelp" value="<?= set_value('notelp');?>"/>
                 <small class="text-danger"><?= form_error('notelp'); ?></small>
               </div>
               <div>
@@ -60,6 +60,7 @@
                 <br />
 
                 <div>
+                <a href="<?= site_url();?>" style="font-size:20px;"><i class="fa fa-home"></i> Halaman Utama</a>
                 </div>
               </div>
             </form>

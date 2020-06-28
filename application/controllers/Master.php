@@ -128,7 +128,11 @@ class Master extends CI_Controller {
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('sukses', ' disimpan');
 		}
+    if ($this->router->fetch_method() == 'addGuru' || $this->router->fetch_method() == 'editGuru') {
+        redirect('master/guru');
+    }else{
 		redirect('master','refresh');
+    }
 	}
 	private function validasi()
 	{

@@ -2,7 +2,8 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
+      <a class="btn btn-primary" href="<?= site_url('master/addKelas') ?>"
+      ><i class="fa fa-plus"></i> Tambah Kelas</a>
             <ul class="nav navbar-right panel_toolbox">
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -12,9 +13,7 @@
             <div class="x_content">
             <!-- content starts here -->
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
-      <a class="btn btn-primary" href="<?= site_url('master/addKelas') ?>"
-      style="margin-bottom:1em;"><i class="fa fa-plus"></i> Tambah Kelas</a>
-        <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
+          <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
           <thead>
             <tr>
             <th>No</th>

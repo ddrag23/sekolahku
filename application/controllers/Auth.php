@@ -59,8 +59,8 @@ class Auth extends CI_Controller {
 
        public function register(){
         $this->form_validation->set_rules('username' , 'Username', 'required');
-        $this->form_validation->set_rules('email' , 'Email', 'required|email');
-        $this->form_validation->set_rules('notelp' , 'Notelp', 'required|number');
+        $this->form_validation->set_rules('email' , 'Email', 'required|valid_emails');
+        $this->form_validation->set_rules('notelp' , 'Notelp', 'required|numeric');
         $this->form_validation->set_rules('password' , 'Password', 'required');
         if ($this->form_validation->run() == FALSE) {
             # code...

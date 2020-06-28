@@ -50,7 +50,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                         <tr>
                           <th>TTL</th>
                           <td>:</td>
-                          <td><?= $query['tempat_lahir_ppdb'];?>, <?= date('d M Y', strtotime($query['tanggal_lahir_ppdb']));?></td>
+                          <td><?= $query['tempat_lahir_ppdb'];?>, <?= $query['tanggal_lahir_ppdb'];?></td>
                         </tr>
                         <tr>
                         <tr>
@@ -181,11 +181,13 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                           <td>:</td>
                           <td><?= $siswa['gol_darah'];?></td>
                         </tr>
-                        <tr>
+                        <?php if (!empty($siswa['penyakit'])): ?>
+                         <tr>
                           <th>Penyakit Serius</th>
                           <td>:</td>
                           <td><?= $siswa['penyakit'];?></td>
                         </tr>
+                        <?php endif; ?>
                         <tr>
                           <th>Jumlah Saudara</th>
                           <td>:</td>
@@ -206,7 +208,8 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                           <td>:</td>
                           <td><?= $siswa['cita'];?></td>
                         </tr>
-                        <tr>
+                        <?php if (!empty($siswa['nama_wali'])): ?>
+                         <tr>
                           <th scope="row" colspan="3" style="text-align:center;">Wali</th>
                         </tr>
                         <tr>
@@ -229,6 +232,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                             <td>:</td>
                             <td><?= $siswa['gaji_wali'];?></td>
                         </tr>
+                        <?php endif; ?>
                       </tbody>
                     </table>
                     </div>

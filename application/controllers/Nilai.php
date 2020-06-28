@@ -20,7 +20,31 @@ class Nilai extends CI_Controller
          'query' => $this->m_nilai->get()->result() 
         ]);
     }
-
+    function get_ajax_nilai() {
+        $list = $this->m_nilai->get_datatables();
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($list as $nilai) {
+            $no++;
+            $row = array();
+            $row[] = $no.".";
+            $row[] = $nilai->nama_ppdb;
+            $row[] = $nilai->jum_nilai;
+            $row[] = $nilai->status_ppdb;
+            // add html for action
+            $row[] = '<a href="'.site_url('nilai/edit/'.$nilai->id_nilai).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                    <a href="'.site_url('nilai/del/'.$nilai->id_nilai).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
+            $data[] = $row;
+        }
+        $output = array(
+                    "draw" => @$_POST['draw'],
+                    "recordsTotal" => $this->m_ppdb->count_all(),
+                    "recordsFiltered" => $this->m_ppdb->count_filtered(),
+                    "data" => $data,
+                );
+        // output to json format
+        echo json_encode($output);
+    }
     public function add()
     {
         $params = new StdClass();

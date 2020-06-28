@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-$_batchImport;
 class M_master extends CI_Model
 {
 	public function getKelas($id_kelas = null)
@@ -12,7 +11,7 @@ class M_master extends CI_Model
 		 if($id_kelas != null){
             $this->db->where('id_kelas',$id_kelas);
         }
-    $this->db->order_by('nama_kelas','DESC');
+    $this->db->order_by('nama_kelas','ASC');
 		return $this->db->get('kelas');
 	}
 	public function save($post)

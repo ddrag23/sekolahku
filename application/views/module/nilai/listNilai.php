@@ -2,7 +2,7 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
+            <a href="<?= site_url('nilai/add');?>" class="btn btn-primary"><i class="fa fa-plus"></i> Masukkan Nilai</a>
             <ul class="nav navbar-right panel_toolbox">
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -11,7 +11,6 @@
              </div>
             <div class="x_content">
             <!-- content starts here -->
-            <a href="<?= site_url('nilai/add');?>" class="btn btn-primary"><span class="fa fa-plus"></span> Masukkan Nilai</a>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
                   <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
                     <thead>
@@ -24,7 +23,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $no=0; foreach ($query as $key) :?>
+                   <!--    <?php $no=0; foreach ($query as $key) :?>
                       <tr>
                        <td><?= ++$no;?></td>
                         <td><?= $key->nama_ppdb;?></td>
@@ -35,7 +34,7 @@
                           <a href="<?=site_url('nilai/del/'.$key->id_nilai); ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                       </tr>
-                    <?php endforeach; ?>
+                    <?php endforeach; ?> -->
                     </tbody>
                   </table>
             </div>
@@ -43,3 +42,15 @@
     </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+    $('#datatable').DataTable({
+      "processing" : true,
+      "serverSide" : true,
+      "ajax" : {
+        "url" : "<?= site_url('nilai/get_ajax_nilai') ;?>",
+        "type" : "POST"
+      } 
+    })
+  })
+</script>

@@ -4,8 +4,7 @@
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
-             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            <li><a  href="<?= site_url('nilai'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -53,7 +52,7 @@
     <div class="col-md-6 col-sm-6 offset-md-3">
       <button class="btn btn-primary" type="button">Cancel</button>
       <button class="btn btn-primary" type="reset">Reset</button>
-      <button type="submit" name="<?= $submit; ?>" class="btn btn-success">Submit</button>
+      <button type="submit" name="<?= $submit; ?>" class="btn btn-success">Simpan</button>
     </div>
   </div>
  </form>
@@ -61,4 +60,3 @@
       </div>
     </div>
  </div>
-<

@@ -41,6 +41,9 @@
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>assets/template/build/css/custom.min.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="<?= base_url()?>assets/template/vendors/jquery/dist/jquery.min.js"></script>
+
     
   </head>
 

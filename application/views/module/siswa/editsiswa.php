@@ -4,9 +4,7 @@
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
-            <li><a  href="<?= site_url('siswa'); ?>" class="collapse-link"><i class="fa fa-mail-reply"></i></a></li>
-             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            <li><a  href="<?= site_url('siswa'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -143,20 +141,8 @@
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="ex-select2 form-control" name="kelas_id">
-                <!-- <option value="">--Pilih--</option> -->
                   <?php foreach ($kelas as $key):?>
                 <option value="<?= $key->id_kelas;?>" <?= $key->id_kelas == $query->kelas_id ? 'selected' : null; ?>><?= $key->nama_kelas; ?></option>
-                <?php endforeach;?>
-              </select>
-            </div>
-          </div>
-          <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Wali Kelas <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
-              <select class="ex-select2 form-control" name="guru_id">
-                <!-- <option value="">--Pilih--</option> -->
-                  <?php foreach ($guru as $key):?>
-                <option value="<?= $key->id_guru;?>" <?= $key->id_guru == $query->guru_id ? 'selected' : null; ?>><?= $key->nama_guru; ?></option>
                 <?php endforeach;?>
               </select>
             </div>
@@ -167,10 +153,10 @@
             <div class="col-md-6 col-sm-6 ">
               <div id="gender" class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="L"<?= $gender == 'L' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
+                  <input type="radio" name="gender_siswa" value="laki-laki"<?= $gender == 'laki-laki' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
                 </label>
                 <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                  <input type="radio" name="gender_siswa" value="P"<?= $gender == 'P' ? 'checked' : null; ?> class="join-btn"> Perempuan
+                  <input type="radio" name="gender_siswa" value="perempuan"<?= $gender == 'perempuan' ? 'checked' : null; ?> class="join-btn"> Perempuan
                 </label>
               </div>
             </div>
@@ -430,9 +416,9 @@
               <?php $gaji = $this->input->post('gaji') ? $this->input->post('gaji') : $query->gaji ?>
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
-                <option value="kurang dari 1 jt" <?= $gaji == 'kurang dari 1 jt' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 jt" <?= $gaji == '1 sampai 2 jt' ? 'selected' : null; ?>>1 sampai 2 juta</option>
-                <option value="lebih dari 2 jt" <?= $gaji == 'lebih dari 2 jt' ? 'selected' : null; ?>>Lebih dari 3 juta</option>
+                <option value="kurang dari 1 juta" <?= $gaji == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
+                <option value="1 sampai 2 juta" <?= $gaji == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="lebih dari 3 juta" <?= $gaji == 'lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 3 juta</option>
               </select>
             </div>
           </div>

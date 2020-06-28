@@ -2,10 +2,8 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
-             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            <li><a  href="<?= site_url('master/guru'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -37,10 +35,10 @@
         <div class="col-md-6 col-sm-6 ">
           <div id="gender" class="btn-group" data-toggle="buttons">
             <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="gender_guru" value="L"<?= $gender == 'L' ? 'checked' : null; ?> class="join-btn"> &nbsp; Male &nbsp;
+              <input type="radio" name="gender_guru" value="laki-laki"<?= $gender == 'laki-laki' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
             </label>
             <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="gender_guru" value="P"<?= $gender == 'P' ? 'checked' : null; ?> class="join-btn"> Female
+              <input type="radio" name="gender_guru" value="perempuan"<?= $gender == 'perempuan' ? 'checked' : null; ?> class="join-btn">Perempuan 
             </label>
           </div>
         </div>

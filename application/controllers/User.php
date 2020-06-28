@@ -27,20 +27,33 @@ class User extends CI_Controller {
         $data['src'] = 'module/users/listUser';
         $this->load->view('template/main', $data);
     }
-    /**
-     * undocumented function
-     *
-     * @return void
-     */
-    public function detail($id_siswa)
-    {
-      $this->load->view('template/main',[
-        'src' => 'module/siswa/detail',
-        'page' => 'Detail Siswa',
-        'query' => $this->db->get($id_siswa)->result()
-      ]);
+      function get_ajax_user() {
+        $list = $this->m_user->get_datatables_user();
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($list as $user) {
+            $no++;
+            $row = array();
+            $row[] = $no.".";
+            $row[] = $user->username;
+            $row[] = $user->email;
+            $row[] = $user->notelp;
+            $row[] = $user->level;
+            $row[] = $user->is_active;
+            // add html for action
+            $row[] = '<a href="'.site_url('user/edit/'.$user->id).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                    <a href="'.site_url('user/delete/'.$user->id).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
+            $data[] = $row;
+        }
+        $output = array(
+                    "draw" => @$_POST['draw'],
+                    "recordsTotal" => $this->m_user->count_all(),
+                    "recordsFiltered" => $this->m_user->count_filtered_user(),
+                    "data" => $data,
+                );
+        // output to json format
+        echo json_encode($output);
     }
-    
 
     public function add()
     {

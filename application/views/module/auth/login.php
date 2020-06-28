@@ -41,7 +41,7 @@
                 <?= form_error('password'); ?>
               </div>
               <div>
-                <button class="btn btn-secondary btn-sm" type="submit" name="login">Log in</button>
+                <button class="btn btn-secondary btn-sm" type="submit" name="login">Masuk</button>
               </div>
 
               <div class="clearfix"></div>
@@ -55,8 +55,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> MI Hasyim Asy'ari</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                <a href="<?= site_url();?>" style="font-size:20px;"><i class="fa fa-home"></i> Halaman Utama</a>
                 </div>
               </div>
             </form>
