@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_siswa extends CI_Model
 {
         // start datatables
-    var $column_order = array(null, 'foto', 'nis', 'nama_siswa', 'alamat_siswa', 'nama_kelas', 'status', 'tahun_ajaran'); //set column field database for datatable orderable
-    var $column_search = array('nis', 'npsn', 'nama_siswa','nama_kelas','alamat_siswa','status','tahun_ajaran'); //set column field database for datatable searchable
+    var $column_order = array(null, 'foto', 'nis', 'nisn', 'nama_siswa', 'alamat_siswa', 'nama_kelas', 'status', 'tahun_ajaran'); //set column field database for datatable orderable
+    var $column_search = array('nisn', 'npsn', 'nis','nama_siswa','nama_kelas','alamat_siswa','status','tahun_ajaran'); //set column field database for datatable searchable
     var $order = array('id_siswa' => 'asc'); // default order
     //db get siswa aktif
     private function _get_datatables_query_aktif() {
-        $this->db->select('id_siswa,nis, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
+        $this->db->select('id_siswa, nisn, nis, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
@@ -51,7 +51,7 @@ class M_siswa extends CI_Model
     // end db get siswa aktif
         //db get siswa mutasi
     private function _get_datatables_query_mutasi() {
-        $this->db->select('id_siswa,nis, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
+        $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
@@ -93,7 +93,7 @@ class M_siswa extends CI_Model
     // end db get siswa mutasi
         //db get siswa alumni
     private function _get_datatables_query_alumni() {
-        $this->db->select('id_siswa,nis, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
+        $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
@@ -177,6 +177,7 @@ class M_siswa extends CI_Model
             'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
             'foto'              => $post['foto'],
             'npsn'              => $post['npsn'],
+            'nisn'              => $post['nisn'],
             'nik_siswa'         => $post['nik_siswa'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],
@@ -231,6 +232,7 @@ class M_siswa extends CI_Model
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
             'gaji_wali'         => $post['gaji_wali'],
+            'no_hp_wali'        => $post['no_hp_wali'],
             'tahun_ajaran'      => $post['tahun_ajaran'],
             'date_created'      => $created,
             'created_by'        => $created_by
@@ -252,6 +254,7 @@ class M_siswa extends CI_Model
             'kelas_id'          => $post['kelas_id'],
             'nis'               => $post['nis'],
             'npsn'              => $post['npsn'],
+            'nisn'              => $post['nisn'],
             'nik_siswa'         => $post['nik_siswa'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],
@@ -304,6 +307,7 @@ class M_siswa extends CI_Model
             'pendidikan_wali'   => $post['pendidikan_wali'],
             'job_wali'          => $post['job_wali'],
             'gaji_wali'         => $post['gaji_wali'],
+            'no_hp_wali'        => $post['no_hp_wali'],
             'modified_by'       => $modifBy,
             'modified_date'     => $modified
         );

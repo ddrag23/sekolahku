@@ -112,6 +112,12 @@ class Master extends CI_Controller {
 				$this->proses();
 			}
 	}
+	public function delGuru($id_guru)
+	{
+		$this->m_master->del($id_guru);
+		$this->session->set_flashdata('sukses', ' dihapus');
+		redirect('master/guru','refresh');
+	}
 
  	public function proses()
 	{

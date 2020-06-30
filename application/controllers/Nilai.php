@@ -112,6 +112,15 @@ class Nilai extends CI_Controller
        }
     } 
 
+    public function printPengumumanNilai()
+    {
+      cekAdmin();
+      $data['result'] = $this->m_nilai->get()->result();
+      $html = $this->load->view('module/dokumen/pengumumanNilai',$data,true);
+      $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
+       
+    }
+
     public function validasi()
     {
         $this->form_validation->set_rules('ppdb_id', ' Nama Peserta', 'Required');

@@ -6,12 +6,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_ppdb extends CI_Model
 {
         // start datatables
-    var $column_order = array(null, 'nama_ppdb', 'nama_panggilan', 'alamat_rumah_ppdb', 'no_hp_ppdb', 'gender_ppdb'); //set column field database for datatable orderable
-    var $column_search = array('nama_ppdb', 'nama_panggilan', 'nama_ortu_ppdb', 'no_hp_ppdb', 'gender_ppdb'); //set column field database for datatable searchable
+    var $column_order = array(null, 'nama_ppdb', 'alamat_rumah_ppdb', 'no_hp_ppdb', 'gender_ppdb', 'sesi_gelombang','status_pembayaran'); //set column field database for datatable orderable
+    var $column_search = array('nama_ppdb', 'nama_panggilan', 'nama_ortu_ppdb', 'no_hp_ppdb', 'gender_ppdb', 'status_pembayaran', 'sesi_gelombang'); //set column field database for datatable searchable
     var $order = array('id_ppdb' => 'asc'); // default order
  
     private function _get_datatables_query() {
-        $this->db->select('id_ppdb, nama_ppdb, nama_panggilan, alamat_rumah_ppdb, no_hp_ppdb, gender_ppdb');
+        $this->db->select('id_ppdb, nama_ppdb, nama_panggilan, alamat_rumah_ppdb, no_hp_ppdb, gender_ppdb, sesi_gelombang, status_pembayaran');
         $this->db->from('ppdb');
         $this->db->join('users', 'users.id = ppdb.user_id', 'left');
         $i = 0;
@@ -83,7 +83,7 @@ class M_ppdb extends CI_Model
         }
         $usersId = $this->db->insert_id();
         $params                    = array(
-            'user_id'            => !empty($post['user_id']) ? $post['user_id'] : $usersId,
+            'user_id'             => !empty($post['user_id']) ? $post['user_id'] : $usersId,
             'nama_ppdb'           => $post['nama_ppdb'],
             'nama_panggilan'      => $post['nama_panggilan'],
             'gender_ppdb'         => $post['gender_ppdb'],
@@ -94,6 +94,8 @@ class M_ppdb extends CI_Model
             'alamat_rumah_ppdb'   => $post['alamat_rumah_ppdb'],
             'no_hp_ppdb'          => $post['no_hp_ppdb'],
             'nama_ortu_ppdb'      => $post['nama_ortu_ppdb'],
+            'sesi_gelombang'      => $post['gelombang'],
+            'status_pembayaran'   => !empty($post['status_pembayaran']) ? $post['status_pembayaran'] : null,
             'date_created'        => $created,
             'created_by'          => $created_by
         );
@@ -120,6 +122,7 @@ class M_ppdb extends CI_Model
             'alamat_rumah_ppdb'   => $post['alamat_rumah_ppdb'],
             'no_hp_ppdb'          => $post['no_hp_ppdb'],
             'nama_ortu_ppdb'      => $post['nama_ortu_ppdb'],
+            'status_pembayaran'   => $post['status_pembayaran'],
             'modified_by'         => $modifBy,
             'date_modified'       => $modified
           );

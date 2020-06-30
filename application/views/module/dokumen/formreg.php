@@ -110,7 +110,7 @@ margin-right:2.4em;
             <td>:</td>
             <td><?= $row->gender_siswa; ?></td>
             <td>NIS</td>
-            <td>: &nbsp;&nbsp;<?=$row->nis;?>;</td>
+            <td>: &nbsp;&nbsp;<?=$row->nis;?></td>
         </tr>
         <tr>
             <td>Tempat, Tanggal Lahir</td>

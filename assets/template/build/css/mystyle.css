@@ -4,6 +4,11 @@
   text-transform:uppercase;
 }
 
+.fixed-top{
+  opacity: 1;
+  background-color: white;
+}
+
 .tombol{
   text-transform:uppercase;
   border-radius:40px;
@@ -12,6 +17,7 @@
 .jumbotron{
   background-image:url(../../production/images/landing.jpg);
   background-size:cover;
+  background-attachment:fixed;
   height:640px;
   font-family:viga;
 }
@@ -67,7 +73,12 @@
 
 .info-syarat{
   margin-top:120px;
+  opacity: 0;
+  transition: 1s;
+  transform: translateX(50px);
 }
+
+
 .info-syarat h3{
   font-size:52px;
   margin-top:1.5em;
@@ -78,6 +89,13 @@
 
 .info-prestasi{
   margin-top: 120px;
+  opacity: 0;
+  transition: 1s;
+  transform: translateX(-50px);
+}
+.muncul{
+  opacity: 1;
+  transform: translateX(0px);
 }
 .info-prestasi h3{
   margin-top:1.8em;
@@ -88,6 +106,13 @@
 /* kontak kami */
 .contact-us{
   margin-top:120px;
+  opacity: 0;
+  transition: 1s;
+  transform: translateY(-50px);
+}
+.anim{
+  opacity: 1;
+  transform: translateY(0px);
 }
 .contact-us h3{
   margin-top:1.2em;
@@ -107,6 +132,7 @@
 .contact-us a:hover{
   color:blue;
 }
+
 
 /* pembatas */
 .pembatas{
@@ -164,7 +190,7 @@
   list-style: none;
   color: #000;
   font-size: 15px;
-  letter-spacing: 0.5px;  
+  letter-spacing: 0.5px;   
  }
 
 .footer-items ul a {
@@ -260,6 +286,12 @@
 .navbar-brand, .nav-link{
   color:white !important;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.fixed-top{
+  background-color: #383838;
+}
+.nav-link-fixed{
+  color: black !important;
 }
 .nav-link{
   text-transform:uppercase;

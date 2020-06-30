@@ -21,7 +21,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
-             <li><a href="<?= site_url('ppdb/printPdf/'. $query['id_ppdb']);?>" data-toggle="tooltip" data-placement="left" title="Print Formulir PPDB" style="color:green"><i class="fa fa-print"></i></a></li>
+             <li><a href="<?= site_url('ppdb/printPdf/'. $query['id_ppdb']);?>" data-toggle="tooltip" data-placement="left" title="Print Formulir PPDB" style="color:green" target="_blank"><i class="fa fa-print"></i></a></li>
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
              </ul>
@@ -91,9 +91,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
         <div class="x_title">
           <h2>Data Siswa</h2>
             <ul class="nav navbar-right panel_toolbox">
-            <?php if (!empty($query['nis'])): ?>
-             <li><a href="<?= site_url('ppdb/printPdfSiswa/'. $siswa['id_siswa']);?>" style="color:green;" data-toggle="tooltip" data-placement="Left" title="Print Formulir Siswa"><i class="fa fa-print"></i></a></li>
-            <?php endif; ?>
+             <li><a href="<?= site_url('ppdb/printPdfSiswa/'. $siswa['id_siswa']);?>" style="color:green;" data-toggle="tooltip" data-placement="Left" title="Print Formulir Siswa" target="_blank"><i class="fa fa-print"></i></a></li>
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
              </ul>
@@ -231,6 +229,11 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                             <th>Gaji Wali</th>
                             <td>:</td>
                             <td><?= $siswa['gaji_wali'];?></td>
+                        </tr>
+                        <tr>
+                            <th>No Telepon Wali</th>
+                            <td>:</td>
+                            <td><?= $query['no_hp_wali'];?></td>
                         </tr>
                         <?php endif; ?>
                       </tbody>

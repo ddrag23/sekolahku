@@ -119,7 +119,8 @@
                           <td>:</td>
                           <td><?= $query['cita'];?></td>
                         </tr>
-                        <tr>
+                        <?php if (!empty($query['nama_wali'])): ?>
+                         <tr>
                           <th scope="row" colspan="3" style="text-align:center;">Wali</th>
                         </tr>
                         <tr>
@@ -142,6 +143,13 @@
                             <td>:</td>
                             <td><?= $query['gaji_wali'];?></td>
                         </tr>
+                        <tr>
+                            <th>No Telepon Wali</th>
+                            <td>:</td>
+                            <td><?= $query['no_hp_wali'];?></td>
+                        </tr>
+
+                        <?php endif; ?>
                       </tbody>
                     </table>
                     </div>

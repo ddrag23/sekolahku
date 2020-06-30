@@ -69,23 +69,29 @@
               <input type="text" id="first-name" name="npsn" class="form-control" value="<?= $this->input->post('npsn') ?? $query->npsn; ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= $this->input->post('nik_siswa') ?? $query->nik_siswa; ?>">
-            </div>
-          </div>
-
         <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
             <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NISN <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nisn" class="form-control" value="<?= $this->input->post('nisn') ?? $query->nisn; ?>">
+            </div>
+          </div>
+            <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIS <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nis" class="form-control" value="<?= $this->input->post('nis') ?? $query->nis; ?>">
             </div>
           </div>
        <?php endif; ?>
+              <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= $this->input->post('nik_siswa') ?? $query->nik_siswa; ?>">
+            </div>
+          </div>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
@@ -100,7 +106,7 @@
               <input type="text" id="last-name" name="tempat_lahir"  class="form-control" value="<?= $this->input->post('tempat_lahir') ?? $query->tempat_lahir; ?>">
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12 ">
-                  <input type='date' class="form-control" name="tanggal_lahir" value="<?= $this->input->post('tanggal_lahir') ?? $query->tanggal_lahir; ?>" />
+                  <input type='text' class="form-control" name="tanggal_lahir" value="<?= $this->input->post('tanggal_lahir') ?? $query->tanggal_lahir; ?>" />
           </div>
           </div>
           <div class="item form-group">
@@ -647,9 +653,14 @@
               </select>
             </div>
           </div>
-
+        <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp_wali">Nama Wali <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" class="form-control" id="no_hp_wali" name="no_hp_wali" value="<?= $this->input->post('no_hp_wali') ?? $query->no_hp_wali; ?>">
+            </div>
+          </div>
       </div>
-
     </div>
       <!-- End SmartWizard Content -->
       </form>

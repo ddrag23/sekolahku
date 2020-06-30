@@ -17,6 +17,9 @@
     <link href="<?= base_url()?>assets/template/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
     <link href="<?= base_url()?>assets/template/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?= base_url()?>assets/template/build/css/custom.min.css" rel="stylesheet">
@@ -28,8 +31,9 @@
         <div class="animate form login_form">
           <section class="login_content">
             <?php if ($this->session->flashdata('gagal')) :?>
-              <div class="alert alert-success" role="alert"><?= $this->session->flashdata('gagal'); ?></div>
+              <div class="alert alert-danger" role="alert"><?= $this->session->flashdata('gagal'); ?></div>
             <?php endif; ?>
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
             <form method="post" action="<?= site_url('auth'); ?>">
               <h1>Selamat Datang</h1>
               <div>
@@ -63,5 +67,13 @@
         </div>
       </div>
     </div>
+    <script src="<?= base_url('assets/template/vendors/jquery/dist/jquery.js');?>"></script>
+    <script src="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="<?= base_url()?>assets/template/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+    <script src="<?= base_url()?>assets/template/vendors/moment/min/moment.min.js"></script>
+
+    <script src="<?= base_url()?>assets/template/vendors/select2/dist/js/select2.full.min.js"></script>
+    <script src="<?= base_url('assets/template/build/js/myscript.js');?>"></script>
   </body>
 </html>

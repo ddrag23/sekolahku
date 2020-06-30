@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->users->register($post);
             if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('sukses', 'registrasi berhasil silahkan login');
+                $this->session->set_flashdata('sukses', ' ditambahkan silahkan login');
                 redirect('auth','refresh');
             }
         }

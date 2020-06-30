@@ -65,6 +65,22 @@
               <input type="text" id="first-name" name="npsn" class="form-control" value="<?= set_value('npsn'); ?>">
             </div>
           </div>
+        <?php if ( $this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
+            <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NISN<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nisn" class="form-control" value="<?= set_value('nisn'); ?>">
+            </div>
+          </div>
+            <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIS <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" id="first-name" name="nis" class="form-control" value="<?= set_value('nis'); ?>">
+            </div>
+          </div>
+        <?php endif; ?>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
             </label>
@@ -72,15 +88,6 @@
               <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= set_value('nik_siswa'); ?>">
             </div>
           </div>
-        <?php if ( $this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
-            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nis <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 ">
-              <input type="text" id="first-name" name="nis" class="form-control" value="<?= set_value('nis'); ?>">
-            </div>
-          </div>
-        <?php endif; ?>
            <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
@@ -95,7 +102,7 @@
               <input type="text" id="last-name" name="tempat_lahir"  class="form-control" value="<?= set_value('tempat_lahir'); ?>">
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12 ">
-                  <input type='date' class="form-control" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>" />
+                  <input type='text' class="form-control" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>" />
             </div>
           </div>
           <div class="item form-group">
@@ -613,7 +620,13 @@
         </div>
         <input type="hidden" name="tahun_ajaran" value="<?= date('Y');?> / <?= date('Y')+1;?>">
       </div>
-
+        <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp_wali">No Telepon Wali <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" class="form-control" id="no_hp_wali" name="no_hp_wali" value="<?= set_value('no_hp_wali'); ?>">
+            </div>
+          </div>
       </div>
 </div>
       <!-- End SmartWizard Content -->

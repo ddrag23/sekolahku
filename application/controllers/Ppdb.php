@@ -5,14 +5,14 @@ class Ppdb extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		cekNotLogin();
-		$this->load->model(['m_ppdb','m_master','m_user','m_siswa','m_nilai']);
+		$this->load->model(['m_ppdb','m_master','m_user','m_siswa','m_nilai', 'm_gelombang']);
 	}
 	public function index()
   {
    
 		if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
 		$this->load->view('template/main',[
-			"src" => "module/ppdb/index",
+			"src" => "module/ppdb/listPpdb",
 			"page" => "PPDB",
 			"query" => $this->m_ppdb->get()->result()
 		]);
@@ -45,12 +45,12 @@ class Ppdb extends CI_Controller {
             $no++;
             $row = array();
             $row[] = $no.".";
-            $row[] = $ppdb->nama_ppdb;
-            $row[] = $ppdb->nama_panggilan;
+            $row[] = $ppdb->nama_ppdb.'<br>'.$ppdb->nama_panggilan.'<br>'.$ppdb->gender_ppdb;
             $row[] = $ppdb->alamat_rumah_ppdb;
-            $row[] = $ppdb->gender_ppdb;
+            $row[] = $ppdb->sesi_gelombang;
+            $row[] = $ppdb->status_pembayaran;
             // add html for action
-            $row[] = '<a href="'.site_url('ppdb/print/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs"><i class="fa fa-print"></i></a>
+            $row[] = '<a href="'.site_url('ppdb/printPdf/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
                    <a href="'.site_url('ppdb/edit/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
                     <a href="'.site_url('ppdb/delete/'.$ppdb->id_ppdb).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
             $data[] = $row;
@@ -82,6 +82,7 @@ class Ppdb extends CI_Controller {
     $params->no_hp_ppdb = null;
     $params->asal_sekolah_ppdb = null;
     $params->alamat_sekolah_ppdb = null;
+    $params->status_pembayaran = null;
 
         $this->validasi();	
     	 if ($this->form_validation->run() == FALSE)
@@ -136,7 +137,21 @@ class Ppdb extends CI_Controller {
   {
     $post = $this->input->post(null, true);
     if (isset($post['save'])) {
-      $this->m_ppdb->add($post);
+        $gelombang = $this->m_gelombang->get()->result();
+        foreach ($gelombang as $value) {
+            if ($value->sesi_gelombang == 'gelombang 1') {
+            $start = date('Y-m-d', strtotime($value->awal));
+            $end = date('Y-m-d', strtotime($value->akhir));
+            }
+        }
+        $currentDate = date('Y-m-d');
+        $date = date('Y-m-d', strtotime($currentDate));
+        if ($date > $start && $date < $end) {
+            $post['gelombang'] = 'gelombang 1';
+        }else{
+            $post['gelombang'] = 'gelombang 2';
+        }
+        $this->m_ppdb->add($post);
     }elseif(isset($post['edit'])){
       $this->m_ppdb->edit($post);
     }

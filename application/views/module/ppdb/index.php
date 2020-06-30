@@ -1,46 +1,63 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="x_panel">
         <div class="x_title">
-            <a href="<?= site_url('ppdb/add');?>" class="btn btn-primary" ><i class="fa fa-plus"></i> Tambah PPDB </a>
+			<h2>Gelombang Pendaftaran</h2>
             <ul class="nav navbar-right panel_toolbox">
-             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+	            <a href="<?= site_url('gelombang/add'); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
              </ul>
              <div class="clearfix"></div>
              </div>
             <div class="x_content">
             <!-- content starts here -->
-    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
-      <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Lengkap</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Jenis Kelamin</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php $no=0; foreach ($query as $key) :?>
-          <tr>
-           <td><?= ++$no;?></td>
-            <td><?= $key->nama_ppdb;?></td>
-            <td><?= $key->nama_panggilan;?></td>
-            <td><?= $key->alamat_rumah_ppdb;?></td>
-            <td><?= $key->asal_sekolah_ppdb;?></td>
-             <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('ppdb/printPdf/'.$key->id_ppdb); ?>" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs"><i class="fa fa-print"></i></a>
-              <a href="<?=site_url('ppdb/edit/'.$key->id_ppdb); ?>" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-              <a href="<?=site_url('ppdb/delete/'.$key->id_ppdb); ?>" data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
-            </td>
-          </tr>
-        <?php endforeach; ?>
-        </tbody>
-      </table>
-            </div>
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Gelombang</th>
+              <th scope="col">Tanggal Awal / Tanggal Akhir</th>
+              <th scope="col">Biaya</th>
+              <th scope="col">Tahun Ajaran</th>
+              <th scope="col">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $no = 0; foreach ($gelombang as $key) : ?>
+            <tr>
+              <th scope="row"><?= $no++; ?></th>
+              <td><?= $key->sesi_gelombang; ?></td>
+              <td><?= $key->awal; ?> sampai <?= $key->akhir ;?></td>
+              <td><?= $key->biaya; ?></td>
+              <td><?= $key->tahun_ajaran; ?></td>
+              <td><a href="<?= site_url('gelombang/delete/').$key->id_gelombang; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+            </tr>
+          <?php endforeach; ?>
+          </tbody>
+        </table>
       </div>
     </div>
+</div>
+   <div class="col-md-6">
+    	<div class="x_panel">
+        	<div class="x_title">
+				<h2>Pengumuman seleksi</h2>
+	            <ul class="nav navbar-right panel_toolbox">
+	             <a href="<?= site_url('pengumuman/add'); ?>" class="btn btn-primary"><i class="fa fa-upload"></i> Upload File</a>
+	             </ul>
+	             <div class="clearfix"></div>
+             </div>
+            <div class="x_content text-center">
+	            <!-- content starts here -->
+	        	<div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
+	        	<div id="error" data-error="<?= validation_errors();?>"></div>
+	        	<?php foreach ($pengumuman as $key) :?>
+				<div class="embed-responsive embed-responsive-16by9">
+				  <iframe class="embed-responsive-item" src="<?= base_url('uploads/dokumen/pdf/'.$key->file_pengumuman); ?>"></iframe>
+				</div>
+				<a href="<?= site_url('pengumuman/delete/'.$key->id_pengumuman); ?>" class="btn btn-danger" style="margin-top: 10px; text-align: center;"><i class="fa fa-trash" onclick="return confirm(' yakin hapus data ?')"></i> Hapus Pengumuman</a>
+				<?php endforeach; ?>
+      		</div>
+    	</div>
+	</div>
 </div>

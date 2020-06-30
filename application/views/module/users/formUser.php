@@ -5,7 +5,7 @@
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="hidden" name="id" value="<?= $query->id; ?>">
-          <input type="text" id="username" name="username" value="<?= $query->username; ?>" class="form-control ">
+          <input type="text" id="username" name="username" value="<?= $query->username; ?>" class="form-control " autofocus>
         </div>
       </div>
       <div class="item form-group">
@@ -26,7 +26,7 @@
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
-          <input type="text" id="email" name="email" value="<?= $query->email; ?>" class="form-control ">
+          <input type="text" id="email" name="email" value="<?= $query->email; ?>" class="form-control" autocomplete="off">
         </div>
       </div>
       <div class="item form-group">

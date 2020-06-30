@@ -16,10 +16,10 @@
         <thead>
           <tr>
             <th>No</th>
-            <th>Nama Lengkap</th>
-            <th>Nama</th>
+            <th>Nama Lengkap / Panggilan</th>
             <th>Alamat</th>
-            <th>Jenis Kelamin</th>
+            <th>Gelombang</th>
+            <th>Status Pembayaran</th>
             <th>Aksi</th>
           </tr>
         </thead>

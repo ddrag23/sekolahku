@@ -3,15 +3,12 @@ console.log('myscript')
 const path = location.pathname.split('/')
 let controller = path[2].charAt(0).toUpperCase() + path[2].slice(1)
 const flashLogin = $('#sukses').data('flashdata');
-const getDataLoginName = $('#sukses').data('name')
-const flashErrors = $('#error').data('error')
+const getDataLoginName = $('#sukses').data('name');
+const flashErrors = $('#error').data('error');
 const flashdata = $('.flash-data').data('flashdata');
 //}}
 
 // date picker {{
-    $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
       $(document).ready(function() {
      $('.ex-select2').select2();
     });

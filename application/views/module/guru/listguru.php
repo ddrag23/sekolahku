@@ -39,12 +39,7 @@
               <a href="<?=site_url('master/editGuru/'.$key->id_guru); ?>"
               data-tonggle="tooltip" data-placement="left" title="Edit" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
               <a href="<?=site_url('master/delGuru/'.$key->id_guru); ?>"
-              data-tonggle="tooltip" data-placement="left" title="Hapus" class="btn btn-danger btn-xs" onclick="new PNotify({
-                                  title: 'Regular Success',
-                                  text: 'Data Berhasil di Hapus',
-                                  type: 'success',
-                                  styling: 'bootstrap3'
-                              });" ><i class="fa fa-trash"></i></a>
+              data-tonggle="tooltip" data-placement="left" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php endforeach; ?>

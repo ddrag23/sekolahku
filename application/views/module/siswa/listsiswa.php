@@ -6,7 +6,7 @@
             <a class="btn btn-primary" href="<?=base_url('uploads/dokumen/template-import.xlsx');?>"><i class="fa fa-download"></i> Download Format</a>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" >Import Data Siswa</button>
             <ul class="nav navbar-right panel_toolbox">
-             <li><a class="text-success"><i class="fa fa-file-excel-o"></i> Export</a></li>
+            <li><a class="text-success" href="<?= base_url('siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -18,7 +18,7 @@
           <tr>
             <th>No</th>
             <th>Foto</th>
-            <th>Nis / Nama Siswa</th>
+            <th>Nisn / Nama Siswa</th>
             <th>No Telepon</th>
             <th>Kelas</th>
             <th>Status Siswa</th>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="modal-body">
                           <h4 style="margin-bottom:20px;">Masukkan File</h4>
-                        <?= form_open_multipart('siswa/import');?>
-                            <input type="file" name="import" class="form-control">
+                       <?= form_open_multipart('siswa/import');?>
+                        <input type="file" name="import" class="form-control">
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                           <button type="submit" class="btn btn-primary">Save changes</button>

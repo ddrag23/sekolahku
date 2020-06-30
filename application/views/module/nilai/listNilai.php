@@ -3,9 +3,9 @@
       <div class="x_panel">
         <div class="x_title">
             <a href="<?= site_url('nilai/add');?>" class="btn btn-primary"><i class="fa fa-plus"></i> Masukkan Nilai</a>
+
             <ul class="nav navbar-right panel_toolbox">
-             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-             <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            <a href="<?= site_url('nilai/printpengumumannilai');?>" class="text-danger" style="font-size: 15px;"><i class="fa fa-download"></i> Export Pdf</a>
              </ul>
              <div class="clearfix"></div>
              </div>

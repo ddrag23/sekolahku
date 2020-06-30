@@ -30,7 +30,7 @@
             <form method="post" action="<?= site_url('auth/register');?>">
               <h1>Buat Akun</h1>
               <div>
-              <input type="text" class="form-control" placeholder="Username" name="username" value="<?=set_value('username');?>"/>
+              <input type="text" class="form-control" placeholder="Username" name="username" value="<?=set_value('username');?>" autocomplete="off" autofocus/>
                 <small class="text-danger"><?= form_error('username'); ?></small>
               </div>
               <div>
@@ -38,7 +38,7 @@
                 <small class="text-danger"><?= form_error('password'); ?></small>
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" name="email" value="<?=set_value('email');?>"/>
+                <input type="email" class="form-control" placeholder="Email" name="email" value="<?=set_value('email');?>" autocomplete="off"/>
                 <small class="text-danger"><?= form_error('email'); ?></small>
               </div>
               <div>

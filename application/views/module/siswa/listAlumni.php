@@ -18,12 +18,11 @@
           <tr>
             <th>No</th>
             <th>Foto</th>
-            <th>Nis</th>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>Jenis Kelamin</th>
+            <th>Nisn / Nama Siswa</th>
+            <th>No Telepon</th>
             <th>Kelas</th>
             <th>Status Siswa</th>
+            <th>Tahun Ajaran</th>
             <th>Aksi</th>
           </tr>
         </thead>

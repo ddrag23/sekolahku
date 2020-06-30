@@ -52,7 +52,7 @@
                   
                   <li><a><i class="fa fa-folder"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?= site_url('ppdb'); ?>">Dashboard PPDB</a></li>
+                      <li><a href="<?= site_url('pengumuman'); ?>">Dashboard PPDB</a></li>
                     <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
                       <li><a href="<?= site_url('nilai'); ?>">Nilai PPDB</a></li>
                     <?php endif; ?>

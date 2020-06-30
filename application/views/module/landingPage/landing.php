@@ -9,9 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
 </head>
 <body>
-
 <!-- navbar start -->
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light" id="mynavbar">
 <div class="container">
   <a class="navbar-brand" href="#">mi hasyim asy'ari</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +21,7 @@
       <a class="nav-item nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="#gelombang">Gelombang</a>
       <a class="nav-item nav-link" href="#persyaratan">Persyartan</a>
-      <a class="nav-item nav-link" href="#">Pengumuman</a>
+      <a class="nav-item nav-link" href="<?=base_url('uploads/dokumen/pdf/').$query;?>" target="_blank">Pengumuman</a>
       <a class="nav-item btn btn-primary tombol" href="#follow">Ikuti Kami</a>
     </div>
   </div>
@@ -50,20 +49,15 @@
     <div id="gelombang" class="row justify-content-center">
        <div class="col-7 info-panel">
         <div class="row">
+            <?php foreach ($gelombang as $key) :?>
             <div class="col-md">
                 <img src="<?= base_url('assets/template/production/images/paper.png');?>" alt="Gelombang 1" class="float-left">
-                <h4>Gelombang I</h4>
-                <p>Mulai : 24-mei-2020</p>
-                <p>Akhir : 28-juni-2020</p>
-                <p>Biaya : 100.000</p>
+                <h4><?= $key->sesi_gelombang ?></h4>
+                <p>Mulai : <?= $key->awal; ?></p>
+                <p>Akhir : <?= $key->akhir; ?></p>
+                <p>Biaya : <?= $key->biaya; ?></p>
             </div>
-            <div class="col-md">
-                <img src="<?= base_url('assets/template/production/images/paper1.png');?>" alt="" class="float-left">
-                <h4>Gelombang II</h4>
-                <p>Mulai : 24-mei-2020</p>
-                <p>Akhir : 28-juni-2020</p>
-                <p>Biaya : 100.000</p>
-            </div>
+        <?php endforeach; ?>
         </div>
        </div> 
     </div>
@@ -190,7 +184,7 @@
 
     <!--stiky start-->
     <div class="sticky-top">
-        <a href="https://api.whatsapp.com/send?phone=51955081075&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="sticky" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=6281553310908&text=Assalamualaikum%21%20Admin%20MI Hasyim Asy'ari." class="sticky" target="_blank">
         <i class="fa fa-whatsapp my-float"></i>
         </a>
     </div>
@@ -230,9 +224,9 @@
       <h3>Contact us</h3>
       <div class="border1"></div>
         <ul>
-          <li><i class="fa fa-map-marker" aria-hidden="true"></i>XYZ, abc</li>
-          <li><i class="fa fa-phone" aria-hidden="true"></i>123456789</li>
-          <li><i class="fa fa-envelope" aria-hidden="true"></i>xyz@gmail.com</li>
+          <li><i class="fa fa-map-marker" aria-hidden="true"></i>Jalan Pahlawan 1 Pepe Sedati Sidoarjo 61253</li>
+          <li><i class="fa fa-phone" aria-hidden="true"></i>081553310908</li>
+          <li><i class="fa fa-envelope" aria-hidden="true"></i>pepemihas@gmail.com</li>
         </ul> 
       
 <!--   for social links -->
@@ -258,5 +252,6 @@
      <script src="<?= base_url()?>assets/template/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?= base_url()?>assets/template/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url()?>assets/template/build/js/myparallax.js"></script>
 </body>
 </html>
