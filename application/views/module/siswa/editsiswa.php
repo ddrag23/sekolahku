@@ -2,7 +2,6 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
             <li><a  href="<?= site_url('siswa'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
@@ -244,6 +243,36 @@
               </select>
             </div>
           </div>
+          <?php if ($query->status == 'mutasi'): ?>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Link Dokumen Mutasi <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" class="form-control" name="link_doc_mutasi" value="<?= $this->input->post('link_doc_mutasi') ?? $query->link_doc_mutasi; ?>">
+            </div>
+          </div>
+          <?php endif ?>
+          <?php if ($query->status == 'alumni'): ?>  
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Status Ijazah <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <?php $statIjazah = $this->input->post('status_ijazah') ? $this->input->post('status_ijazah') : $query->status_ijazah; ?>
+              <select class="ex-select2 form-control" name="status_ijazah">
+                <option value="">--Pilih--</option>
+                <option value="sudah diambil"<?= $statIjazah == 'sudah diambil' ? 'selected' : null; ?> >Sudah diambil</option>
+                <option value="belum diambil" <?= $statIjazah == 'belum diambil' ? 'selected' : null; ?>>Belum diambil</option>
+              </select>
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal Pengambilan Ijazah <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+              <input type="text" class="form-control" name="date_get_ijazah" value="<?= $this->input->post('date_get_ijazah') ?? $query->date_get_ijazah; ?>">
+            </div>
+          </div>
+          <?php endif ?>
           <div class="item form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Saudara <span class="required">*</span>
             </label>

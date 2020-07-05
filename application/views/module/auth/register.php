@@ -27,10 +27,10 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="post" action="<?= site_url('auth/register');?>">
+            <form method="post" action="<?= site_url('halaman/login/daftar');?>">
               <h1>Buat Akun</h1>
               <div>
-              <input type="text" class="form-control" placeholder="Username" name="username" value="<?=set_value('username');?>" autocomplete="off" autofocus/>
+              <input type="text" class="form-control" placeholder="NPSN TK" name="username" value="<?=set_value('username');?>" autocomplete="off" autofocus/>
                 <small class="text-danger"><?= form_error('username'); ?></small>
               </div>
               <div>
@@ -38,8 +38,8 @@
                 <small class="text-danger"><?= form_error('password'); ?></small>
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" name="email" value="<?=set_value('email');?>" autocomplete="off"/>
-                <small class="text-danger"><?= form_error('email'); ?></small>
+                <input type="password" class="form-control" placeholder="Konfirmasi Password" name="passconf" value="<?=set_value('passconf');?>" autocomplete="off"/>
+                <small class="text-danger"><?= form_error('passconf'); ?></small>
               </div>
               <div>
               <input type="number" class="form-control" placeholder="No Telepon" name="notelp" value="<?= set_value('notelp');?>"/>
@@ -53,7 +53,7 @@
 
               <div class="separator">
                 <p class="change_link">Sudah Mempunyai akun ?
-                  <a href="<?= site_url('auth'); ?>" class="to_register"> Masuk </a>
+                  <a href="<?= site_url('halaman/login'); ?>" class="to_register"> Masuk </a>
                 </p>
 
                 <div class="clearfix"></div>

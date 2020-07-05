@@ -2,10 +2,10 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-            <a href="<?= site_url('nilai/add');?>" class="btn btn-primary"><i class="fa fa-plus"></i> Masukkan Nilai</a>
+            <a href="<?= site_url('halaman/ppdb/nilai/masukkan-nilai');?>" class="btn btn-primary"><i class="fa fa-plus"></i> Masukkan Nilai</a>
 
             <ul class="nav navbar-right panel_toolbox">
-            <a href="<?= site_url('nilai/printpengumumannilai');?>" class="text-danger" style="font-size: 15px;"><i class="fa fa-download"></i> Export Pdf</a>
+            <a href="<?= site_url('halaman/ppdb/nilai/print');?>" class="text-danger" style="font-size: 15px;" target="_blank"><i class="fa fa-download"></i> Export Pdf</a>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -46,9 +46,10 @@
   $(document).ready(function() {
     $('#datatable').DataTable({
       "processing" : true,
+      "responsive" : true,
       "serverSide" : true,
       "ajax" : {
-        "url" : "<?= site_url('nilai/get_ajax_nilai') ;?>",
+        "url" : "<?= site_url('halaman/ppdb/nilai/data-nilai') ;?>",
         "type" : "POST"
       } 
     })

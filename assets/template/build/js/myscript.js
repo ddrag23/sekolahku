@@ -1,7 +1,7 @@
 console.log('myscript')
 //variabel{{
 const path = location.pathname.split('/')
-let controller = path[2].charAt(0).toUpperCase() + path[2].slice(1)
+let controller = path[3].charAt(0).toUpperCase() + path[3].slice(1)
 const flashLogin = $('#sukses').data('flashdata');
 const getDataLoginName = $('#sukses').data('name');
 const flashErrors = $('#error').data('error');

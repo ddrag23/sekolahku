@@ -31,7 +31,6 @@ window.addEventListener('scroll', function(){
   if (wscroll > infoPrestasti.offsetTop - 500) {
     infoPrestasti.classList.add('muncul');
   }
-  console.log(wscroll)
 
   if (wscroll > contactUs.offsetTop - 500) {
     contactUs.classList.add('anim');

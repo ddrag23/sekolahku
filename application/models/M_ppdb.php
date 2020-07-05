@@ -62,10 +62,37 @@ class M_ppdb extends CI_Model
         }
         return $this->db->get();
     }
-  public function get_where($id)
-  {
-    return $this->db->get_where('ppdb', ['id_ppdb' => $id]);
-  }
+    public function get_where($id)
+    {
+        return $this->db->get_where('ppdb', ['id_ppdb' => $id]);
+    }
+
+    public function getByGelombang1()
+    {
+        return $this->db->get_where('ppdb',['sesi_gelombang' => 'gelombang 1']);
+    }
+
+    public function getByGelombang2()
+    {
+        return $this->db->get_where('ppdb',['sesi_gelombang' => 'gelombang 2']);
+    }
+
+    public function getByLunas()
+    {
+        return $this->db->get_where('ppdb', ['status_pembayaran' => 'lunas']);
+    }
+
+    public function getByBelumLunas()
+    {
+        return $this->db->get_where('ppdb', ['status_pembayaran' => 'belum lunas']);
+    }
+
+    public function getByDate()
+    {
+        $query = $this->db->query('SELECT DAY(date_created) as tanggal, COUNT(id_ppdb) as jumlah_data FROM ppdb GROUP BY DAY(date_created) ORDER BY DAY(date_created) DESC LIMIT 10');
+        return $query;
+    }
+
    public function add($post)
     {
         $created_by = $this->session->userdata('id');

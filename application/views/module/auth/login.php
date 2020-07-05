@@ -34,10 +34,10 @@
               <div class="alert alert-danger" role="alert"><?= $this->session->flashdata('gagal'); ?></div>
             <?php endif; ?>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
-            <form method="post" action="<?= site_url('auth'); ?>">
+            <form method="post" action="<?= site_url('halaman/login'); ?>">
               <h1>Selamat Datang</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" name="username" />
+                <input type="text" class="form-control" placeholder="NPSN TK" name="username" />
                 <?= form_error('username'); ?>
               </div>
               <div>
@@ -52,7 +52,7 @@
 
               <div class="separator">
                 <p class="change_link">Belum punya akun ?
-                  <a href="<?= site_url('auth/register');?>" class="to_register"> Buat Akun Baru </a>
+                  <a href="<?= site_url('halaman/login/daftar');?>" class="to_register"> Buat Akun Baru </a>
                 </p>
 
                 <div class="clearfix"></div>

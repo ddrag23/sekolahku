@@ -7,6 +7,7 @@ class Master extends CI_Controller {
 		parent::__construct();
 		cekNotLogin();
 		cekAdmin();
+    cekRoutes('master');
 		$this->load->model('m_master');
 
 	}

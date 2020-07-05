@@ -4,7 +4,7 @@
         <div class="x_title">
           <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
-            <li><a  href="<?= site_url('ppdb'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
+            <li><a  href="<?= site_url('halaman/ppdb/daftar-ppdb'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>

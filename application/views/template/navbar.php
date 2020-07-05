@@ -3,7 +3,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-            <a href="<?=site_url('dashboard');?>" class="site_title"><img src="<?=base_url('assets/logo/logomi-nobg.png');?>" alt="mi" class="img-fluid float-left" style="margin-top:10px; border-radius:50%; margin-right:5px; margin-left:-5px;  height:1cm; width:1cm"> <span>MI Hasyim Asy'ari</span></a>
+            <a href="<?=site_url('halaman/dashboard');?>" class="site_title"><img src="<?=base_url('assets/logo/logomi-nobg.png');?>" alt="mi" class="img-fluid float-left" style="margin-top:10px; border-radius:50%; margin-right:5px; margin-left:-5px;  height:1cm; width:1cm"> <span>MI Hasyim Asy'ari</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -36,39 +36,42 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru' ): ?>
+                  <?php if ($this->session->userdata('level') == 'admin'): ?>
                     <li>
-                    <a href="<?= site_url('dashboard');?>"><i class="fa fa-home"></i> Home</a>
+                    <a href="<?= site_url('halaman/dashboard');?>"><i class="fa fa-home"></i> Home</a>
                   </li>
+                  <?php endif; ?>
+                  <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru' ): ?>
                   <li><a><i class="fa fa-users"></i> Siswa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?= site_url('siswa/add'); ?>">Tambah Data Siswa</a></li>
-                      <li><a href="<?= site_url('siswa'); ?>">Aktif</a></li>
-                      <li><a href="<?= site_url('siswa/siswamutasi'); ?>">Mutasi</a></li>
-                      <li><a href="<?= site_url('siswa/alumni') ;?>">Alumni</a></li>
+                      <li><a href="<?= site_url('halaman/siswa/tambah'); ?>">Tambah Data Siswa</a></li>
+                      <li><a href="<?= site_url('halaman/siswa'); ?>">Aktif</a></li>
+                      <li><a href="<?= site_url('halaman/siswa/mutasi'); ?>">Mutasi</a></li>
+                      <li><a href="<?= site_url('halaman/siswa/alumni') ;?>">Alumni</a></li>
                     </ul>
                   </li>
                   <?php endif ?>
                   
                   <li><a><i class="fa fa-folder"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?= site_url('pengumuman'); ?>">Dashboard PPDB</a></li>
+                      <li><a href="<?= site_url('halaman/ppdb'); ?>">Dashboard PPDB</a></li>
                     <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
-                      <li><a href="<?= site_url('nilai'); ?>">Nilai PPDB</a></li>
+                      <li><a href="<?= site_url('halaman/ppdb/pengumuman'); ?>">Pengumuman PPDB</a></li>
+                      <li><a href="<?= site_url('halaman/ppdb/nilai'); ?>">Nilai PPDB</a></li>
                     <?php endif; ?>
                     <?php if ($this->session->userdata('level') == 'user' && empty($this->session->userdata('id_ppdb'))): ?>
-                      <li><a  href="<?= site_url('ppdb/add'); ?>">Masukkan Data PPDB</a></li>
+                      <li><a  href="<?= site_url('halaman/ppdb/tambah'); ?>">Masukkan Data PPDB</a></li>
                     <?php endif; ?>
                       <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>
-                      <li><a href="<?= site_url('ppdb/listPpdb') ;?>">Data Calon Siswa</a></li>
+                      <li><a href="<?= site_url('halaman/ppdb/daftar-ppdb') ;?>">Data Calon Siswa</a></li>
                       <?php  endif; ?>
                     </ul>
                   </li>
                   <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
                     <li><a><i class="fa fa-desktop"></i> Data Master <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?= site_url('master'); ?>">Master Kelas</a></li>
-                      <li><a href="<?= site_url('master/guru'); ?>">Master Wali Kelas</a></li>
+                      <li><a href="<?= site_url('halaman/kelas'); ?>">Master Kelas</a></li>
+                      <li><a href="<?= site_url('halaman/guru'); ?>">Master Wali Kelas</a></li>
                     </ul>
                   </li>
                   <?php endif ?>
@@ -97,7 +100,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Settings"  style="width: 50%">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= site_url('auth/logout'); ?>" style="width: 50%">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?= site_url('halaman/login/keluar'); ?>" style="width: 50%">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -119,7 +122,7 @@
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"  href="<?= site_url('profile');?>"> Profile</a>
-                    <a class="dropdown-item"  href="<?= site_url('auth/logout'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item"  href="<?= site_url('halaman/login/keluar'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
               </ul>

@@ -3,7 +3,7 @@
       <div class="x_panel">
         <div class="x_title">
             <ul class="nav navbar-right panel_toolbox">
-            <li><a  href="<?= site_url('master/guru'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
+            <li><a  href="<?= site_url('halaman/kelas'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>

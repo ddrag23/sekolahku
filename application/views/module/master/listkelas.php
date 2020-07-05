@@ -2,7 +2,7 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-      <a class="btn btn-primary" href="<?= site_url('master/addKelas') ?>"
+      <a class="btn btn-primary" href="<?= site_url('halaman/kelas/tambah') ?>"
       ><i class="fa fa-plus"></i> Tambah Kelas</a>
             <ul class="nav navbar-right panel_toolbox">
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -29,15 +29,10 @@
             <td><?= $key->nama_kelas;?></td>
             <td><?= $key->nama_guru;?></td>
              <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('master/edit/'.$key->id_kelas); ?>" data-tonggle="tooltip" 
+              <a href="<?=site_url('halaman/kelas/ubah/'.$key->id_kelas); ?>" data-tonggle="tooltip" 
                 data-placement="left" title="Edit" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-              <a href="<?=site_url('master/delete/'.$key->id_kelas); ?>" data-tonggle="tooltip" 
-              data-placement="left" title="Hapus" class="btn btn-danger btn-xs" onclick="new PNotify({
-                                  title: 'Regular Success',
-                                  text: 'Data Berhasil di Hapus',
-                                  type: 'success',
-                                  styling: 'bootstrap3'
-                              });" ><i class="fa fa-trash"></i></a>
+              <a href="<?=site_url('halaman/kelas/hapus/'.$key->id_kelas); ?>" data-tonggle="tooltip" 
+              data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -49,3 +44,11 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    $('#datatable').DataTable({
+    "responsive" : true
+})
+})
+</script>

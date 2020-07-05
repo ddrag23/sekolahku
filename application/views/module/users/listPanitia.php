@@ -47,3 +47,11 @@
     </div>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('#datatable').DataTable({
+    "responsive" : true
+})
+})
+
+</script>

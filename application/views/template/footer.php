@@ -17,7 +17,7 @@
     <!-- NProgress -->
     <script src="<?= base_url()?>assets/template/vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
-    <script src="<?= base_url()?>assets/template/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="<?= base_url()?>assets/template/vendors/Chart.js/dist/Chart.js"></script>
     <!-- gauge.js -->
     <script src="<?= base_url()?>assets/template/vendors/gauge.js/dist/gauge.min.js"></script>
     <!-- bootstrap-progressbar -->

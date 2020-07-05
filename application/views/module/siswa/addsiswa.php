@@ -2,7 +2,6 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
             <li><a class="text-primary" href="<?= site_url('siswa');?>"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>

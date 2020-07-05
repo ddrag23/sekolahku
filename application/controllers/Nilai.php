@@ -8,6 +8,7 @@ class Nilai extends CI_Controller
         parent::__construct();
         cekNotLogin();
         cekAdmin();
+        cekRoutes('nilai');
         $this->load->model('m_nilai');
         $this->load->model('m_ppdb');
     }
@@ -32,8 +33,8 @@ class Nilai extends CI_Controller
             $row[] = $nilai->jum_nilai;
             $row[] = $nilai->status_ppdb;
             // add html for action
-            $row[] = '<a href="'.site_url('nilai/edit/'.$nilai->id_nilai).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
-                    <a href="'.site_url('nilai/del/'.$nilai->id_nilai).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
+            $row[] = '<a href="'.site_url('halaman/ppdb/nilai/ubah/'.$nilai->id_nilai).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                    <a href="'.site_url('halaman/ppdb/nilai/hapus/'.$nilai->id_nilai).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
             $data[] = $row;
         }
         $output = array(
@@ -100,13 +101,23 @@ class Nilai extends CI_Controller
         $post = $this->input->post(null, true);
         $id = $id_nilai != null ? $id_nilai : null;
         if (isset($post['save'])){
+            if ($post['jum_nilai'] > 60) {
+                $post['status_ppdb'] = 'lulus';
+            }else{
+                $post['status_ppdb'] = 'tidak lulus'; 
+            }
             $this->m_nilai->save($post);
         } elseif(isset($post['edit'])) {
+            if ($post['jum_nilai'] > 60) {
+                $post['status_ppdb'] = 'lulus';
+            }else{
+                $post['status_ppdb'] = 'tidak lulus'; 
+            }
             $this->m_nilai->edit($post);
         }
        if ($this->db->affected_rows() > 0) {
            $this->session->set_flashdata('sukses', ' Dimasukkan');
-           redirect('nilai/'.$this->uri->segment(2).'/'.$id, 'refresh');
+           redirect('halaman/ppdb/nilai/'.$this->uri->segment(4).'/'.$id, 'refresh');
        }else{
        echo validation_errors();
        }

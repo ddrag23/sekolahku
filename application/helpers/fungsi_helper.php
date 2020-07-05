@@ -3,14 +3,14 @@ function cekAlreadyLogin(){
     $ci =& get_instance();
     $sess = $ci->session->userdata('id');
     if ($sess) {
-        redirect('dashbaord');
+        redirect('halaman/dashboard');
     }
 }
 function cekNotLogin(){
     $ci =& get_instance();
     $sess = $ci->session->userdata('id');
     if (!$sess) {
-        redirect('auth');
+        redirect('halaman/login');
     }
 }
 function activeMenu($menu){
@@ -30,7 +30,7 @@ function cekAdmin()
     $CI->load->library('fungsi');
     if ($CI->fungsi->user_login()->level != 'admin' && $CI->fungsi->user_login()->level != 'guru'){
         $CI->session->userdata('error','Anda tidak memiliki akses utuk halaman ini');
-        redirect('ppdb','refresh');
+        redirect('halaman/ppdb','refresh');
     }
 }
 
@@ -39,7 +39,7 @@ function cekAlreadyInput()
     $ci =& get_instance();
     if ($ci->session->userdata('level') == 'user') {
      if (!empty($ci->session->userdata('id_ppdb'))&& !empty($ci->session->userdata('id_siswa'))) {
-       redirect('ppdb','refresh'); 
+       redirect('halaman/ppdb','refresh'); 
         }
     }
 }
@@ -60,6 +60,15 @@ function uploader($imageName, $locationImage, $typeImage, $sizeImage, $nameForm)
     $result = ['foto' => $result1];
     $dfile = $result['foto']['file_name'];
     return $dfile;
+}
+
+function cekRoutes($urlClass){
+    $ci =& get_instance();
+    $url = $urlClass;
+       if ($ci->uri->segment(1) == $url) {
+           show_error('Halaman tidak ditemukan', 500, 'Page Not Found');
+       }
+    return $url;
 }
 
 ?>

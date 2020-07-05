@@ -12,7 +12,7 @@ class Gelombang extends CI_Controller
 
     public function index()
     {
-        redirect('pengumuman','refresh');
+        redirect('halaman/ppdb/pengumuman','refresh');
     }
 
     public function add()
@@ -35,7 +35,7 @@ class Gelombang extends CI_Controller
             if($this->db->affected_rows() > 0){
                 $this->session->set_flashdata('sukses', ' ditambah');
             }
-            redirect('pengumuman','refresh');
+            redirect('halaman/ppdb/pengumuman','refresh');
         }
 
     }
@@ -44,6 +44,6 @@ class Gelombang extends CI_Controller
     {
         $this->m_gelombang->delete($id_gelombang);
         $this->session->set_flashdata('sukses', ' dihapus');
-        redirect('pengumuman','refresh');
+        redirect('halaman/ppdb/pengumuman','refresh');
     }
 }

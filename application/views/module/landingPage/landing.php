@@ -19,9 +19,20 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#gelombang">Gelombang</a>
-      <a class="nav-item nav-link" href="#persyaratan">Persyartan</a>
-      <a class="nav-item nav-link" href="<?=base_url('uploads/dokumen/pdf/').$query;?>" target="_blank">Pengumuman</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          PPDB
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#gelombang">Gelombang</a>
+          <a class="dropdown-item" href="#persyaratan">Persyaratan</a>
+          <a class="dropdown-item" href="#prestasi">Prestasi</a>
+          <a class="dropdown-item" href="<?=base_url('uploads/dokumen/pdf/').$query;?>" target="_blank">Pengumuman</a>
+          <div class="dropdown-divider"></div>
+        </div>
+      </li>
+      <a class="nav-item nav-link" href="<?=site_url('welcome/dataSiswa')?>" >Siswa</a>
+      <a class="nav-item nav-link" href="<?=site_url('welcome/alumni')?>">Alumni</a>
       <a class="nav-item btn btn-primary tombol" href="#follow">Ikuti Kami</a>
     </div>
   </div>
@@ -35,8 +46,8 @@
     <h1 class="display-4">MI HASYIM ASY'ARI </h1>
     <p class="lead">Untuk peserta didik baru bisa mendaftar dibawah ini atau jika sudah mempunyai akun bisa langsung klik tombol masuk </p>
     <div class="btn-group">
-        <a href="<?=site_url('auth');?>" class="btn btn-primary">Masuk</a>
-        <a href="<?=site_url('auth/register');?>" class="btn btn-success">Daftar</a>
+        <a href="<?=site_url('halaman/login');?>" class="btn btn-primary">Masuk</a>
+        <a href="<?=site_url('halaman/login/daftar');?>" class="btn btn-success">Daftar</a>
     </div>
   </div>
 </div>
@@ -105,7 +116,7 @@
     <!-- info syarat pendaftaran end-->
 
     <!--info Prestasi start-->
-    <div class="row info-prestasi">
+    <div id="prestasi" class="row info-prestasi">
         <div class="col-lg-6">
             <h3>Prestasi</h3>
             <table>
@@ -185,6 +196,7 @@
     <!--stiky start-->
     <div class="sticky-top">
         <a href="https://api.whatsapp.com/send?phone=6281553310908&text=Assalamualaikum%21%20Admin%20MI Hasyim Asy'ari." class="sticky" target="_blank">
+        <span>Hubungi Admin atau Panitia</span>
         <i class="fa fa-whatsapp my-float"></i>
         </a>
     </div>

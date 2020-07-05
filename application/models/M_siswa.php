@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_siswa extends CI_Model
 {
         // start datatables
-    var $column_order = array(null, 'foto', 'nis', 'nisn', 'nama_siswa', 'alamat_siswa', 'nama_kelas', 'status', 'tahun_ajaran'); //set column field database for datatable orderable
+    var $column_order = array(null, 'foto', 'nis', 'nisn', 'nama_siswa', 'alamat_siswa', 'nama_kelas', 'status', 'tahun_ajaran','status_ijazah','date_get_ijazah','link_doc_mutasi'); //set column field database for datatable orderable
     var $column_search = array('nisn', 'npsn', 'nis','nama_siswa','nama_kelas','alamat_siswa','status','tahun_ajaran'); //set column field database for datatable searchable
     var $order = array('id_siswa' => 'asc'); // default order
     //db get siswa aktif
@@ -51,7 +51,7 @@ class M_siswa extends CI_Model
     // end db get siswa aktif
         //db get siswa mutasi
     private function _get_datatables_query_mutasi() {
-        $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
+        $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp,link_doc_mutasi');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
@@ -93,7 +93,7 @@ class M_siswa extends CI_Model
     // end db get siswa mutasi
         //db get siswa alumni
     private function _get_datatables_query_alumni() {
-        $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
+        $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp,status_ijazah, date_get_ijazah');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
@@ -168,7 +168,32 @@ class M_siswa extends CI_Model
         $this->db->where('status', 'alumni');
         return $this->db->get('siswa');
     }
-  
+
+    public function getByUsersId()
+    {
+        $query = $this->db->query('SELECT DAY(date_created) as tanggal, COUNT(id_siswa) as jumlah_data FROM siswa WHERE users_id IS NOT NULL GROUP BY DAY(date_created) ORDER BY DAY(date_created) ASC LIMIT 10');
+        return $query;
+    }
+
+    public function searchAktif($keyword)
+    {
+        $this->db->where('status', 'aktif');
+        $this->db->like('nama_siswa', $keyword);
+        $this->db->or_like('gender_siswa', $keyword);
+        $this->db->or_like('tahun_ajaran', $keyword);
+        return $this->db->get('siswa')->result();
+    }
+
+    public function searchAlumni($keyword)
+    {
+        $this->db->where('status','alumni');
+        $this->db->like('nama_siswa', $keyword);
+        $this->db->or_like('gender_siswa', $keyword);
+        $this->db->or_like('tahun_ajaran', $keyword);
+        return $this->db->get('siswa')->result();
+    }
+
+
     public function add($post)
     {
         $created_by = $this->session->userdata('id');
@@ -269,6 +294,9 @@ class M_siswa extends CI_Model
             'tempat_lahir'      => $post['tempat_lahir'],
             'tanggal_lahir'     => $post['tanggal_lahir'],
             'status'            => $post['status'],
+            'link_doc_mutasi'   => !empty($post['link_doc_mutasi']) ? $post['link_doc_mutasi'] : null,
+            'status_ijazah'     => !empty($post['status_ijazah']) ? $post['status_ijazah'] : null,
+            'date_get_ijazah'   => !empty($post['date_get_ijazah']) ? $post['date_get_ijazah'] : null,
             'hobi'              => $post['hobi'],
             'cita'              => $post['cita'],
             'agama'             => $post['agama'],

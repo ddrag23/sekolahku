@@ -5,17 +5,47 @@ class Ppdb extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		cekNotLogin();
+    cekRoutes('ppdb');
 		$this->load->model(['m_ppdb','m_master','m_user','m_siswa','m_nilai', 'm_gelombang']);
 	}
 	public function index()
   {
-   
+
+    // rekap by tanggal {{
+    $dataPerhari = $this->m_ppdb->getByDate()->result();
+    sort($dataPerhari);
+    $rekap_tanggal = [];
+    $data = [];
+    foreach ($dataPerhari as $value) {
+    $rekap_tanggal[] = $value->tanggal;
+    $data[] = $value->jumlah_data; 
+    } 
+    // }}
+    //rekap daftar ulang {{
+    $siswa = $this->m_siswa->getByUsersId()->result();
+    $daftarUlang = [];
+    $total = [];
+    foreach ($siswa as $value) {
+           $daftarUlang[] = $value->tanggal;
+           $total[] = $value->jumlah_data;
+    }
+    //}}
+    /* echo json_encode($total);die(); */
 		if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
-		$this->load->view('template/main',[
-			"src" => "module/ppdb/listPpdb",
-			"page" => "PPDB",
-			"query" => $this->m_ppdb->get()->result()
-		]);
+		$this->load->view('module/ppdb/index',[
+        "query" => $this->m_ppdb->get()->result(),
+        "pendaftar" => $this->m_ppdb->get()->num_rows(),
+        'gelombang1' => $this->m_ppdb->getByGelombang1()->num_rows(),
+        'gelombang2' => $this->m_ppdb->getByGelombang2()->num_rows(),
+        'lulus' => $this->m_nilai->getLulus()->num_rows(),
+        'tidakLulus' => $this->m_nilai->getTidakLulus()->num_rows(),
+        'lunas' => $this->m_ppdb->getByLunas()->num_rows(),
+        'belumLunas' => $this->m_ppdb->getByBelumLunas()->num_rows(),
+        'rekap_tanggal' => json_encode($rekap_tanggal),
+        'dataPerhari' => json_encode($data),
+        'rekapDaftarUlang' => json_encode($daftarUlang),
+        'dataDaftarUlang' => json_encode($total)
+    ]);
 		}elseif ($this->session->userdata('level') == 'user') {
         $id = $this->session->userdata('id_ppdb');
         $id_siswa = $this->session->userdata('id_siswa');
@@ -158,25 +188,20 @@ class Ppdb extends CI_Controller {
     if ($this->db->affected_rows() > 0) {
       $this->session->set_flashdata('sukses', 'Data berhasil dimasukkan');
     }
-    redirect('ppdb', 'refresh');
+    redirect('halaman/ppdb/daftar-ppdb', 'refresh');
 
   }
 
-  /**
-   * undocumented function
-   *
-   * @return void
-   */
   public function printPdf($id_ppdb)
   {
       $data['row'] = $this->m_ppdb->get($id_ppdb)->row();
       $html = $this->load->view('module/dokumen/formRegPpdb',$data,true);
-      $this->fungsi->pdfPrint($html,'coba','A4','potrait');
+      $this->fungsi->pdfPrint($html,'Form Ppdb','A4','potrait');
   }
   public function printPdfSiswa($id_siswa){
       $data['row'] = $this->m_siswa->get($id_siswa)->row();
       $html = $this->load->view('module/dokumen/formreg',$data,true);
-      $this->fungsi->pdfPrint($html,'siswa',array(0,0,609.4488,935.433),'potrait');
+      $this->fungsi->pdfPrint($html,'Form daftar ulang',array(0,0,609.4488,935.433),'potrait');
   }
 
     public function validasi()

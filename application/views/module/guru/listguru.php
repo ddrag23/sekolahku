@@ -2,7 +2,7 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <a class="btn btn-primary" href="<?= site_url('master/addGuru'); ?>"><i class="fa fa-plus"></i> Tambah Guru</a>
+          <a class="btn btn-primary" href="<?= site_url('halaman/guru/tambah'); ?>"><i class="fa fa-plus"></i> Tambah Guru</a>
             <ul class="nav navbar-right panel_toolbox">
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -36,9 +36,9 @@
             <td><?= $key->gender_guru;?></td>
             <td><?= $key->no_hp_guru;?></td>
              <td wid_siswath="160px" class="text-center">
-              <a href="<?=site_url('master/editGuru/'.$key->id_guru); ?>"
+              <a href="<?=site_url('halaman/guru/ubah/'.$key->id_guru); ?>"
               data-tonggle="tooltip" data-placement="left" title="Edit" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-              <a href="<?=site_url('master/delGuru/'.$key->id_guru); ?>"
+              <a href="<?=site_url('halaman/guru/hapus/'.$key->id_guru); ?>"
               data-tonggle="tooltip" data-placement="left" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
@@ -51,3 +51,11 @@
     </div>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('#datatable').DataTable({
+    "responsive" : true
+})
+})
+
+</script>

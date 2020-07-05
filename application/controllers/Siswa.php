@@ -2,8 +2,6 @@
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Reader\Csv;
-use PhpOffice\PhpSpreadsheet\Reader\Xml;
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
@@ -14,7 +12,8 @@ class Siswa extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		cekNotLogin();
+    cekNotLogin();
+    cekRoutes('siswa');
 		$this->load->model(['m_siswa','m_master','m_user']);
 	}
 	public function index()
@@ -52,7 +51,7 @@ class Siswa extends CI_Controller
  */
 public function detail($id_siswa)
 {
-        cekAdmin();
+   cekAdmin();
   $query = $this->m_siswa->get($id_siswa);
   if ($query->num_rows() > 0) {
      $this->load->view('template/main', [
@@ -79,10 +78,10 @@ public function detail($id_siswa)
             $row[] = $siswa->tahun_ajaran;
             
             // add html for action
-            $row[] = '<a href="'.site_url('siswa/printpdf/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
-            <a href="'.site_url('siswa/detail/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Edit Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> </a>
-              <a href="'.site_url('siswa/edit/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Detail Siswa" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> </a>
-                   <a href="'.site_url('siswa/delete/'.$siswa->id_siswa).'" onclick="return confirm(\'Yakin hapus data?\')" data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> </a>'
+            $row[] = '<a href="'.site_url('halaman/siswa/print/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
+            <a href="'.site_url('halaman/siswa/rincian/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Rincian Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> </a>
+              <a href="'.site_url('halaman/siswa/ubah/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Ubah Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                   <a href="'.site_url('halaman/siswa/hapus/'.$siswa->id_siswa).'" onclick="return confirm(\'Yakin hapus data?\')" data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> </a>'
                     ;
             $data[] = $row;
         }
@@ -108,13 +107,14 @@ function get_ajax_mutasi() {
             $row[] = $siswa->no_hp;
             $row[] = $siswa->nama_kelas;
             $row[] = $siswa->status;
+            $row[] = $siswa->link_doc_mutasi;
             $row[] = $siswa->tahun_ajaran;
             
             // add html for action
-            $row[] = '<a href="'.site_url('siswa/printpdf/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
-            <a href="'.site_url('siswa/detail/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Edit Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> </a>
-              <a href="'.site_url('siswa/edit/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Detail Siswa" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> </a>
-                   <a href="'.site_url('siswa/delete/'.$siswa->id_siswa).'" onclick="return confirm(\'Yakin hapus data?\')" data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> </a>'
+            $row[] = '<a href="'.site_url('halaman/siswa/print/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
+            <a href="'.site_url('halaman/siswa/rincian/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Rincian Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> </a>
+              <a href="'.site_url('halaman/siswa/ubah/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Ubah Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                   <a href="'.site_url('halaman/siswa/hapus/'.$siswa->id_siswa).'" onclick="return confirm(\'Yakin hapus data?\')" data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> </a>'
                     ;
             $data[] = $row;
         }
@@ -136,17 +136,17 @@ function get_ajax_alumni() {
             $row = array();
             $row[] = $no.".";
             $row[] = $siswa->foto != null ? '<img src="'.base_url('uploads/image/'.$siswa->foto).'" class="img" style="width:100px">' : null;
-            $row[] = $siswa->nisn.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa;
-            $row[] = $siswa->no_hp;
-            $row[] = $siswa->nama_kelas;
+            $row[] = $siswa->nisn.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa.'<br>'.$siswa->no_hp.'<br>'.$siswa->nama_kelas;
             $row[] = $siswa->status;
             $row[] = $siswa->tahun_ajaran;
+            $row[] = $siswa->status_ijazah;
+            $row[] = $siswa->date_get_ijazah;
             
             // add html for action
-            $row[] = '<a href="'.site_url('siswa/printpdf/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
-            <a href="'.site_url('siswa/detail/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Edit Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> </a>
-              <a href="'.site_url('siswa/edit/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Detail Siswa" class="btn btn-info btn-xs"><i class="fa fa-edit"></i> </a>
-                   <a href="'.site_url('siswa/delete/'.$siswa->id_siswa).'" onclick="return confirm(\'Yakin hapus data?\')" data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> </a>'
+            $row[] = '<a href="'.site_url('halaman/siswa/print/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
+            <a href="'.site_url('halaman/siswa/rincian/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Rincian Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> </a>
+              <a href="'.site_url('halaman/siswa/ubah/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Ubah Data Siswa" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                   <a href="'.site_url('halaman/siswa/hapus/'.$siswa->id_siswa).'" onclick="return confirm(\'Yakin hapus data?\')" data-toggle="tooltip"  data-placement="left" title="Hapus" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> </a>'
                     ;
             $data[] = $row;
         }
@@ -183,7 +183,7 @@ public function add()
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('sukses', 'ditambah');
             }
-            redirect('siswa','refresh');
+            redirect('halaman/siswa/','refresh');
         }	
     }
     public function edit($id_siswa)
@@ -227,11 +227,11 @@ public function add()
                       if ($this->db->affected_rows() > 0) {
                         $this->session->set_flashdata('sukses', 'diubah');
                       }
-                        redirect('siswa', 'refresh');
+                        redirect('halaman/siswa', 'refresh');
                     }else{
                       $error = $this->upload->display_errors();
                       $this->session->set_flashdata('gagal', $error);
-                      redirect('siswa/edit/'.$id_siswa, 'refresh');
+                      redirect('halaman/siswa/ubah/'.$id_siswa, 'refresh');
                     }
                   } else { // jika input image tidak ada isinya
                     $post['foto'] = null;
@@ -239,19 +239,46 @@ public function add()
                     if ($this->db->affected_rows() > 0) {
                       $this->session->set_flashdata('sukses', 'diubah');
                     }
-                    redirect('siswa', 'refresh');
+                    redirect('halaman/siswa', 'refresh');
                   }
                 	$this->session->set_flashdata('gagal', 'data gagal ditambkan');
-                	redirect('siswa/edit/'.$id_siswa,'refresh');
+                	redirect('halaman/siswa/ubah/'.$id_siswa,'refresh');
                 }
     }
 
+    public function editClass()
+    {
+      $post = $this->input->post(null, true);
+      $this->form_validation->set_rules('id_siswa', 'Nama Siswa', 'required');
+      $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+      $this->form_validation->set_error_delimiters('','');
+      $this->form_validation->set_message('required','{field} Harus di isi');
+      if ($this->form_validation->run() == false) {
+        $this->load->view('template/main',[
+            'src' => 'module/siswa/changeKelas',
+            'page' => 'Edit Kelas',
+            'kelas' => $this->m_master->getKelas()->result(),
+            'siswa' => $this->m_siswa->getAktif()->result()
+        ]);    
+      }else{
+        $modifiedBy = $this->session->userdata('id');
+        $modified_data = date('Y-m-d H:i:s');
+        $params = [
+            'kelas_id' => $post['kelas_id'],
+            'modified_by' => $modifiedBy,
+            'modified_date' => $modified_data
+        ];
+        $this->db->where('id_siswa', $post['id_siswa'])->update('siswa', $params);
+        $this->session->set_flashdata('sukses', ' diubah');
+        redirect('halaman/siswa/ganti-kelas', 'refresh');
+      }
+    }
     public function delete($id_siswa)
     {
         cekAdmin();
         $this->m_siswa->del($id_siswa);
         $this->session->set_flashdata('sukses','dihapus');
-        redirect('siswa','refresh');
+        redirect('halaman/siswa','refresh');
     }
 
   public function printpdf($id_siswa) 
@@ -259,7 +286,7 @@ public function add()
       cekAdmin();
       $data['row'] = $this->m_siswa->get($id_siswa)->row();
       $html = $this->load->view('module/dokumen/formreg',$data,true);
-      $this->fungsi->pdfPrint($html,'coba',array(0,0,609.4488,935.433),'potrait');
+      $this->fungsi->pdfPrint($html,'Form daftar ulang',array(0,0,609.4488,935.433),'potrait');
   }
   
     public function export(){
@@ -502,7 +529,7 @@ public function add()
         }
         unlink($inputFileName);
         $this->session->set_flashdata('sukses', ' Diimport');
-        redirect('siswa', 'refresh');
+        redirect('halaman/siswa', 'refresh');
     }
 
     public function validasi()
@@ -516,7 +543,6 @@ public function add()
         }
         if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru' && $this->router->fetch_method() == 'edit' ) {
         $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
-        $this->form_validation->set_rules('nisn', 'NISN', 'required|numeric');
         $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
         $this->form_validation->set_rules('status', 'Status Siswa', 'required');
         }

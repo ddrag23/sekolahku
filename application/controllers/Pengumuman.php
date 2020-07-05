@@ -7,6 +7,7 @@ class Pengumuman extends CI_Controller
         parent::__construct();
         cekNotLogin();
         cekAdmin();
+        cekRoutes('pengumuman');
         $this->load->model(['m_gelombang', 'm_pengumuman']);
     }
 
@@ -14,7 +15,7 @@ class Pengumuman extends CI_Controller
     {
         $this->load->view('template/main', [
          'page' => 'Pengumuman',
-         'src' => 'module/ppdb/index',
+         'src' => 'module/pengumuman/index',
          'gelombang' => $this->m_gelombang->get()->result(),
          'pengumuman' => $this->m_pengumuman->get()->result() 
         ]);
@@ -46,11 +47,11 @@ class Pengumuman extends CI_Controller
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('sukses', ' dimasukkan');
                 }
-                redirect('pengumuman','refresh');
+                redirect('halaman/ppdb/pengumuman','refresh');
             }else{
                 $error = $this->upload->display_errors();
                 $this->session->set_flashdata('error', $error);
-                redirect('pengumuman');   
+                redirect('halaman/ppdb/pengumuman/tambah');   
             }
         }
     }
@@ -59,6 +60,6 @@ class Pengumuman extends CI_Controller
     {
         $this->m_pengumuman->delete($id_pengumuman);
         $this->session->set_flashdata('sukses', ' dihapus');
-        redirect('pengumuman','refresh');
+        redirect('halaman/ppdb/pengumuman','refresh');
     }
 }

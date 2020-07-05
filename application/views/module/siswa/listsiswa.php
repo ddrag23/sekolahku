@@ -2,18 +2,19 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-            <a class="btn btn-primary" href="<?= base_url('siswa/add');?>"><i class="fa fa-plus"></i> Tambah Siswa</a>
+            <a class="btn btn-primary" href="<?= base_url('halaman/siswa/tambah');?>"><i class="fa fa-plus"></i> Tambah Siswa</a>
+            <a class="btn btn-primary" href="<?= base_url('halaman/siswa/ganti-kelas');?>"><i class="fa fa-edit"></i> Ganti Kelas Siswa</a>
             <a class="btn btn-primary" href="<?=base_url('uploads/dokumen/template-import.xlsx');?>"><i class="fa fa-download"></i> Download Format</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" >Import Data Siswa</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="fa fa-arrow-down"></i> Import Data Siswa</button>
             <ul class="nav navbar-right panel_toolbox">
-            <li><a class="text-success" href="<?= base_url('siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a></li>
+            <li><a class="text-success" href="<?= base_url('halaman/siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
             <div class="x_content">
             <!-- content starts here -->
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
-      <table id="datatable" class="table table-striped table-bordered" style="width:100%"> 
+      <table id="datatable" class="table table-striped table-bordered table-responsive " style="width:100%"> 
         <thead>
           <tr>
             <th>No</th>
@@ -47,7 +48,7 @@
                         </div>
                         <div class="modal-body">
                           <h4 style="margin-bottom:20px;">Masukkan File</h4>
-                       <?= form_open_multipart('siswa/import');?>
+                       <?= form_open_multipart('halaman/siswa/import');?>
                         <input type="file" name="import" class="form-control">
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -62,11 +63,22 @@
   $(document).ready(function() {
     $('#datatable').DataTable({
       "processing" : true,
+      "responsive" : true,
       "serverSide" : true,
       "ajax" : {
-        "url" : "<?= site_url('siswa/get_ajax_aktif') ;?>",
+        "url" : "<?= site_url('halaman/siswa/data-aktif') ;?>",
         "type" : "POST"
-      } 
+         },
+         "columnDefs" :[
+        {
+            "targets":[3, 4, 5, 6, 7],
+            "className" : 'text-center'
+        },
+        {
+            "targets" : [0, 1, 7, -1],
+            "orderable" : false
+        }
+      ]
     })
   })
 </script>

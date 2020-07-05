@@ -37,6 +37,7 @@
   $(document).ready(function() {
     $('#datatable').DataTable({
       "processing" : true,
+      "responsive" : true,
       "serverSide" : true,
       "ajax" : {
         "url" : "<?= site_url('user/get_ajax_user') ;?>",
