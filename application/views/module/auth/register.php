@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>MI Hasyim Asyari | <?= $this->uri->segment(3); ?> </title>
 
     <!-- Bootstrap -->
     <link href="<?= base_url()?>assets/template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,6 +40,10 @@
               <div>
                 <input type="password" class="form-control" placeholder="Konfirmasi Password" name="passconf" value="<?=set_value('passconf');?>" autocomplete="off"/>
                 <small class="text-danger"><?= form_error('passconf'); ?></small>
+              </div>
+              <div>
+              <input type="email" class="form-control" placeholder="Email ( tidak wajib di isi )" name="email" value="<?= set_value('email');?>"/>
+                <small class="text-danger"><?= form_error('email'); ?></small>
               </div>
               <div>
               <input type="number" class="form-control" placeholder="No Telepon" name="notelp" value="<?= set_value('notelp');?>"/>

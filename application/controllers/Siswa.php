@@ -71,7 +71,7 @@ public function detail($id_siswa)
             $row = array();
             $row[] = $no.".";
             $row[] = $siswa->foto != null ? '<img src="'.base_url('uploads/image/'.$siswa->foto).'" class="img" style="width:100px">' : null;
-            $row[] = $siswa->nisn.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa;
+            $row[] = $siswa->nis.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa;
             $row[] = $siswa->no_hp;
             $row[] = $siswa->nama_kelas;
             $row[] = $siswa->status;
@@ -103,7 +103,7 @@ function get_ajax_mutasi() {
             $row = array();
             $row[] = $no.".";
             $row[] = $siswa->foto != null ? '<img src="'.base_url('uploads/image/'.$siswa->foto).'" class="img" style="width:100px">' : null;
-            $row[] = $siswa->nisn.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa;
+            $row[] = $siswa->nis.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa;
             $row[] = $siswa->no_hp;
             $row[] = $siswa->nama_kelas;
             $row[] = $siswa->status;
@@ -136,7 +136,7 @@ function get_ajax_alumni() {
             $row = array();
             $row[] = $no.".";
             $row[] = $siswa->foto != null ? '<img src="'.base_url('uploads/image/'.$siswa->foto).'" class="img" style="width:100px">' : null;
-            $row[] = $siswa->nisn.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa.'<br>'.$siswa->no_hp.'<br>'.$siswa->nama_kelas;
+            $row[] = $siswa->nis.'<br>'.$siswa->nama_siswa.'<br>'.$siswa->gender_siswa.'<br>'.$siswa->alamat_siswa.'<br>'.$siswa->no_hp.'<br>'.$siswa->nama_kelas;
             $row[] = $siswa->status;
             $row[] = $siswa->tahun_ajaran;
             $row[] = $siswa->status_ijazah;

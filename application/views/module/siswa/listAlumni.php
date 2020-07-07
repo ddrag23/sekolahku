@@ -18,7 +18,7 @@
           <tr>
             <th>No</th>
             <th>Foto</th>
-            <th>Nisn / Nama Siswa</th>
+            <th>Nis / Nama Siswa</th>
             <th>Status Siswa</th>
             <th>Tahun Ajaran</th>
             <th>Status Ijazah</th>

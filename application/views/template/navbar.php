@@ -83,10 +83,9 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-users"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                      <ul class="nav child_menu">
-                     <li><a href="<?= site_url('user');?>">Level Admin</a>
-                     <li><a href="<?= site_url('user/listPanitia');?>">Level Panitia</a>
-                     <li><a href="<?= site_url('user/listUser');?>">Level User</a>
-                        </li>
+                     <li><a href="<?= site_url('halaman/pengguna/admin');?>">Level Admin</a></li>
+                     <li><a href="<?= site_url('halaman/pengguna/panitia');?>">Level Panitia</a></li>
+                     <li><a href="<?= site_url('halaman/pengguna/siswa');?>">Level User</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -121,7 +120,7 @@
                     <img src="<?= base_url(); ?>assets/template/production/images/user.png" alt=""><?= $this->fungsi->user_login()->username; ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="<?= site_url('profile');?>"> Profile</a>
+      <!--               <a class="dropdown-item"  href="<?= site_url('profile');?>"> Profile</a> -->
                     <a class="dropdown-item"  href="<?= site_url('halaman/login/keluar'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>

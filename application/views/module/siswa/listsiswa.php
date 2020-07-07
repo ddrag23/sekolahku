@@ -19,7 +19,7 @@
           <tr>
             <th>No</th>
             <th>Foto</th>
-            <th>Nisn / Nama Siswa</th>
+            <th>Nis / Nama Siswa</th>
             <th>No Telepon</th>
             <th>Kelas</th>
             <th>Status Siswa</th>

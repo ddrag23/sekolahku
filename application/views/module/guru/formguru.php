@@ -15,21 +15,21 @@
     <?php if ($this->router->fetch_method() == 'editGuru'): ?>
       <input type="hidden" name="id_guru" value="<?php echo $query->id_guru; ?>">
     <?php endif ?>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIP <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="text" id="first-name" name="nip" value="<?= $query->nip; ?>" class="form-control ">
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Guru <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="text" id="last-name" name="nama_guru" value="<?php echo $query->nama_guru; ?>" class="form-control">
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin <span class="required">*</span></label>
         <?php $gender = $this->input->post('gender_guru') ? $this->input->post('gender_guru') : $query->gender_guru; ?>
         <div class="col-md-6 col-sm-6 ">
@@ -43,13 +43,13 @@
           </div>
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">No Telepon <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 ">
           <input id="middle-name" class="form-control" type="text" name="no_hp_guru" value="<?= $query->no_hp_guru; ?>">
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align">Alamat <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="ln_solid"></div>
-      <div class="item form-group">
+      <div class="row form-group">
         <div class="col-md-6 col-sm-6 offset-md-3">
           <button class="btn btn-primary" type="button">Cancel</button>
           <button class="btn btn-primary" type="reset">Reset</button>

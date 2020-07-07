@@ -61,6 +61,7 @@ class Ppdb extends CI_Controller {
 
   public function listPpdb()
   {
+    cekAdmin();
     $this->load->view('template/main', [
         "src" => "module/ppdb/listPpdb",
         "page" => "Data Peserta Didik Baru",
@@ -80,9 +81,9 @@ class Ppdb extends CI_Controller {
             $row[] = $ppdb->sesi_gelombang;
             $row[] = $ppdb->status_pembayaran;
             // add html for action
-            $row[] = '<a href="'.site_url('ppdb/printPdf/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
-                   <a href="'.site_url('ppdb/edit/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
-                    <a href="'.site_url('ppdb/delete/'.$ppdb->id_ppdb).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
+            $row[] = '<a href="'.site_url('halaman/ppdb/print-form-ppdb/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Print Pdf" class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
+                   <a href="'.site_url('halaman/ppdb/ubah/'.$ppdb->id_ppdb).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                    <a href="'.site_url('halaman/ppdb/hapus/'.$ppdb->id_ppdb).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
             $data[] = $row;
         }
         $output = array(
@@ -160,7 +161,7 @@ class Ppdb extends CI_Controller {
   {
     $this->m_ppdb->delete($id_ppdb);
     $this->session->set_flashdata('sukses', 'Data berhasil dihapus');
-    redirect('ppdb', 'refresh');
+    redirect('halaman/ppdb', 'refresh');
   }
   
   public function proses()

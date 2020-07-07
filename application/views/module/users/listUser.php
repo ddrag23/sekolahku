@@ -2,7 +2,7 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-             <a href="<?= site_url('user/add'); ?>" class="btn btn-primary" ><i class="fa fa-plus"></i> Tambah Akun</a>
+             <a href="<?= site_url('halaman/pengguna/tambah'); ?>" class="btn btn-primary" ><i class="fa fa-plus"></i> Tambah Akun</a>
             <ul class="nav navbar-right panel_toolbox">
              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
              <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -40,7 +40,7 @@
       "responsive" : true,
       "serverSide" : true,
       "ajax" : {
-        "url" : "<?= site_url('user/get_ajax_user') ;?>",
+        "url" : "<?= site_url('halaman/pengguna/data-user') ;?>",
         "type" : "POST"
       } 
     })

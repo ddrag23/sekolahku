@@ -1,6 +1,17 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="x_panel">
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+            <li><a  href="<?= site_url('halaman/pengguna/admin'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
+             </ul>
+             <div class="clearfix"></div>
+             </div>
+            <div class="x_content">
+            <!-- content starts here -->
     <form action="" method="post">
     <div id="error" data-error="<?= validation_errors();?>"></div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="username">Username <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
@@ -8,28 +19,28 @@
           <input type="text" id="username" name="username" value="<?= $query->username; ?>" class="form-control " autofocus>
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Password <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="password" id="password" name="password" value="" class="form-control">
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Konfirmasi Password <br> <small>(Harus sama dengan password diatas)</small> <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="password" id="password" name="passconf" value="" class="form-control">
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="text" id="email" name="email" value="<?= $query->email; ?>" class="form-control" autocomplete="off">
         </div>
       </div>
-      <div class="item form-group">
+      <div class="row form-group">
         <label class="col-form-label col-md-3 col-sm-3 label-align" for="notelp">No Telepon <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
@@ -73,3 +84,7 @@
         </div>
       </div>
     </form>
+      </div>
+      </div>
+    </div>
+ </div>

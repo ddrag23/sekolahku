@@ -89,7 +89,7 @@ class M_ppdb extends CI_Model
 
     public function getByDate()
     {
-        $query = $this->db->query('SELECT DAY(date_created) as tanggal, COUNT(id_ppdb) as jumlah_data FROM ppdb GROUP BY DAY(date_created) ORDER BY DAY(date_created) DESC LIMIT 10');
+        $query = $this->db->query('SELECT DAY(date_created) as tanggal, COUNT(id_ppdb) as jumlah_data FROM ppdb GROUP BY DAY(date_created) ORDER BY DAY(date_created) LIMIT 10');
         return $query;
     }
 

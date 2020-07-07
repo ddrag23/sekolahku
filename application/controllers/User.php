@@ -6,6 +6,7 @@ class User extends CI_Controller {
         parent::__construct();
 		cekNotLogin();
         cekAdmin();
+        cekRoutes('user');
 		$this->load->model('m_user');
     }
 
@@ -41,8 +42,8 @@ class User extends CI_Controller {
             $row[] = $user->level;
             $row[] = $user->is_active;
             // add html for action
-            $row[] = '<a href="'.site_url('user/edit/'.$user->id).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
-                    <a href="'.site_url('user/delete/'.$user->id).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
+            $row[] = '<a href="'.site_url('halaman/pengguna/ubah/'.$user->id).'" data-toggle="tooltip" data-placement="left" title="Edit Data"  class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
+                    <a href="'.site_url('halaman/pengguna/hapus/'.$user->id).'" onclick="return confirm(\'Yakin hapus data?\')"  data-toggle="tooltip" data-placement="left" title="Hapus Data"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> </a>';
             $data[] = $row;
         }
         $output = array(
@@ -136,7 +137,7 @@ class User extends CI_Controller {
     {
         $this->m_user->del($id);
         $this->session->set_flashdata('hapus','Data berhasil dihapus');
-        redirect('user','refresh');
+        redirect('halaman/pengguna/admin','refresh');
     }
     public function username_check()
     {
@@ -160,6 +161,6 @@ class User extends CI_Controller {
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('sukses', ' ditambahkan');
         } 
-        redirect('user','refresh');
+        redirect('halaman/pengguna/admin','refresh');
     }
 }

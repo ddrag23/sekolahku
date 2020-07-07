@@ -202,7 +202,7 @@ class M_siswa extends CI_Model
             'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
             'foto'              => $post['foto'],
             'npsn'              => $post['npsn'],
-            'nisn'              => $post['nisn'],
+            'nisn'              => !empty($post['nisn']) ? $post['nisn'] : null,
             'nik_siswa'         => $post['nik_siswa'],
             'nama_siswa'        => $post['nama_siswa'],
             'alamat_siswa'      => $post['alamat_siswa'],

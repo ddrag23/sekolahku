@@ -14,14 +14,14 @@
 	<?php if ($this->router->fetch_method() == 'edit'): ?>
 	<input type="hidden" name="id_kelas" value="<?= $query->id_kelas; ?>">
 	<?php endif ?>
-	<div class="item form-group">
+	<div class="row form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Kelas <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 ">
       <input type="text" id="first-name" name="nama_kelas" value="<?= $query->nama_kelas; ?>" class="form-control ">
     </div>
   </div>
-  <div class="item form-group">
+  <div class="row form-group">
     <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Wali Kelas <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 ">
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="ln_solid"></div>
-  <div class="item form-group">
+  <div class="row form-group">
     <div class="col-md-6 col-sm-6 offset-md-3">
       <button class="btn btn-primary" type="button">Cancel</button>
       <button type="submit" name="<?= $submit; ?>" class="btn btn-success">Simpan</button>

@@ -2,7 +2,6 @@
     <div class="col-md-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><?= $page ?></h2>
             <ul class="nav navbar-right panel_toolbox">
             <li><a  href="<?= site_url('halaman/ppdb/nilai'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
@@ -14,7 +13,7 @@
         <div id="error" data-error="<?=validation_errors();?>"></div>
         <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
         <input type="hidden" name="id_nilai" value="<?= $query->id_nilai; ?>">
-        	<div class="item form-group">
+        	<div class="row form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_ppdb">Nama Calon Peserta Didik Baru <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -26,7 +25,7 @@
                 </select>
             </div>
           </div>
-        		<div class="item form-group">
+        		<div class="row form-group">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="jum_nilai">Nilai Peserta <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -34,7 +33,7 @@
             </div>
           </div>
           <div class="ln_solid"></div>
-          <div class="item form-group">
+          <div class="row form-group">
             <div class="col-md-6 col-sm-6 offset-md-3">
               <button class="btn btn-primary" type="button">Cancel</button>
               <button class="btn btn-primary" type="reset">Reset</button>

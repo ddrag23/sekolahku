@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
             <ul class="nav navbar-right panel_toolbox">
-            <li><a  href="<?= site_url('siswa'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
+            <li><a  href="<?= site_url('halaman/siswa'); ?>" class="text-primary"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -49,7 +49,7 @@
           <div id="error" data-error="<?= validation_errors();?>"></div>
           <input type="hidden" name="id_siswa" value="<?= $query->id_siswa; ?>">
           <input type="hidden" name="id" value="<?= $query->id; ?>">
-           <div class="item form-group">
+           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Upload foto <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -61,7 +61,7 @@
               <input type="file" id="gambar" name="foto" class="form-control" value="">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NPSN TK <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -69,14 +69,14 @@
             </div>
           </div>
         <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
-            <div class="item form-group">
+            <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NISN <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nisn" class="form-control" value="<?= $this->input->post('nisn') ?? $query->nisn; ?>">
             </div>
           </div>
-            <div class="item form-group">
+            <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIS <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -84,21 +84,21 @@
             </div>
           </div>
        <?php endif; ?>
-              <div class="item form-group">
+              <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= $this->input->post('nik_siswa') ?? $query->nik_siswa; ?>">
             </div>
           </div>
-           <div class="item form-group">
+           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nama_siswa" class="form-control" value="<?= $this->input->post('nama_siswa') ?? $query->nama_siswa; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">TTL <span class="required">*</span>
             </label>
             <div class="col-md-2 col-sm-2 col-xs-12 ">
@@ -108,14 +108,14 @@
                   <input type='text' class="form-control" name="tanggal_lahir" value="<?= $this->input->post('tanggal_lahir') ?? $query->tanggal_lahir; ?>" />
           </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="umur">Umur <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="umur" name="umur" class="form-control" value="<?= $this->input->post('umur') ?? $query->umur; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">BB/TB/Gol.Darah <span class="required">*</span>
             </label>
             <div class="col-md-2 col-sm-2 col-xs-12 ">
@@ -128,21 +128,21 @@
               <input type="text" id="last-name" name="gol_darah" placeholder="Golongan Darah"  class="form-control" value="<?= $this->input->post('gol_darah') ?? $query->gol_darah; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Penyakit Serius <br><small>(Tidak wajib di isi)</small>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="penyakit" class="form-control" value="<?= $this->input->post('penyakit') ?? $query->penyakit; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Agama
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="agama" class="form-control" value="<?= $this->input->post('agama') ?? $query->agama ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="ex-select2 form-control" name="kelas_id">
@@ -152,7 +152,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
               <?php $gender = $this->input->post('gender_siswa') ? $this->input->post('gender_siswa') : $query->gender_siswa; ?>
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
             <div class="col-md-6 col-sm-6 ">
@@ -166,7 +166,7 @@
               </div>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Alamat <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -174,7 +174,7 @@
               $this->input->post('alamat_siswa') ?? $query->alamat_siswa; ?> </textarea>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Dusun <span class="required">*</span>
             </label>
             <div class="col-md-2 col-sm-2 col-xs-12 ">
@@ -190,7 +190,7 @@
               $this->input->post('rw') ?? $query->rw; ?>" placeholder="RW">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Desa <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12 ">
@@ -198,7 +198,7 @@
               $this->input->post('desa')?? $query->desa; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align"
             for="first-name">Kecamatan <span class="required">*</span>
             </label>
@@ -211,7 +211,7 @@
               $this->input->post('kodepos') ?? $query->kodepos; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align"
             for="first-name">Kabupaten <span class="required">*</span>
             </label>
@@ -220,7 +220,7 @@
               $this->input->post('kabupaten') ?? $query->kabupaten; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align"
             for="first-name">Provinsi<span class="required">*</span>
             </label>
@@ -229,7 +229,7 @@
             $this->input->post('provinsi') ?? $query->provinsi; ?>" >
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Status Siswa <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -244,7 +244,7 @@
             </div>
           </div>
           <?php if ($query->status == 'mutasi'): ?>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Link Dokumen Mutasi <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -253,7 +253,7 @@
           </div>
           <?php endif ?>
           <?php if ($query->status == 'alumni'): ?>  
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Status Ijazah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -265,7 +265,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal Pengambilan Ijazah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -273,14 +273,14 @@
             </div>
           </div>
           <?php endif ?>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Saudara <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" class="form-control" name="jumlah_saudara" value="<?= $this->input->post('jumlah_saudara') ?? $query->jumlah_saudara; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Asal Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -292,21 +292,21 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="asal_sekolah">Nama asal Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= $this->input->post('nama_sekolah_asal') ?? $query->nama_sekolah_asal; ?>">
             </div>
           </div>
-         <div class="item form-group">
+         <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="hobi">Hobi <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="hobi" name="hobi" class="form-control" value="<?= $this->input->post('hobi') ?? $query->hobi; ?>">
             </div>
           </div>
-         <div class="item form-group">
+         <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="cita">Cita-Cita <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -314,7 +314,7 @@
             </div>
           </div>
 
-           <div class="item form-group">
+           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Keadaan Status Siswa <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -330,35 +330,35 @@
           </div>
       </div>
       <div id="step-2" style="height:450px;">
-        <div class="item form-group">
+        <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Ayah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="first-name" name="nama_ayah" class="form-control" value="<?= $this->input->post('nama_ayah') ?? $query->nama_ayah; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_ibu">Nama Ibu <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="nama_ibu" name="nama_ibu" class="form-control" value="<?= $this->input->post('nama_ibu') ?? $query->nama_ibu; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Ktp Ayah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="ktp_ayah" name="ktp_ayah" class="form-control" value="<?= $this->input->post('ktp_ayah') ?? $query->ktp_ayah; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ibu">Ktp Ibu <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" id="ktp_ibu" name="ktp_ibu" class="form-control" value="<?= $this->input->post('ktp_ibu') ?? $query->ktp_ibu; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Ayah <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <?php $pendidikan = $this->input->post('pendidikan_ayah') ? $this->input->post('pendidikan_ayah') : $query->pendidikan_ayah; ?>
@@ -378,7 +378,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Ibu <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <?php $pendidikan = $this->input->post('pendidikan_ibu') ? $this->input->post('pendidikan_ibu') : $query->pendidikan_ibu; ?>
@@ -398,7 +398,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Pekerjaan Ayah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -412,7 +412,7 @@
                 <option value="PNS" <?= $jobAyah == 'PNS' ? 'selected' : null; ?>>PNS</option>
                 <option value="karyawan swasta" <?= $jobAyah == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
                 <option value="pedagang kecil" <?= $jobAyah == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
-                <option value="pedangan besar" <?= $jobAyah == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="pedagang besar" <?= $jobAyah == 'pedagang besar' ? 'selected' : null; ?>>Pedagang besar</option>
                 <option value="wiraswasta" <?= $jobAyah == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
                 <option value="wirausaha" <?= $jobAyah == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
                 <option value="buruh" <?= $jobAyah == 'buruh' ? 'selected' : null; ?>>Buruh</option>
@@ -421,7 +421,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_ibu">Pekerjaan Ibu <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -444,7 +444,7 @@
               </select>
             </div>
           </div>
-           <div class="item form-group">
+           <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ibu<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -457,7 +457,7 @@
               </select>
             </div>
           </div>
-            <div class="item form-group">
+            <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ibu<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -471,7 +471,7 @@
             </div>
           </div>
 
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">Nomor Telepon<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -480,14 +480,14 @@
           </div>
       </div>
       <div id="step-3" style="height:450px;">
-       <div class="item form-group">
+       <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Waktu Tempuh Ke Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" class="form-control" name="waktu" value="<?= $this->input->post('waktu') ?? $query->waktu; ?>">
             </div>
           </div>
-       <div class="item form-group">
+       <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Jarak Tempuh Ke Sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -501,7 +501,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_ibu">Cara Ke sekolah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -521,7 +521,7 @@
               </select>
           </div>
         </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Tinggal <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -535,7 +535,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Mandi <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -549,7 +549,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ibu">Air mandi <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -563,7 +563,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Air Minum <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <select class="form-control" name="air_minum">
@@ -578,7 +578,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bangunan Rumah <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <?php $bangunan = $this->input->post('bangunan') ? $this->input->post('bangunan') : $query->bangunan;  ?>
@@ -591,7 +591,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Lantai Rumah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -605,7 +605,7 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_ibu">Penerangan Rumah <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -619,14 +619,14 @@
           </div>
       </div>
       <div id="step-4" style="height:450px;">
-        <div class="item form-group">
+        <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_wali">Nama Wali <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= $this->input->post('nama_wali') ?? $query->nama_wali; ?>">
             </div>
           </div>
-          <div class="item form-group">
+          <div class="form-group row">
             <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Wali <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 ">
               <?php $pendWali = $this->input->post('pendidikan_wali') ? $this->input->post('pendidikan_wali') : $query->pendidikan_wali; ?>
@@ -646,7 +646,7 @@
               </select>
             </div>
           </div>
-        <div class="item form-group">
+        <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_wali">Pekerjaan Wali <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -669,7 +669,7 @@
               </select>
             </div>
           </div>
-            <div class="item form-group">
+            <div class="form-group row">
             <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
@@ -682,8 +682,8 @@
               </select>
             </div>
           </div>
-        <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp_wali">Nama Wali <span class="required">*</span>
+        <div class="form-group row">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp_wali">No Telepon Wali <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 ">
               <input type="text" class="form-control" id="no_hp_wali" name="no_hp_wali" value="<?= $this->input->post('no_hp_wali') ?? $query->no_hp_wali; ?>">

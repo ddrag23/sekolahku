@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Sekolahku | <?= ucfirst($this->uri->segment(1)); ?> </title>
+    <title>Sekolahku | <?= ucfirst($this->uri->segment(2)); ?> </title>
 
     <!-- Bootstrap -->
     <link href="<?= base_url()?>assets/template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

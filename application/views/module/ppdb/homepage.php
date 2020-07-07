@@ -4,6 +4,7 @@
 <div class="right_col" role="main">
 <div id="sukses" data-flashdata="<?= $this->session->flashdata('sukses');?>"
 data-name="<?= $this->fungsi->user_login()->username;?>"></div>
+ <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
   <div class="row">
     <?php if ($this->session->userdata('seleksi') == 'lulus'): ?>
      <div class="col-md-12 col-sm-12 col-xs-12">
@@ -11,7 +12,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
           <h2><strong>Selamat Anda Telah Dinyatakan Lulus Seleksi</strong></h2>
           <h3></h3>
         <?php if (empty($this->session->userdata('id_siswa'))): ?>
-          <a href="<?= site_url('siswa/add');?>">silahkan klik disini untuk daftar ulang</a>
+          <a href="<?= site_url('halaman/siswa/tambah');?>">silahkan klik disini untuk daftar ulang</a>
         <?php endif; ?>
        </div>
     </div>
@@ -28,7 +29,9 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
              <div class="clearfix"></div>
              </div>
             <div class="x_content">
-                  <table class="table">
+
+            	<div class="table-responsive">
+                   <table class="table">
                     <h6 class="text-center">Biodata PPDB</h6>
                     <div class="clearfix"></div>
                       <tbody>
@@ -78,11 +81,14 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                           <td><?= $query['alamat_sekolah_ppdb'];?></td>
                         </tr>
                       </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </table>		
+            	</div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 <?php if (!empty($this->session->userdata('id_siswa'))): ?>
 <div class="row">
@@ -99,8 +105,9 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
              </div>
             <div class="x_content">
             <!-- content starts here -->
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                  <table class="table">
+            <div class="table-responsive">
+	          <div class="col-md-6 col-sm-6 col-xs-12">
+                  		<table class="table ">
                       <tbody>
                         <?php if (!empty($siswa['nis'])): ?>
                         <tr>
@@ -233,7 +240,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                         <tr>
                             <th>No Telepon Wali</th>
                             <td>:</td>
-                            <td><?= $query['no_hp_wali'];?></td>
+                            <td><?= $siswa['no_hp_wali'];?></td>
                         </tr>
                         <?php endif; ?>
                       </tbody>
@@ -368,13 +375,16 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                           </tr>
                         </tbody>
                       </table>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
                   </div>
-                </div>
-              </div>
+                  	</div>
+	          
+
+            </div>
+            </div>
+            </div>
+            </div>
+         
+
 <?php endif; ?>
-</div>
+ </div>
 <?php include 'application/views/template/footer.php';?>

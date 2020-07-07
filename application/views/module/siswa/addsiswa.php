@@ -1,9 +1,9 @@
  <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
             <ul class="nav navbar-right panel_toolbox">
-            <li><a class="text-primary" href="<?= site_url('siswa');?>"><i class="fa fa-arrow-left"></i> Kembali</a></li>
+            <li><a class="text-primary" href="<?= site_url('halaman/siswa');?>"><i class="fa fa-arrow-left"></i> Kembali</a></li>
              </ul>
              <div class="clearfix"></div>
              </div>
@@ -50,52 +50,52 @@
            <?php if ($this->session->userdata('level') == 'user'): ?>
            <input type="hidden" name="users_id" value="<?=  $this->session->userdata('id');?>">
            <?php endif; ?>
-           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Foto<span class="required">*</span>
+           <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Foto<span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="file" id="first-name" name="foto" class="form-control" value="" >
             </div>
           </div>
-            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NPSN TK <span class="required">*</span>
+            <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">NPSN TK <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="npsn" class="form-control" value="<?= set_value('npsn'); ?>">
             </div>
           </div>
         <?php if ( $this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
-            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NISN<span class="required">*</span>
+            <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">NISN<span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="nisn" class="form-control" value="<?= set_value('nisn'); ?>">
             </div>
           </div>
-            <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIS <span class="required">*</span>
+            <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">NIS <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="nis" class="form-control" value="<?= set_value('nis'); ?>">
             </div>
           </div>
         <?php endif; ?>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIK Siswa <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">NIK Siswa <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="nik_siswa" class="form-control" value="<?= set_value('nik_siswa'); ?>">
             </div>
           </div>
-           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
+           <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="nama_siswa" class="form-control" value="<?= set_value('nama_siswa'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">TTL <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="last-name">TTL <span class="required">*</span>
             </label>
             <div class="col-md-2 col-sm-2 col-xs-12 ">
               <input type="text" id="last-name" name="tempat_lahir"  class="form-control" value="<?= set_value('tempat_lahir'); ?>">
@@ -104,15 +104,15 @@
                   <input type='text' class="form-control" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>" />
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="umur">Umur <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="umur">Umur <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="umur" name="umur" class="form-control" value="<?= set_value('umur'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">BB/TB/Gol.Darah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="last-name">BB/TB/Gol.Darah <span class="required">*</span>
             </label>
             <div class="col-md-2 col-sm-2 col-xs-12 ">
               <input type="text" id="last-name" name="bb" value="<?= set_value('bb'); ?>"  class="form-control" placeholder="Berat Badan">
@@ -124,24 +124,24 @@
               <input type="text" id="last-name" name="gol_darah" placeholder="Golongan Darah"  class="form-control" value="<?= set_value('gol_darah'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Penyakit Serius <br><small>(Tidak wajib di isi)</small>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Penyakit Serius <br><small>(Tidak wajib di isi)</small>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="penyakit" class="form-control" value="<?= set_value('penyakit'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Agama
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Agama
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="agama" class="form-control" value="<?= set_value('agama'); ?>">
             </div>
           </div>
         <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
-           <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Kelas <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
+           <div class="row form-group ">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Kelas <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="ex-select2 form-control" name="kelas_id">
                 <option value="">--Pilih--</option>
                 <?php foreach ($kelas as $key):?>
@@ -150,10 +150,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Status Siswa <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Status Siswa <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="ex-select2 form-control" name="status">
                 <option value="">--Pilih--</option>
                 <option value="praaktif"<?= set_value('status') == 'praaktif' ? 'selected' : null; ?> >Praaktif</option>
@@ -164,9 +164,9 @@
             </div>
           </div>
         <?php endif; ?>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-            <div class="col-md-6 col-sm-6 ">
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Gender</label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <div id="gender" class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                   <input type="radio" name="gender_siswa" value="laki-laki" <?= set_value('gender') == 'laki-laki' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
@@ -177,15 +177,15 @@
               </div>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Alamat <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Alamat <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <textarea name="alamat_siswa" id="" cols="30" rows="4" class="form-control"><?= set_value('alamat_siswa'); ?></textarea>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Dusun <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Dusun <span class="required">*</span>
             </label>
             <div class="col-md-2 col-sm-2 col-xs-12 ">
               <input class="form-control" type="text" name="dusun" value="<?= set_value('dusun')?>" placeholder="Dusun">
@@ -197,51 +197,51 @@
               <input class="form-control" type="text" name="rw" value="<?= set_value('rw')?>" placeholder="RW">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Desa <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Desa <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 col-xs-12 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-xs-12 ">
               <input class="form-control" type="text" name="desa" value="<?= set_value('desa')?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align"
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align"
             for="first-name">Kecamatan <span class="required">*</span>
             </label>
-            <div class="col-md-3 col-sm-3 col-xs-12 ">
+            <div class="col-md-3 col-sm-3 col-xs-12 col-xs-12 ">
               <input class="form-control" type="text" name="kecamatan" value="<?= set_value('kecamatan')?>">
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 ">
+            <div class="col-md-3 col-sm-3 col-xs-12 col-xs-12 ">
               <input class="form-control" type="text" name="kodepos" placeholder="Masukkan Kode Pos" value="<?= set_value('kodepos')?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align"
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align"
             for="first-name">Kabupaten <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 col-xs-12 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-xs-12 ">
               <input class="form-control" type="text" name="kabupaten" value="<?= set_value('kabupaten')?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align"
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align"
             for="first-name">Provinsi<span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 col-xs-12 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-xs-12 ">
             <input class="form-control" type="text" name="provinsi" value="<?= set_value('provinsi');?>" >
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Jumlah Saudara <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Jumlah Saudara <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" class="form-control" name="jumlah_saudara" value="<?= set_value('jumlah_saudara'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Asal Sekolah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Asal Sekolah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="ex-select2 form-control" name="asal_sekolah">
                 <option value="">--Pilih--</option>
                 <option value="RA"<?= set_value('asal_sekolah') == 'RA' ? 'selected' : null; ?> >RA</option>
@@ -249,31 +249,31 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_sekolah_asal">Nama asal Sekolah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="nama_sekolah_asal">Nama asal Sekolah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="nama_sekolah_asal" name="nama_sekolah_asal" class="form-control" value="<?= set_value('nama_sekolah_asal'); ?>">
             </div>
           </div>
-         <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="hobi">Hobi <span class="required">*</span>
+         <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="hobi">Hobi <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="hobi" name="hobi" class="form-control" value="<?= set_value('hobi'); ?>">
             </div>
           </div>
-         <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="cita">Cita-Cita <span class="required">*</span>
+         <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="cita">Cita-Cita <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="cita" name="cita" class="form-control" value="<?= set_value('cita'); ?>">
             </div>
           </div>
-           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Keadaan Status Siswa <span class="required">*</span>
+           <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Keadaan Status Siswa <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="ex-select2 form-control" name="keadaan_status">
                 <option value="">--Pilih--</option>
                 <option value="yatim" <?= set_value('keadaan_status') == 'yatim' ? 'selected' : null; ?>>Yatim</option>
@@ -285,37 +285,37 @@
           </div>
       </div>
       <div id="step-2" style="height:450px;">
-        <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Ayah <span class="required">*</span>
+        <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Nama Ayah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="first-name" name="nama_ayah" class="form-control" value="<?= set_value('nama_ayah'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_ibu">Nama Ibu <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="nama_ibu">Nama Ibu <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="nama_ibu" name="nama_ibu" class="form-control" value="<?= set_value('nama_ibu'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Ktp Ayah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="ktp_ayah">Ktp Ayah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="ktp_ayah" name="ktp_ayah" class="form-control" value="<?= set_value('ktp_ayah'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ibu">Ktp Ibu <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="ktp_ibu">Ktp Ibu <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="ktp_ibu" name="ktp_ibu" class="form-control" value="<?= set_value('ktp_ibu'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Ayah <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
+          <div class="row form-group ">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Pendidikan Ayah <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="pendidikan_ayah">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah" <?= set_value('pendidikan_ayah') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
@@ -332,9 +332,9 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Ibu <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
+          <div class="row form-group ">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Pendidikan Ibu <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="pendidikan_ibu">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah" <?= set_value('pendidikan_ibu') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
@@ -351,10 +351,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Pekerjaan Ayah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Pekerjaan Ayah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="job_ayah">
                 <option value="">--Pilih--</option>
                 <option value="tidak bekerja" <?= set_value('job_ayah') == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
@@ -364,7 +364,7 @@
                 <option value="PNS" <?= set_value('job_ayah') == 'PNS' ? 'selected' : null; ?>>PNS</option>
                 <option value="karyawan swasta" <?= set_value('job_ayah') == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
                 <option value="pedagang kecil" <?= set_value('job_ayah') == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
-                <option value="pedangan besar" <?= set_value('job_ayah') == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="pedangan besar" <?= set_value('job_ayah') == 'pedangan besar' ? 'selected' : null; ?>>Pedagang besar</option>
                 <option value="wiraswasta" <?= set_value('job_ayah') == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
                 <option value="wirausaha" <?= set_value('job_ayah') == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
                 <option value="buruh" <?= set_value('job_ayah') == 'buruh' ? 'selected' : null; ?>>Buruh</option>
@@ -373,10 +373,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_ibu">Pekerjaan Ibu <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="job_ibu">Pekerjaan Ibu <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="job_ibu">
                 <option value="">--Pilih--</option>
                 <option value="tidak bekerja" <?= set_value('job_ibu') == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
@@ -386,7 +386,7 @@
                 <option value="PNS" <?= set_value('job_ibu') == 'PNS' ? 'selected' : null; ?>>PNS</option>
                 <option value="karyawan swasta" <?= set_value('job_ibu') == 'karyawan swasta' ? 'selected' : null; ?>>Karyawan swasta</option>
                 <option value="pedagang kecil" <?= set_value('job_ibu') == 'pedagang kecil' ? 'selected' : null; ?>>Pedagang kecil</option>
-                <option value="pedangan besar" <?= set_value('job_ibu') == 'pedangan besar' ? 'selected' : null; ?>>Pedangan besar</option>
+                <option value="pedagang besar" <?= set_value('job_ibu') == 'pedagang besar' ? 'selected' : null; ?>>Pedangan besar</option>
                 <option value="wiraswasta" <?= set_value('job_ibu') == 'wiraswasta' ? 'selected' : null; ?>>wiraswasta</option>
                 <option value="wirausaha" <?= set_value('job_ibu') == 'wirausaha' ? 'selected' : null; ?>>Wirausaha</option>
                 <option value="buruh" <?= set_value('job_ibu') == 'buruh' ? 'selected' : null; ?>>Buruh</option>
@@ -395,10 +395,10 @@
               </select>
             </div>
           </div>
-           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ayah <span class="required">*</span>
+           <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Gaji Ayah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="gaji">
                 <option value="">--Pilih--</option>
                 <option value="kurang dari 1 juta" <?= set_value('gaji') == 'kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
@@ -407,10 +407,10 @@
               </select>
             </div>
           </div>
-           <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Ibu<span class="required">*</span>
+           <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Gaji Ibu<span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="gaji_ibu">
                 <option value="">--Pilih--</option>
                 <option value="Kurang dari 1 juta" <?= set_value('gaji_ibu') == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
@@ -419,26 +419,26 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp">Nomor Telepon<span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="no_hp">Nomor Telepon<span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" id="no_hp" name="no_hp" value="<?= set_value('no_hp'); ?>" class="form-control ">
             </div>
           </div>
       </div>
       <div id="step-3" style="height:450px">
-       <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Waktu Tempuh Ke Sekolah <span class="required">*</span>
+       <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Waktu Tempuh Ke Sekolah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" class="form-control" name="waktu" value="<?= set_value('waktu'); ?>">
             </div>
           </div>
-       <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Jarak Tempuh Ke Sekolah <span class="required">*</span>
+       <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="first-name">Jarak Tempuh Ke Sekolah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
                <select class="form-control" name="jarak_sekolah">
                 <option value="">--Pilih--</option>
                 <option value="0 sampai 1km" <?= set_value('jarak_sekolah') == '0 sampai 1km' ? 'selected' : null; ?>>0 sampai  1 km</option>
@@ -448,10 +448,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_ibu">Cara Ke sekolah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="nama_ibu">Cara Ke sekolah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
                <select class="form-control" name="cara_kesekolah">
                 <option value="">--Pilih--</option>
                 <option value="jalan kaki" <?= set_value('cara_kesekolah') == 'jalan kaki' ? 'selected' : null; ?>>Jalan Kaki</option>
@@ -467,10 +467,10 @@
               </select>
           </div>
         </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Tinggal <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="ktp_ayah">Tempat Tinggal <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
                <select class="form-control" name="tempat_tinggal">
                 <option value="">--Pilih--</option>
                 <option value="orang tua" <?= set_value('tempat_tinggal') == 'orang tua' ? 'selected' : null; ?>>Orang Tua</option>
@@ -480,10 +480,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ayah">Tempat Mandi <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="ktp_ayah">Tempat Mandi <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
                <select class="form-control" name="tempat_mandi">
                 <option value="">--Pilih--</option>
                 <option value="kamar mandi" <?= set_value('tempat_mandi') == 'kamar mandi' ? 'selected' : null; ?>>Kamar Mandi</option>
@@ -493,10 +493,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="ktp_ibu">Air mandi <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="ktp_ibu">Air mandi <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="air_mandi">
                 <option value="">--Pilih--</option>
                 <option value="pdam" <?= set_value('air_mandi') == 'pdam' ? 'selected' : null; ?>>Pdam</option>
@@ -506,9 +506,9 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Air Minum <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
+          <div class="row form-group ">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Air Minum <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="air_minum">
                 <option value="">--Pilih--</option>
                 <option value="pdam" <?= set_value('air_minum') == 'pdam' ? 'selected' : null; ?>>Pdam</option>
@@ -520,9 +520,9 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bangunan Rumah <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
+          <div class="row form-group ">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Bangunan Rumah <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="bangunan">
                 <option value="">--Pilih--</option>
                 <option value="tembok"<?= set_value('bangunan') == 'tembok' ? 'selected' : null; ?>>Tembok</option>
@@ -532,10 +532,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align">Lantai Rumah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Lantai Rumah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="lantai">
                 <option value="">--Pilih--</option>
                 <option value="keramik"<?= set_value('lantai') == 'keramik' ? 'selected' : null; ?>>Keramik</option>
@@ -545,10 +545,10 @@
               </select>
             </div>
           </div>
-          <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_ibu">Penerangan Rumah <span class="required">*</span>
+          <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="job_ibu">Penerangan Rumah <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="penerangan">
                 <option value="">--Pilih--</option>
                 <option value="lampu listrik" <?= set_value('penerangan') == 'lampu listrik' ? 'selected' : null; ?>>Lampu Listrik</option>
@@ -558,16 +558,16 @@
           </div>
       </div>
       <div id="step-4" style="height:450px;">
-        <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_wali">Nama Wali <span class="required">*</span>
+        <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="nama_wali">Nama Wali <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" class="form-control" id="nama_wali" name="nama_wali" value="<?= set_value('nama_wali'); ?>">
             </div>
           </div>
-          <div class="item form-group">
-            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Pendidikan Wali <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 ">
+          <div class="row form-group ">
+            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Pendidikan Wali <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="pendidikan_wali">
                 <option value="">--Pilih--</option>
                 <option value="tidak sekolah"<?= set_value('pendidikan_wali') == 'tidak sekolah' ? 'selected' : null; ?>>Tidak Sekolah</option>
@@ -584,10 +584,10 @@
               </select>
             </div>
           </div>
-        <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="job_wali">Pekerjaan Wali <span class="required">*</span>
+        <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="job_wali">Pekerjaan Wali <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <select class="form-control" name="job_wali">
                 <option value="">--Pilih--</option>
                 <option value="tidak bekerja" <?= set_value('job_wali') == 'tidak bekerja' ? 'selected' : null; ?>>Tidak bekerja</option>
@@ -606,10 +606,10 @@
               </select>
             </div>
           </div>
-       <div class="item form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align">Gaji Wali<span class="required">*</span>
+       <div class="row form-group ">
+        <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align">Gaji Wali<span class="required">*</span>
         </label>
-        <div class="col-md-6 col-sm-6 ">
+        <div class="col-md-6 col-sm-6 col-xs-12 ">
           <select class="form-control" name="gaji_wali">
             <option value="">--Pilih--</option>
             <option value="Kurang dari 1 juta" <?= set_value('gaji_wali') == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
@@ -619,10 +619,10 @@
         </div>
         <input type="hidden" name="tahun_ajaran" value="<?= date('Y');?> / <?= date('Y')+1;?>">
       </div>
-        <div class="item form-group">
-            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_hp_wali">No Telepon Wali <span class="required">*</span>
+        <div class="row form-group ">
+            <label class="col-form-label col-md-3 col-sm-3 col-xs-12 label-align" for="no_hp_wali">No Telepon Wali <span class="required">*</span>
             </label>
-            <div class="col-md-6 col-sm-6 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 ">
               <input type="text" class="form-control" id="no_hp_wali" name="no_hp_wali" value="<?= set_value('no_hp_wali'); ?>">
             </div>
           </div>

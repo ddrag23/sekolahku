@@ -4,13 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        cekAlreadyLogin();
         cekRoutes('auth');
         $this->load->model('m_user', 'users');
     }
 
     public function index(){
-        // cekAlreadyLogin();
+        cekAlreadyLogin();
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         if ($this->form_validation->run() == false) {
@@ -67,6 +66,7 @@ class Auth extends CI_Controller {
     }
 
        public function register(){
+        cekAlreadyLogin();
         $this->form_validation->set_rules('username' , 'NPSN TK', 'required');
         $this->form_validation->set_rules('notelp' , 'Notelp', 'required|numeric');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
