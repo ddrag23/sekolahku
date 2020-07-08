@@ -136,9 +136,9 @@ class Master extends CI_Controller {
 			$this->session->set_flashdata('sukses', ' disimpan');
 		}
     if ($this->router->fetch_method() == 'addGuru' || $this->router->fetch_method() == 'editGuru') {
-        redirect('master/guru');
+        redirect('halaman/guru', 'refresh');
     }else{
-		redirect('master','refresh');
+		redirect('halaman/kelas','refresh');
     }
 	}
 	private function validasi()

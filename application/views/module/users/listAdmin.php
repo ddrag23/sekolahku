@@ -34,9 +34,9 @@
               <td><?= $key->level;?></td>
               <td><?= $key->is_active;?></td>
               <td width="160px" class="text-center">
-                <a href="<?=site_url('user/edit/'.$key->id); ?>" data-toggle="tooltip"
+                <a href="<?=site_url('halaman/pengguna/ubah/'.$key->id); ?>" data-toggle="tooltip"
                 data-placement="left" title="Edit" class="btn btn-success btn-xs"><i class="fa fa-edit"></i></a>
-                <a href="<?=site_url('user/delete/'.$key->id); ?>" data-toggle="tooltip"
+                <a href="<?=site_url('halaman/pengguna/hapus/'.$key->id); ?>" data-toggle="tooltip"
                 data-placement="left" title="Hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
               </td>
               </tr>
