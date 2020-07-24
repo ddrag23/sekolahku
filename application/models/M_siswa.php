@@ -14,6 +14,7 @@ class M_siswa extends CI_Model
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->where('status', 'aktif');
+        $this->db->order_by('id_siswa', 'desc');
         $i = 0;
         foreach ($this->column_search as $aktif) { // loop column
             if(@$_POST['search']['value']) { // if datatable send POST for search

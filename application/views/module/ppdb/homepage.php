@@ -115,6 +115,11 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                           <td>:</td>
                           <td><?= $siswa['nis'];?></td>
                         </tr>
+                        <tr>
+                          <th>NISN</th>
+                          <td>:</td>
+                          <td><?= $siswa['nisn'];?></td>
+                        </tr>
                         <?php endif; ?>
                         <tr>
                           <th>Nama <br> Nik</th>

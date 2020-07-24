@@ -53,7 +53,9 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['halaman/dashboard'] = 'dashboard';;
+$route['halaman/dashboard'] = 'dashboard';
+$route['halaman/dashboard-kepala-sekolah'] = 'dashboard/dashboardLeader';;
+$route['halaman/403-access-denied'] = 'dashboard/errors';;
 
 
 $route['halaman/login'] = 'auth';

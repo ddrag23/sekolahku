@@ -28,9 +28,17 @@ function cekAdmin()
 {
     $CI =& get_instance();
     $CI->load->library('fungsi');
-    if ($CI->fungsi->user_login()->level != 'admin' && $CI->fungsi->user_login()->level != 'guru'){
+    if ($CI->session->level != 'admin' && $CI->session->level != 'guru'){
         $CI->session->userdata('error','Anda tidak memiliki akses utuk halaman ini');
         redirect('halaman/ppdb','refresh');
+    }
+}
+
+function cekLeader()
+{
+    $ci =& get_instance();
+    if ($ci->session->level != 'kepala') {
+        redirect('halaman/403-access-denied');
     }
 }
 
@@ -39,7 +47,7 @@ function cekAlreadyInput()
     $ci =& get_instance();
     if ($ci->session->userdata('level') == 'user') {
      if (!empty($ci->session->userdata('id_ppdb'))&& !empty($ci->session->userdata('id_siswa'))) {
-       redirect('halaman/ppdb','refresh'); 
+       redirect('halaman/ppdb','refresh');
         }
     }
 }

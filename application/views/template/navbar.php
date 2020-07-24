@@ -24,7 +24,7 @@
                 <?php if ($this->fungsi->user_login()->level == 'user'): ?>
                   <h2>Siswa</h2>
                 <?php endif ?>
-                
+
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -36,6 +36,11 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                    <?php if ($this->session->level == 'kepala'): ?>
+                      <li>
+                        <a href="<?= site_url('halaman/dashboard-kepala-sekolah');?>"><i class="fa fa-home"></i> Home</a>
+                      </li>
+                    <?php endif; ?>
                   <?php if ($this->session->userdata('level') == 'admin'): ?>
                     <li>
                     <a href="<?= site_url('halaman/dashboard');?>"><i class="fa fa-home"></i> Home</a>
@@ -46,15 +51,19 @@
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('halaman/siswa/tambah'); ?>">Tambah Data Siswa</a></li>
                       <li><a href="<?= site_url('halaman/siswa'); ?>">Aktif</a></li>
-                      <li><a href="<?= site_url('halaman/siswa/mutasi'); ?>">Mutasi</a></li>
+                      <?php if ($this->session->level == 'admin'): ?>
+                       <li><a href="<?= site_url('halaman/siswa/mutasi'); ?>">Mutasi</a></li>
                       <li><a href="<?= site_url('halaman/siswa/alumni') ;?>">Alumni</a></li>
+                      <?php endif; ?>
                     </ul>
                   </li>
                   <?php endif ?>
-                  
+
+                  <?php if ($this->session->level ==  'admin' || $this->session->level == 'guru' || $this->session->level == 'user'): ?>
                   <li><a><i class="fa fa-folder"></i> Ppdb <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('halaman/ppdb'); ?>">Dashboard PPDB</a></li>
+                  <?php endif; ?>
                     <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>
                       <li><a href="<?= site_url('halaman/ppdb/pengumuman'); ?>">Pengumuman PPDB</a></li>
                       <li><a href="<?= site_url('halaman/ppdb/nilai'); ?>">Nilai PPDB</a></li>
@@ -71,7 +80,9 @@
                     <li><a><i class="fa fa-desktop"></i> Data Master <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="<?= site_url('halaman/kelas'); ?>">Master Kelas</a></li>
+                    <?php if ($this->session->level == 'admin'): ?>
                       <li><a href="<?= site_url('halaman/guru'); ?>">Master Wali Kelas</a></li>
+                    <?php endif; ?>
                     </ul>
                   </li>
                   <?php endif ?>

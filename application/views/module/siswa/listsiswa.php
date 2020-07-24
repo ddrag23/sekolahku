@@ -5,7 +5,9 @@
             <a class="btn btn-primary" href="<?= base_url('halaman/siswa/tambah');?>"><i class="fa fa-plus"></i> Tambah Siswa</a>
             <a class="btn btn-primary" href="<?= base_url('halaman/siswa/ganti-kelas');?>"><i class="fa fa-edit"></i> Ganti Kelas Siswa</a>
             <a class="btn btn-primary" href="<?=base_url('uploads/dokumen/template-import.xlsx');?>"><i class="fa fa-download"></i> Download Format</a>
+            <?php if ($this->session->level == 'admin'): ?>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="fa fa-arrow-down"></i> Import Data Siswa</button>
+            <?php endif; ?>
             <ul class="nav navbar-right panel_toolbox">
             <li><a class="text-success" href="<?= base_url('halaman/siswa/export');?>"><i class="fa fa-file-excel-o"></i> Export</a></li>
              </ul>

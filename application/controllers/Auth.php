@@ -18,9 +18,7 @@ class Auth extends CI_Controller {
         }else {
             $this->proses();
         }
-        
     }
-    
     private function proses(){
         $post = $this->input->post(null, TRUE);
         if ($this->session->logged_in) {
@@ -47,10 +45,13 @@ class Auth extends CI_Controller {
             $this->session->set_userdata($params);
                 if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
                  $this->session->set_flashdata('sukses', 'Selamat Datang di Pengelolahan Data Siswa');
-                 redirect('halaman/dashboard');   
-                } else {
+                 redirect('halaman/dashboard');
+                } else if($this->session->level == 'kepala') {
                  $this->session->set_flashdata('sukses', 'Selamat datang Pendaftaran Peserta Didik Baru');
-                 redirect('halaman/ppdb');
+                 redirect('halaman/dashboard-kepala-sekolah');
+                }else{
+                  $this->session->set_flashdata('sukses', 'Selamat datang Pendaftaran Peserta Didik Baru');
+                  redirect('halaman/ppdb');
                 }
             }else{
                 $this->session->set_flashdata('gagal', 'Akun anda sudah nonaktif, silahkan hubungi admin');
@@ -71,7 +72,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('notelp' , 'Notelp', 'required|numeric');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
         $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|min_length[5]|matches[password]', array('matches' => '%s tidak sesuai dengan password '));
- 
+
         if ($this->form_validation->run() == FALSE) {
             # code...
             $this->session->flashdata('gagal','harus di isi');
@@ -84,7 +85,7 @@ class Auth extends CI_Controller {
                 redirect('halaman/login','refresh');
             }
         }
-        
+
     }
 
     public function logout(){
