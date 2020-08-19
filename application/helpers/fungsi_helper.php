@@ -60,13 +60,15 @@ function uploader($imageName, $locationImage, $typeImage, $sizeImage, $nameForm)
     $config['allowed_types'] = $typeImage;
     $config['max_size'] = $sizeImage;
     $config['file_name'] = $nmFile;
-   // $ci->upload = null;
     $ci->load->library('upload', $config);
     $ci->upload->do_upload($nameForm);
-    // die($ci->upload->display_errors());
-    $result1 = $ci->upload->data();
-    $result = ['foto' => $result1];
-    $dfile = $result['foto']['file_name'];
+    if ($ci->upload->display_errors()) {
+        die($ci->upload->display_errors());
+    }else{
+        $result1 = $ci->upload->data();
+        $result = ['foto' => $result1];
+        $dfile = $result['foto']['file_name'];
+    }
     return $dfile;
 }
 

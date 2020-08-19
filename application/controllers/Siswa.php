@@ -4,11 +4,11 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * 
+ *
  */
 class Siswa extends CI_Controller
 {
-	
+
 	function __construct()
 	{
 		parent::__construct();
@@ -76,7 +76,7 @@ public function detail($id_siswa)
             $row[] = $siswa->nama_kelas;
             $row[] = $siswa->status;
             $row[] = $siswa->tahun_ajaran;
-            
+
             // add html for action
             $row[] = '<a href="'.site_url('halaman/siswa/print/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
             <a href="'.site_url('halaman/siswa/rincian/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Rincian Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> </a>
@@ -109,7 +109,7 @@ function get_ajax_mutasi() {
             $row[] = $siswa->status;
             $row[] = $siswa->link_doc_mutasi;
             $row[] = $siswa->tahun_ajaran;
-            
+
             // add html for action
             $row[] = '<a href="'.site_url('halaman/siswa/print/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
             <a href="'.site_url('halaman/siswa/rincian/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Rincian Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> </a>
@@ -141,7 +141,7 @@ function get_ajax_alumni() {
             $row[] = $siswa->tahun_ajaran;
             $row[] = $siswa->status_ijazah;
             $row[] = $siswa->date_get_ijazah;
-            
+
             // add html for action
             $row[] = '<a href="'.site_url('halaman/siswa/print/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Print Pdf"  class="btn btn-warning btn-xs" target="_blank"><i class="fa fa-print"></i></a>
             <a href="'.site_url('halaman/siswa/rincian/'.$siswa->id_siswa).'" data-toggle="tooltip" data-placement="left" title="Lihat Rincian Siswa" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> </a>
@@ -164,8 +164,17 @@ public function add()
         if ($this->session->level == 'user') {
         cekAlreadyInput();
         }
+        if ($this->session->level == 'admin' || $this->session->level == 'guru') {
+          $this->form_validation->set_rules('npsn', 'NPSN TK', 'required|numeric|is_unique[siswa.npsn]');
+          $this->form_validation->set_rules('nis', 'NIS', 'required|numeric|is_unique[siswa.nis]');
+          $this->form_validation->set_rules('nisn', 'NISN', 'required|numeric|is_unique[siswa.nisn]');
+          $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+          $this->form_validation->set_rules('status', 'Status Siswa', 'required');
+        }
         $this->validasi();
-        $this->form_validation->set_rules('npsn', 'NPSN TK', 'required|numeric|is_unique[siswa.npsn]');
+        if (empty($_FILES['foto']['name'])) {
+          $this->form_validation->set_rules('foto', 'Foto', 'required');
+        }
     	  if ($this->form_validation->run() == FALSE)
         {
 			    	$this->load->view('template/main', [
@@ -178,13 +187,12 @@ public function add()
         else
         {
             $post = $this->input->post(null, TRUE);
-            $post['foto'] = uploader('item','image/', 'png|jpg|jpeg', '2048', 'foto');   
             $this->m_siswa->add($post);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('sukses', 'ditambah');
             }
             redirect('halaman/siswa/','refresh');
-        }	
+        }
     }
     public function edit($id_siswa)
     {
@@ -195,6 +203,10 @@ public function add()
       $config['file_name'] = 'item-'.date('Ymd');
       $this->load->library('upload',$config);
     	$this->validasi();
+      $this->form_validation->set_rules('npsn', 'NPSN TK', 'required|numeric');
+      $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
+      $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+      $this->form_validation->set_rules('status', 'Status Siswa', 'required');
     	 if ($this->form_validation->run() == FALSE)
                 {
                     $query = $this->m_siswa->get($id_siswa);
@@ -205,7 +217,7 @@ public function add()
                         	"query" => $query->row(),
                           "kelas" => $this->m_master->getKelas()->result(),
                           "guru" => $this->m_master->getGuru()->result()
-                        ]);    
+                        ]);
                     }else{
                         show_404();
                     }
@@ -259,7 +271,7 @@ public function add()
             'page' => 'Edit Kelas',
             'kelas' => $this->m_master->getKelas()->result(),
             'siswa' => $this->m_siswa->getAktif()->result()
-        ]);    
+        ]);
       }else{
         $modifiedBy = $this->session->userdata('id');
         $modified_data = date('Y-m-d H:i:s');
@@ -281,17 +293,17 @@ public function add()
         redirect('halaman/siswa','refresh');
     }
 
-  public function printpdf($id_siswa) 
+  public function printpdf($id_siswa)
   {
       cekAdmin();
       $data['row'] = $this->m_siswa->get($id_siswa)->row();
       $html = $this->load->view('module/dokumen/formreg',$data,true);
       $this->fungsi->pdfPrint($html,'Form daftar ulang',array(0,0,609.4488,935.433),'potrait');
   }
-  
+
     public function export(){
     cekAdmin();
-    $siswa = $this->m_siswa->get()->result();
+    $siswa = $this->m_siswa->getAktif()->result();
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setCellValue('A1', 'NO');
@@ -351,7 +363,7 @@ public function add()
     $sheet->setCellValue('BC1', 'PEKERJAAN WALI');
     $sheet->setCellValue('BD1', 'GAJI WALI');
     $sheet->setCellValue('BE1', 'NO TELEPON WALI');
-    
+
     $no=0;
     $baris=2;
     foreach ($siswa as $key) {
@@ -361,7 +373,7 @@ public function add()
           $drawing->setName('foto');
           $drawing->setPath('uploads/image/'.$key->foto);
           $drawing->setCoordinates('B'.$baris);
-         $drawing->setHeight('30'); 
+         $drawing->setHeight('30');
          $drawing->setWorksheet($sheet);
          $sheet->getRowDimension($baris)->setRowHeight(40);
       }
@@ -434,13 +446,13 @@ public function add()
     {
         cekAdmin();
         $fileName = 'import_'.date('Ymdi-His');
-        $config['upload_path'] = 'uploads/dokumen/excel/'; 
+        $config['upload_path'] = 'uploads/dokumen/excel/';
         $config['file_name'] = $fileName;
         $config['allowed_types'] = 'xls|xlsx|csv|ods';
         $config['max_size'] = 10000;
 
         $this->load->library('upload');
-        $this->upload->initialize($config); 
+        $this->upload->initialize($config);
         if (!$this->upload->do_upload('import')) {
             echo $this->upload->display_errors();
             exit();
@@ -471,7 +483,7 @@ public function add()
                 'nik_siswa' => $sheetData[$i][3],
                 'nama_siswa' => $sheetData[$i][4],
                 'kelas_id' => $id,
-                'alamat_siswa' => $sheetData[$i][6], 
+                'alamat_siswa' => $sheetData[$i][6],
                 'dusun' => $sheetData[$i][7],
                 'rt' => $sheetData[$i][8],
                 'rw' => $sheetData[$i][9],
@@ -522,8 +534,8 @@ public function add()
                 'job_wali' => !empty($sheetData[$i][54]) ? $sheetData[$i][54] : null,
                 'gaji_wali' => !empty($sheetData[$i][55]) ? $sheetData[$i][55] : null,
                 'tahun_ajaran' => !empty($sheetData[$i][56]) ? $sheetData[$i][56] : null
-            ]; 
-            /* echo json_encode($data);die(); */ 
+            ];
+            /* echo json_encode($data);die(); */
             $this->db->insert('siswa',$data);
             }
         }
@@ -535,25 +547,6 @@ public function add()
     public function validasi()
     {
          // form data diri
-        if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') {
-        $this->form_validation->set_rules('nis', 'NIS', 'required|numeric|is_unique[siswa.nis]');
-        $this->form_validation->set_rules('nisn', 'NISN', 'required|numeric|is_unique[siswa.nisn]');
-        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
-        $this->form_validation->set_rules('status', 'Status Siswa', 'required');
-        }
-        if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru' && $this->router->fetch_method() == 'edit' ) {
-        $this->form_validation->set_rules('nis', 'NIS', 'required|numeric');
-        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
-        $this->form_validation->set_rules('status', 'Status Siswa', 'required');
-        }
-        if ($this->router->fetch_method() != 'edit') {
-         if (empty($_FILES['foto']['name'])) {
-           $this->form_validation->set_rules('foto','Foto', 'required'); 
-            }
-        }
-        if ($this->router->fetch_method() == 'edit') {
-            $this->form_validation->set_rules('npsn', 'NPSN TK', 'required|numeric');
-        }
         $this->form_validation->set_rules('nik_siswa', 'NIK Siswa', 'required|numeric');
         $this->form_validation->set_rules('nama_siswa', 'Nama', 'required');
         $this->form_validation->set_rules('alamat_siswa', 'Alamat', 'required');

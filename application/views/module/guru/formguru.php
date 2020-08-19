@@ -16,7 +16,7 @@
       <input type="hidden" name="id_guru" value="<?php echo $query->id_guru; ?>">
     <?php endif ?>
       <div class="row form-group">
-        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NIP <span class="required">*</span>
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">NUPTK / Peg.id <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 ">
           <input type="text" id="first-name" name="nip" value="<?= $query->nip; ?>" class="form-control ">
@@ -38,7 +38,7 @@
               <input type="radio" name="gender_guru" value="laki-laki"<?= $gender == 'laki-laki' ? 'checked' : null; ?> class="join-btn"> &nbsp; Laki-Laki &nbsp;
             </label>
             <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-              <input type="radio" name="gender_guru" value="perempuan"<?= $gender == 'perempuan' ? 'checked' : null; ?> class="join-btn">Perempuan 
+              <input type="radio" name="gender_guru" value="perempuan"<?= $gender == 'perempuan' ? 'checked' : null; ?> class="join-btn">Perempuan
             </label>
           </div>
         </div>

@@ -29,7 +29,7 @@ class M_siswa extends CI_Model
             }
             $i++;
         }
-         
+
         if(isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         }  else if(isset($this->order)) {
@@ -71,7 +71,7 @@ class M_siswa extends CI_Model
             }
             $i++;
         }
-         
+
         if(isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         }  else if(isset($this->order)) {
@@ -113,7 +113,7 @@ class M_siswa extends CI_Model
             }
             $i++;
         }
-         
+
         if(isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         }  else if(isset($this->order)) {
@@ -153,6 +153,7 @@ class M_siswa extends CI_Model
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->where('status', 'aktif');
+        $this->db->order_by('id_siswa','desc');
         return $this->db->get('siswa');
     }
     public function getMutasi()
@@ -201,7 +202,7 @@ class M_siswa extends CI_Model
         $created    = date('Y-m-d H:i:s');
             $params              = array(
             'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
-            'foto'              => $post['foto'],
+            'foto'              => uploader('item','image/','jpg|png|jpeg',2000,'foto'),
             'npsn'              => $post['npsn'],
             'nisn'              => !empty($post['nisn']) ? $post['nisn'] : null,
             'nik_siswa'         => $post['nik_siswa'],
@@ -341,7 +342,7 @@ class M_siswa extends CI_Model
             'modified_date'     => $modified
         );
         if ($post['foto'] != null) {
-          $params['foto'] = $post['foto']; 
+          $params['foto'] = $post['foto'];
         }
         /* echo json_encode($params); */
         /* die; */
@@ -358,5 +359,5 @@ class M_siswa extends CI_Model
         $this->db->where('id_siswa', $id_siswa);
         $this->db->delete('siswa');
     }
-   
+
 }

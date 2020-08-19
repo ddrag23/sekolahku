@@ -6,7 +6,7 @@
     <link href="<?= base_url()?>assets/template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/vendors/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?= base_url()?>assets/template/build/css/mystyle.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 <!-- navbar start -->
@@ -41,7 +41,7 @@
 <!-- navbar end -->
 
 <!-- jumbotron start -->
-<div id="home" class="jumbotron jumbotron-fluid">
+<div id="home" class="jumbotron jumbotron-fluid ">
   <div class="container">
     <h1 class="display-4">MI HASYIM ASY'ARI </h1>
     <p class="lead">Untuk peserta didik baru bisa mendaftar dibawah ini atau jika sudah mempunyai akun bisa langsung klik tombol masuk </p>
@@ -70,7 +70,7 @@
             </div>
         <?php endforeach; ?>
         </div>
-       </div> 
+       </div>
     </div>
     <!--info panel end-->
 
@@ -208,7 +208,7 @@
 <div class="pembatas"></div>
 
 <!--  FOOTER START -->
-  
+
 <div class="footer">
   <div class="inner-footer">
 
@@ -239,28 +239,26 @@
           <li><i class="fa fa-map-marker" aria-hidden="true"></i>Jalan Pahlawan 1 Pepe Sedati Sidoarjo 61253</li>
           <li><i class="fa fa-phone" aria-hidden="true"></i>081553310908</li>
           <li><i class="fa fa-envelope" aria-hidden="true"></i>pepemihas@gmail.com</li>
-        </ul> 
-      
+        </ul>
+
 <!--   for social links -->
         <div class="social-media">
           <a href="#"><i class="fa fa-instagram"></i></a>
           <a href="#"><i class="fa fa-facebook"></i></a>
           <a href="#"><i class="fa fa-google-plus-square"></i></a>
-        </div> 
+        </div>
     </div>
   </div>
-  
+
 <!--   Footer Bottom start  -->
   <div class="footer-bottom">
     Copyright &copy; Food and Burps 2020.
   </div>
 </div>
-  
-<!--   Footer Bottom end -->
-  
-<!--   FOOTER END -->
- 
 
+<!--   Footer Bottom end -->
+
+<!--   FOOTER END -->
      <script src="<?= base_url()?>assets/template/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?= base_url()?>assets/template/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -21,9 +21,6 @@ class Auth extends CI_Controller {
     }
     private function proses(){
         $post = $this->input->post(null, TRUE);
-        if ($this->session->logged_in) {
-           redirect('halaman/dashboard');
-        }
         if (isset($post['login'])) {
             $query = $this->users->login($post);
             //   cek user

@@ -18,8 +18,8 @@ class Ppdb extends CI_Controller {
     $data = [];
     foreach ($dataPerhari as $value) {
     $rekap_tanggal[] = $value->tanggal;
-    $data[] = $value->jumlah_data; 
-    } 
+    $data[] = $value->jumlah_data;
+    }
     // }}
     //rekap daftar ulang {{
     $siswa = $this->m_siswa->getByUsersId()->result();
@@ -95,7 +95,7 @@ class Ppdb extends CI_Controller {
         // output to json format
         echo json_encode($output);
     }
-  
+
 	public function add(){
     cekAlreadyInput();
     $params = new StdClass();
@@ -115,14 +115,14 @@ class Ppdb extends CI_Controller {
     $params->alamat_sekolah_ppdb = null;
     $params->status_pembayaran = null;
 
-        $this->validasi();	
+        $this->validasi();
     	 if ($this->form_validation->run() == FALSE)
                 {
 			    	$this->load->view('template/main', [
 			    		'src' => 'module/ppdb/formppdb',
 			    		'page' => 'tambah peserta didik baru',
               'submit' => 'save',
-              'query' => $params, 
+              'query' => $params,
 			    		"user" => $this->m_user->get()->result()
 			    	]);
                 }
@@ -134,7 +134,7 @@ class Ppdb extends CI_Controller {
 	public function edit($id_ppdb)
     {
         cekAdmin();
-        $this->validasi();  
+        $this->validasi();
     	 if ($this->form_validation->run() == FALSE)
          {
             $query = $this->m_ppdb->get($id_ppdb);
@@ -146,24 +146,24 @@ class Ppdb extends CI_Controller {
                     "query" => $query->row(),
                     "kelas" => $this->m_master->getKelas()->result(),
                     "user" => $this->m_user->get()->result()
-                ]);    
+                ]);
             }else{
                 show_404();
             }
         }
          else
-        { 
+        {
              $this->proses();
         }
    }
- 
+
   public function delete($id_ppdb)
   {
     $this->m_ppdb->delete($id_ppdb);
     $this->session->set_flashdata('sukses', 'Data berhasil dihapus');
     redirect('halaman/ppdb', 'refresh');
   }
-  
+
   public function proses()
   {
     $post = $this->input->post(null, true);

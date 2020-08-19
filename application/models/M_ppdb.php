@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * 
+ *
  */
 class M_ppdb extends CI_Model
 {
@@ -9,7 +9,7 @@ class M_ppdb extends CI_Model
     var $column_order = array(null, 'nama_ppdb', 'alamat_rumah_ppdb', 'no_hp_ppdb', 'gender_ppdb', 'sesi_gelombang','status_pembayaran'); //set column field database for datatable orderable
     var $column_search = array('nama_ppdb', 'nama_panggilan', 'nama_ortu_ppdb', 'no_hp_ppdb', 'gender_ppdb', 'status_pembayaran', 'sesi_gelombang'); //set column field database for datatable searchable
     var $order = array('id_ppdb' => 'asc'); // default order
- 
+
     private function _get_datatables_query() {
         $this->db->select('id_ppdb, nama_ppdb, nama_panggilan, alamat_rumah_ppdb, no_hp_ppdb, gender_ppdb, sesi_gelombang, status_pembayaran');
         $this->db->from('ppdb');
@@ -28,7 +28,7 @@ class M_ppdb extends CI_Model
             }
             $i++;
         }
-         
+
         if(isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         }  else if(isset($this->order)) {
@@ -97,7 +97,7 @@ class M_ppdb extends CI_Model
     {
         $created_by = $this->session->userdata('id');
         $created    = date('Y-m-d H:i:s');
-        if ($this->session->userdata('level') == 'admin') {
+        if ($this->session->userdata('level') == 'admin' || $this->session->level == 'guru') {
             $data = array(
             'username'  => htmlspecialchars($post['username']),
             'notelp'  => htmlspecialchars($post['no_hp_ppdb']),
@@ -159,7 +159,7 @@ class M_ppdb extends CI_Model
         $this->db->update('ppdb', $params);
     }
 
-    
+
     public function delete($id_ppdb)
     {
       $this->db->trans_start();
@@ -167,5 +167,5 @@ class M_ppdb extends CI_Model
       $this->db->delete('users',['id' => 'user_id']);
       $this->db->trans_complete();
     }
-    
+
 }

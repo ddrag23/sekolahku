@@ -62,17 +62,17 @@ class Master extends CI_Controller {
 					"submit" => "edit",
 					"guru" => $this->m_master->getGuru()->result()
 				]);
-			}			
+			}
 			} else {
 				$this->proses();
 			}
-	
+
 	}
 	public function delete($id_kelas)
 	{
 		$this->m_master->del($id_kelas);
 		$this->session->set_flashdata('sukses', ' dihapus');
-		redirect('master','refresh');
+		redirect('halaman/kelas','refresh');
 	}
 	// end fungsi kelas
 	// start fungsi guru
@@ -108,7 +108,7 @@ class Master extends CI_Controller {
 					"query" => $query->row(),
 					"submit" => "editguru"
 				]);
-			}			
+			}
 			} else {
 				$this->proses();
 			}
@@ -117,7 +117,7 @@ class Master extends CI_Controller {
 	{
 		$this->m_master->del($id_guru);
 		$this->session->set_flashdata('sukses', ' dihapus');
-		redirect('master/guru','refresh');
+		redirect('halaman/guru','refresh');
 	}
 
  	public function proses()

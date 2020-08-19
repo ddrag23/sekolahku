@@ -56,7 +56,7 @@
             <option value="">--Pilih--</option>
             <option value="admin"<?= $level == 'admin' ? 'selected' : null; ?>>Administrator</option>
             <option value="kepala sekolah"<?= $level == 'kepala sekolah' ? 'selected' : null; ?>>Kepala Sekolah</option>
-            <option value="guru"<?= $level == 'guru' ? 'selected' : null; ?>>Guru</option>
+            <option value="guru"<?= $level == 'guru' ? 'selected' : null; ?>>Panitia</option>
             <option value="user"<?= $level == 'user' ? 'selected' : null; ?>>User</option>
           </select>
         </div>

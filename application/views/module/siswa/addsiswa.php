@@ -414,7 +414,7 @@
               <select class="form-control" name="gaji_ibu">
                 <option value="">--Pilih--</option>
                 <option value="Kurang dari 1 juta" <?= set_value('gaji_ibu') == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-                <option value="1 sampai 2 juta" <?= set_value('gaji_ibu') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+                <option value="1 juta sampai 2 juta" <?= set_value('gaji_ibu') == '1 juta sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
                 <option value="Lebih dari 3 juta" <?= set_value('gaji_ibu') == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
               </select>
             </div>
@@ -487,9 +487,9 @@
                <select class="form-control" name="tempat_mandi">
                 <option value="">--Pilih--</option>
                 <option value="kamar mandi" <?= set_value('tempat_mandi') == 'kamar mandi' ? 'selected' : null; ?>>Kamar Mandi</option>
-                <option value="sumber "<?= set_value('tempat_mandi') == 'sumber' ? 'selected' : null; ?>>Sumber</option>
-                <option value="sungai "<?= set_value('tempat_mandi') == 'sungai' ? 'selected' : null; ?>>Sungai</option>
-                <option value="kamar mandi umum "<?= set_value('tempat_mandi') == 'kamar mandi umum' ? 'selected' : null; ?>>Kamar Mandi Umum</option>
+                <option value="sumber"<?= set_value('tempat_mandi') == 'sumber' ? 'selected' : null; ?>>Sumber</option>
+                <option value="sungai"<?= set_value('tempat_mandi') == 'sungai' ? 'selected' : null; ?>>Sungai</option>
+                <option value="kamar mandi umum"<?= set_value('tempat_mandi') == 'kamar mandi umum' ? 'selected' : null; ?>>Kamar Mandi Umum</option>
               </select>
             </div>
           </div>
@@ -613,7 +613,7 @@
           <select class="form-control" name="gaji_wali">
             <option value="">--Pilih--</option>
             <option value="Kurang dari 1 juta" <?= set_value('gaji_wali') == 'Kurang dari 1 juta' ? 'selected' : null; ?>>Kurang dari 1 juta</option>
-            <option value="1 sampai 2 juta" <?= set_value('gaji_wali') == '1 sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
+            <option value="1 juta sampai 2 juta" <?= set_value('gaji_wali') == '1 juta sampai 2 juta' ? 'selected' : null; ?>>1 sampai 2 juta</option>
             <option value="Lebih dari 3 juta" <?= set_value('gaji_wali') == 'Lebih dari 3 juta' ? 'selected' : null; ?>>Lebih dari 2 juta</option>
           </select>
         </div>

@@ -26,7 +26,7 @@ class M_user extends CI_Model
             }
             $i++;
         }
-         
+
         if(isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         }  else if(isset($this->order)) {
@@ -108,7 +108,7 @@ class M_user extends CI_Model
 
     public function getPanitia()
     {
-       return $this->db->where('level', 'guru')->get('users'); 
+       return $this->db->where('level', 'guru')->get('users');
     }
     public function getUser()
     {
@@ -136,14 +136,16 @@ class M_user extends CI_Model
         $modified = date('Y-m-d H:i:s');
           $params = array(
             'username' => htmlspecialchars($post['username']),
-            'password' => empty($post['password']) ? null :  sha1($post['password']),
             'email' => $post['email'],
             'notelp' => $post['notelp'],
             'level' => $post['level'],
             'is_active' => $post['is_active'],
             'modified_by' => $modifBy,
-            'modified_date' => $modified 
-        );
+            'modified_date' => $modified
+          );
+        if (!empty($post['password'])) {
+          $params['password'] = sha1($post['password']);
+        }
         $this->db->where('id', $post['id']);
         $this->db->update('users', $params);
     }
