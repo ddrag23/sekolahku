@@ -16,7 +16,7 @@
             <div class="x_content">
             <!-- content starts here -->
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('sukses');?>"></div>
-      <table id="datatable" class="table table-striped table-bordered table-responsive " style="width:100%"> 
+      <table id="datatable" class="table table-striped table-bordered table-responsive " style="width:100%">
         <thead>
           <tr>
             <th>No</th>

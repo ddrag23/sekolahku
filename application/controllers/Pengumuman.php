@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pengumuman extends CI_Controller
-{   
+{
     public function __construct(){
         parent::__construct();
         cekNotLogin();
@@ -17,7 +17,7 @@ class Pengumuman extends CI_Controller
          'page' => 'Pengumuman',
          'src' => 'module/pengumuman/index',
          'gelombang' => $this->m_gelombang->get()->result(),
-         'pengumuman' => $this->m_pengumuman->get()->result() 
+         'pengumuman' => $this->m_pengumuman->get()->result()
         ]);
     }
 
@@ -51,7 +51,7 @@ class Pengumuman extends CI_Controller
             }else{
                 $error = $this->upload->display_errors();
                 $this->session->set_flashdata('error', $error);
-                redirect('halaman/ppdb/pengumuman/tambah');   
+                redirect('halaman/ppdb/pengumuman/tambah');
             }
         }
     }

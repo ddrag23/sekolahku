@@ -81,7 +81,7 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                           <td><?= $query['alamat_sekolah_ppdb'];?></td>
                         </tr>
                       </tbody>
-                    </table>		
+                    </table>
             	</div>
 
 
@@ -382,13 +382,13 @@ data-name="<?= $this->fungsi->user_login()->username;?>"></div>
                       </table>
                   </div>
                   	</div>
-	          
+
 
             </div>
             </div>
             </div>
             </div>
-         
+
 
 <?php endif; ?>
  </div>

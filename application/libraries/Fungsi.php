@@ -2,7 +2,7 @@
 
 use Dompdf\Dompdf;
 
-class Fungsi 
+class Fungsi
 {
     protected $ci;
     public function __construct(){
@@ -25,5 +25,5 @@ class Fungsi
     // Output the generated PDF to Browser
     $dompdf->stream($fillename, array("Attachment" => 0));
     }
-  
+
 }
