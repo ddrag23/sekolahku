@@ -1,14 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_siswa extends CI_Model
 {
-        // start datatables
-    var $column_order = array(null, 'foto', 'nis', 'nisn', 'nama_siswa', 'alamat_siswa', 'nama_kelas', 'status', 'tahun_ajaran','status_ijazah','date_get_ijazah','link_doc_mutasi'); //set column field database for datatable orderable
-    var $column_search = array('nisn', 'npsn', 'nis','nama_siswa','nama_kelas','alamat_siswa','status','tahun_ajaran'); //set column field database for datatable searchable
+    // start datatables
+    var $column_order = array(null, 'foto', 'nis', 'nisn', 'nama_siswa', 'alamat_siswa', 'nama_kelas', 'status', 'tahun_ajaran', 'status_ijazah', 'date_get_ijazah', 'link_doc_mutasi'); //set column field database for datatable orderable
+    var $column_search = array('nisn', 'npsn', 'nis', 'nama_siswa', 'nama_kelas', 'alamat_siswa', 'status', 'tahun_ajaran'); //set column field database for datatable searchable
     var $order = array('id_siswa' => 'asc'); // default order
     //db get siswa aktif
-    private function _get_datatables_query_aktif() {
+    private function _get_datatables_query_aktif()
+    {
         $this->db->select('id_siswa, nisn, nis, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
@@ -17,41 +18,44 @@ class M_siswa extends CI_Model
         $this->db->order_by('id_siswa', 'desc');
         $i = 0;
         foreach ($this->column_search as $aktif) { // loop column
-            if(@$_POST['search']['value']) { // if datatable send POST for search
-                if($i===0) { // first loop
+            if (@$_POST['search']['value']) { // if datatable send POST for search
+                if ($i === 0) { // first loop
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
                     $this->db->like($aktif, $_POST['search']['value']);
                 } else {
                     $this->db->or_like($aktif, $_POST['search']['value']);
                 }
-                if(count($this->column_search) - 1 == $i) //last loop
+                if (count($this->column_search) - 1 == $i) //last loop
                     $this->db->group_end(); //close bracket
             }
             $i++;
         }
 
-        if(isset($_POST['order'])) { // here order processing
+        if (isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-        }  else if(isset($this->order)) {
+        } else if (isset($this->order)) {
             $order = $this->order;
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
-    function get_datatables_aktif() {
+    function get_datatables_aktif()
+    {
         $this->_get_datatables_query_aktif();
-        if(@$_POST['length'] != -1)
-        $this->db->limit(@$_POST['length'], @$_POST['start']);
+        if (@$_POST['length'] != -1)
+            $this->db->limit(@$_POST['length'], @$_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
-    function count_filtered() {
+    function count_filtered()
+    {
         $this->_get_datatables_query_aktif();
         $query = $this->db->get();
         return $query->num_rows();
     }
     // end db get siswa aktif
-        //db get siswa mutasi
-    private function _get_datatables_query_mutasi() {
+    //db get siswa mutasi
+    private function _get_datatables_query_mutasi()
+    {
         $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp,link_doc_mutasi');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
@@ -59,41 +63,44 @@ class M_siswa extends CI_Model
         $this->db->where('status', 'mutasi');
         $i = 0;
         foreach ($this->column_search as $mutasi) { // loop column
-            if(@$_POST['search']['value']) { // if datatable send POST for search
-                if($i===0) { // first loop
+            if (@$_POST['search']['value']) { // if datatable send POST for search
+                if ($i === 0) { // first loop
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
                     $this->db->like($mutasi, $_POST['search']['value']);
                 } else {
                     $this->db->or_like($mutasi, $_POST['search']['value']);
                 }
-                if(count($this->column_search) - 1 == $i) //last loop
+                if (count($this->column_search) - 1 == $i) //last loop
                     $this->db->group_end(); //close bracket
             }
             $i++;
         }
 
-        if(isset($_POST['order'])) { // here order processing
+        if (isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-        }  else if(isset($this->order)) {
+        } else if (isset($this->order)) {
             $order = $this->order;
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
-    function get_datatables_mutasi() {
+    function get_datatables_mutasi()
+    {
         $this->_get_datatables_query_mutasi();
-        if(@$_POST['length'] != -1)
-        $this->db->limit(@$_POST['length'], @$_POST['start']);
+        if (@$_POST['length'] != -1)
+            $this->db->limit(@$_POST['length'], @$_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
-    function count_filtered_mutasi() {
+    function count_filtered_mutasi()
+    {
         $this->_get_datatables_query_mutasi();
         $query = $this->db->get();
         return $query->num_rows();
     }
     // end db get siswa mutasi
-        //db get siswa alumni
-    private function _get_datatables_query_alumni() {
+    //db get siswa alumni
+    private function _get_datatables_query_alumni()
+    {
         $this->db->select('id_siswa,nis, nisn, foto, npsn, nama_siswa, nama_kelas, alamat_siswa, status, tahun_ajaran, gender_siswa, no_hp,status_ijazah, date_get_ijazah');
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
@@ -101,59 +108,63 @@ class M_siswa extends CI_Model
         $this->db->where('status', 'alumni');
         $i = 0;
         foreach ($this->column_search as $alumni) { // loop column
-            if(@$_POST['search']['value']) { // if datatable send POST for search
-                if($i===0) { // first loop
+            if (@$_POST['search']['value']) { // if datatable send POST for search
+                if ($i === 0) { // first loop
                     $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
                     $this->db->like($alumni, $_POST['search']['value']);
                 } else {
                     $this->db->or_like($alumni, $_POST['search']['value']);
                 }
-                if(count($this->column_search) - 1 == $i) //last loop
+                if (count($this->column_search) - 1 == $i) //last loop
                     $this->db->group_end(); //close bracket
             }
             $i++;
         }
 
-        if(isset($_POST['order'])) { // here order processing
+        if (isset($_POST['order'])) { // here order processing
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-        }  else if(isset($this->order)) {
+        } else if (isset($this->order)) {
             $order = $this->order;
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
-    function get_datatables_alumni() {
+    function get_datatables_alumni()
+    {
         $this->_get_datatables_query_alumni();
-        if(@$_POST['length'] != -1)
-        $this->db->limit(@$_POST['length'], @$_POST['start']);
+        if (@$_POST['length'] != -1)
+            $this->db->limit(@$_POST['length'], @$_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
-    function count_filtered_alumni() {
+    function count_filtered_alumni()
+    {
         $this->_get_datatables_query_alumni();
         $query = $this->db->get();
         return $query->num_rows();
     }
     // end db get siswa alumni
-    function count_all() {
+    function count_all()
+    {
         $this->db->from('siswa');
         return $this->db->count_all_results();
     }
     // end datatables
-    public function get($id_siswa = null){
+    public function get($id_siswa = null)
+    {
         $this->db->from('siswa');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
-        if($id_siswa != null){
-            $this->db->where('id_siswa',$id_siswa);
+        if ($id_siswa != null) {
+            $this->db->where('id_siswa', $id_siswa);
         }
         return $this->db->get();
     }
-      public function getAktif()
+    public function getAktif()
     {
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->where('status', 'aktif');
-        $this->db->order_by('id_siswa','desc');
+        $this->db->order_by('id_siswa', 'desc');
         return $this->db->get('siswa');
     }
     public function getMutasi()
@@ -179,19 +190,25 @@ class M_siswa extends CI_Model
 
     public function searchAktif($keyword)
     {
+        $this->db->select('nama_siswa,gender_siswa,tahun_ajaran,status');
         $this->db->where('status', 'aktif');
+        $this->db->group_start();
         $this->db->like('nama_siswa', $keyword);
         $this->db->or_like('gender_siswa', $keyword);
         $this->db->or_like('tahun_ajaran', $keyword);
+        $this->db->group_end();
         return $this->db->get('siswa')->result();
     }
 
     public function searchAlumni($keyword)
     {
-        $this->db->where('status','alumni');
+        $this->db->select('nama_siswa,gender_siswa,tahun_ajaran,status');
+        $this->db->where('status', 'alumni');
+        $this->db->group_start();
         $this->db->like('nama_siswa', $keyword);
         $this->db->or_like('gender_siswa', $keyword);
         $this->db->or_like('tahun_ajaran', $keyword);
+        $this->db->group_end();
         return $this->db->get('siswa')->result();
     }
 
@@ -200,9 +217,9 @@ class M_siswa extends CI_Model
     {
         $created_by = $this->session->userdata('id');
         $created    = date('Y-m-d H:i:s');
-            $params              = array(
+        $params              = array(
             'users_id'          => !empty($post['users_id']) ? $post['users_id'] : null,
-            'foto'              => uploader('item','image/','jpg|png|jpeg',2000,'foto'),
+            'foto'              => uploader('item', 'image/', 'jpg|png|jpeg', 2000, 'foto'),
             'npsn'              => $post['npsn'],
             'nisn'              => !empty($post['nisn']) ? $post['nisn'] : null,
             'nik_siswa'         => $post['nik_siswa'],
@@ -268,15 +285,15 @@ class M_siswa extends CI_Model
         /* die(); */
         $this->db->insert('siswa', $params);
         if ($this->session->userdata('level') == 'user') {
-        $id = $this->db->insert_id();
-        $this->session->set_userdata('id_siswa',$id);
+            $id = $this->db->insert_id();
+            $this->session->set_userdata('id_siswa', $id);
         }
     }
     public function edit($post)
     {
         $modifBy  = $this->session->userdata('id');
         $modified = date('Y-m-d H:i:s');
-          $params = array(
+        $params = array(
             'users_id'          => !empty($post['id']) ? $post['id'] : null,
             'kelas_id'          => $post['kelas_id'],
             'nis'               => $post['nis'],
@@ -342,7 +359,7 @@ class M_siswa extends CI_Model
             'modified_date'     => $modified
         );
         if ($post['foto'] != null) {
-          $params['foto'] = $post['foto'];
+            $params['foto'] = $post['foto'];
         }
         /* echo json_encode($params); */
         /* die; */
@@ -352,12 +369,11 @@ class M_siswa extends CI_Model
     public function update($id, $params)
     {
         $this->db->where('id', $id);
-        $this->db->update('siswa',$params);
+        $this->db->update('siswa', $params);
     }
     public function del($id_siswa)
     {
         $this->db->where('id_siswa', $id_siswa);
         $this->db->delete('siswa');
     }
-
 }
