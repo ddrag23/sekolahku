@@ -303,7 +303,8 @@ public function add()
 
     public function export(){
     cekAdmin();
-    $siswa = $this->m_siswa->getAktif()->result();
+    /* echo json_encode($_GET['kelas']);die(); */
+    $siswa = $this->m_siswa->getAktif($this->input->get('kelas'))->result();
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
     $sheet->setCellValue('A1', 'NO');
@@ -364,7 +365,7 @@ public function add()
     $sheet->setCellValue('BD1', 'GAJI WALI');
     $sheet->setCellValue('BE1', 'NO TELEPON WALI');
 
-    $no=0;
+    $no=1;
     $baris=2;
     foreach ($siswa as $key) {
       $sheet->setCellValue('A'.$baris,$no++);

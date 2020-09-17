@@ -159,11 +159,14 @@ class M_siswa extends CI_Model
         }
         return $this->db->get();
     }
-    public function getAktif()
+    public function getAktif($kelas_id = NULL)
     {
         $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas_id', 'left');
         $this->db->join('users', 'users.id = siswa.users_id', 'left');
         $this->db->where('status', 'aktif');
+        if ($kelas_id != NULL) {
+          $this->db->where('kelas_id', $kelas_id);
+        }
         $this->db->order_by('id_siswa', 'desc');
         return $this->db->get('siswa');
     }
