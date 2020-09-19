@@ -63,27 +63,28 @@ class Auth extends CI_Controller {
       }
     }
 
-       public function register(){
-        cekAlreadyLogin();
-        $this->form_validation->set_rules('username' , 'NPSN TK', 'required');
-        $this->form_validation->set_rules('notelp' , 'Notelp', 'required|numeric');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-        $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|min_length[5]|matches[password]', array('matches' => '%s tidak sesuai dengan password '));
+    public function register(){
+    cekLimitPendaftaran();
+    cekAlreadyLogin();
+    $this->form_validation->set_rules('username' , 'NPSN TK', 'required');
+    $this->form_validation->set_rules('notelp' , 'Notelp', 'required|numeric');
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+    $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|min_length[5]|matches[password]', array('matches' => '%s tidak sesuai dengan password '));
 
-        if ($this->form_validation->run() == FALSE) {
-            # code...
-            $this->session->flashdata('gagal','harus di isi');
-        $this->load->view('module/auth/register');
-        } else {
-            $post = $this->input->post(null, TRUE);
-            $this->users->register($post);
-            if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('sukses', ' ditambahkan silahkan login');
-                redirect('halaman/login','refresh');
-            }
+    if ($this->form_validation->run() == FALSE) {
+        # code...
+        $this->session->flashdata('gagal','harus di isi');
+    $this->load->view('module/auth/register');
+    } else {
+        $post = $this->input->post(null, TRUE);
+        $this->users->register($post);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('sukses', ' ditambahkan silahkan login');
+            redirect('halaman/login','refresh');
         }
-
     }
+
+}
 
     public function logout(){
         $this->session->sess_destroy();

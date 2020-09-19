@@ -10,7 +10,7 @@
       <?php endif; ?>
       <ul class="nav navbar-right panel_toolbox">
       <li>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".export-modal" ><i class="fa fa-arrow-down"></i> Export</button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target=".export-modal" ><i class="fa fa-file-excel-o"></i> Export</button>
       </li>
         </ul>
 

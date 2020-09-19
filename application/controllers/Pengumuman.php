@@ -17,7 +17,8 @@ class Pengumuman extends CI_Controller
          'page' => 'Pengumuman',
          'src' => 'module/pengumuman/index',
          'gelombang' => $this->m_gelombang->get()->result(),
-         'pengumuman' => $this->m_pengumuman->get()->result()
+         'pengumuman' => $this->m_pengumuman->get()->result(),
+         'settingPendaftaran' => $this->m_pengumuman->getSettingPendaftaran()->result()
         ]);
     }
 
@@ -61,5 +62,32 @@ class Pengumuman extends CI_Controller
         $this->m_pengumuman->delete($id_pengumuman);
         $this->session->set_flashdata('sukses', ' dihapus');
         redirect('halaman/ppdb/pengumuman','refresh');
+    }
+
+    public function getSettingPendaftaranJson()
+    {
+        $data = $this->m_pengumuman->getSettingPendaftaran()->result();
+      echo json_encode($data);
+    }
+
+    public function updateSettingPendaftaran()
+    {
+      $this->form_validation->set_rules('jumlah_pendaftar','Maksimal Pendaftar','required');
+      $this->form_validation->set_rules('status_pendaftaran','Status Pendaftaran','required');
+      if($this->form_validation->run() == FALSE){
+        $callback = [
+          'status' => 'error',
+          'pesan' => validation_errors(),
+        ];
+        echo json_encode($callback);
+      }else{
+        $post = $this->input->post(null,true);
+        /* echo json_encode($post);die(); */
+        $this->m_pengumuman->updatedSettingPendaftaran($post);
+        if ($this->db->affected_rows() > 0) {
+          $this->session->set_flashdata('sukses','diubah');
+        }
+        redirect('halaman/ppdb/pengumuman','refresh');
+      }
     }
 }
