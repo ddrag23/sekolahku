@@ -187,8 +187,16 @@ class M_siswa extends CI_Model
 
     public function getByUsersId()
     {
-        $query = $this->db->query('SELECT DAY(date_created) as tanggal, COUNT(id_siswa) as jumlah_data FROM siswa WHERE users_id IS NOT NULL GROUP BY DAY(date_created) ORDER BY DAY(date_created) ASC LIMIT 10');
+        $query = $this->db->query('SELECT DATE(date_created) as tanggal, COUNT(id_siswa) as jumlah_data FROM siswa WHERE users_id IS NOT NULL AND kelas_id IS NULL GROUP BY DAY(date_created) ORDER BY DAY(date_created) ASC LIMIT 10');
         return $query;
+    }
+
+    public function getDaftarUlang()
+    {
+      $this->db->where('kelas_id =',null);
+      $this->db->where('users_id !=',null);
+      $this->db->order_by('id_siswa','desc');
+      return $this->db->get('siswa');
     }
 
     public function searchAktif($keyword)

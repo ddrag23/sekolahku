@@ -81,6 +81,8 @@ $route['halaman/siswa/validate'] = 'siswa/validasi';
 
 $route['halaman/ppdb'] = 'ppdb';
 $route['halaman/ppdb/daftar-ppdb'] = 'ppdb/listPpdb';
+$route['halaman/ppdb/daftar-ulang'] = 'ppdb/listDaftarUlang';
+$route['halaman/ppdb/belum-daftar-ulang'] = 'ppdb/listBelumDaftarUlang';
 $route['halaman/ppdb/tambah'] = 'ppdb/add';
 $route['halaman/ppdb/ubah/(:num)'] = 'ppdb/edit/$1';
 $route['halaman/ppdb/hapus/(:num)'] = 'ppdb/delete/$1';

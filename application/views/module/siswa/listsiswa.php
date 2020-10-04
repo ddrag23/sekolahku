@@ -11,36 +11,35 @@
       <ul class="nav navbar-right panel_toolbox">
       <li>
       <button type="button" class="btn btn-success" data-toggle="modal" data-target=".export-modal" ><i class="fa fa-file-excel-o"></i> Export</button>
+      <!--modal Export-->
+        <div class="modal fade export-modal" id="export-modal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel2">Export data siswa</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h4 style="margin-bottom:20px;">Pilih Kelas</h4>
+            <form action="<?= base_url('halaman/siswa/export');?>" method="get">
+              <select id="kelas" name="kelas" class="form-control mb-3">
+                <option value="">Semua Kelas</option>
+                <?php foreach ($kelas as $kls): ?>
+                  <option value="<?= $kls->id_kelas;?>"><?= $kls->nama_kelas;?></option>
+                <?php endforeach; ?>
+              </select>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Export</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      <!-- modal-end -->
       </li>
         </ul>
-
-<!--modal Export-->
-  <div class="modal fade export-modal" id="export-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel2">Export data siswa</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h4 style="margin-bottom:20px;">Pilih Kelas</h4>
-      <form action="<?= base_url('halaman/siswa/export');?>" method="get">
-        <select id="kelas" name="kelas" class="form-control mb-3">
-          <option value="">Semua Kelas</option>
-          <?php foreach ($kelas as $kls): ?>
-            <option value="<?= $kls->id_kelas;?>"><?= $kls->nama_kelas;?></option>
-          <?php endforeach; ?>
-        </select>
-       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Export</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-<!-- modal-end -->
 
         <div class="clearfix"></div>
         </div>
@@ -86,33 +85,6 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-<!--modal Export-->
-  <div class="modal fade export-modal" id="export-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel2">Import Data</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h4 style="margin-bottom:20px;">Masukkan File</h4>
-      <form action="<?= base_url('halaman/siswa/export');?>" method="get">
-        <select id="kelas" name="kelas">
-          <option value="">Semua Kelas</option>
-          <?php foreach ($kelas as $kls): ?>
-            <option value="<?= $kls->id_kelas;?>"><?= $kls->nama_kelas;?></option>
-          <?php endforeach; ?>
-        </select>
-       <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Export</button>
         </div>
         </form>
       </div>

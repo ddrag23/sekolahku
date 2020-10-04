@@ -73,7 +73,8 @@
                     <?php endif; ?>
                       <?php if($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru') : ?>
                       <li><a href="<?= site_url('halaman/ppdb/daftar-ppdb') ;?>">Data Calon Siswa</a></li>
-                      <?php  endif; ?>
+                      <li><a href="<?= site_url('halaman/ppdb/daftar-ulang') ;?>">Data Daftar Ulang</a></li>
+                    <?php  endif; ?>
                     </ul>
                   </li>
                   <?php if ($this->session->userdata('level') == 'admin' || $this->session->userdata('level') == 'guru'): ?>

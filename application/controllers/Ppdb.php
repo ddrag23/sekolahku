@@ -72,6 +72,17 @@ class Ppdb extends CI_Controller {
         "query" => $this->m_ppdb->get()->result()
     ]);
   }
+
+  public function listDaftarUlang()
+  {
+    cekAdmin();
+    $this->load->view('template/main',[
+      'page' => 'Data Daftar Ulang',
+      'src' => 'module/ppdb/list_daftar_ulang',
+      'query' => $this->m_siswa->getDaftarUlang()->result()
+    ]);
+  }
+
   function get_ajax_ppdb() {
         $list = $this->m_ppdb->get_datatables();
         $data = array();
